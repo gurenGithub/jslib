@@ -102,13 +102,28 @@ text-align: center;
       float: left;
       background-color: #f2f2f2;
       overflow: scroll;
-      overflow-x:hidden
-      
-
+      overflow-x:hidden;
+      -webkit-transition:opacity 0.5s linear;
+      transition: opacity 0.5s linear;
+    
 }
-.xHTab .content>div{display: none;}
+  
+
+.xHTab .content>div{display: none; padding: 10px 20px 10px 20px; 
+      
+      transition: opacity 2.5s linear;
+}
+
+@keyframes fadeIn{
+
+    form {opacity: 0;}
+    to {opacity: 1;}
+}
 .xHTab .content>div:first-child{display: block;}
-.xHTab .content>div{word-wrap: break-word;width: 100%;border-left: 1px solid #f2f2f2;margin: 3px;}
+.xHTab .content>div{word-wrap: break-word;width: 100%;border-left: 1px solid #f2f2f2;margin: 3px;
+    -webkit-animation: 'fadeIn' 2s linear;
+    animation: 'fadeIn' 2s linear;
+  }
 
 
 @media screen and (min-width: 1024px) {

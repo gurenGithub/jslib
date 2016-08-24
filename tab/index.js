@@ -34,6 +34,8 @@
                 _title.setAttribute('index',i);
                 xUtils.addEvent(_title,'click',function(e)
                 {
+
+                 
                   var index=this.getAttribute('index');
                    var allNode= this.parentNode.children;
                    for (var u = 0; u < allNode.length; u++) {               
@@ -43,7 +45,9 @@
                   this.className='tab-titlehover';
                    for (var j = 0; j < _thisNodes.length; j++) 
                    {
-                     _thisNodes[j].style.display=index==j ?"block":"none";
+                    var isCurrentIndex=index==j ;
+                     _thisNodes[j].style.display=isCurrentIndex?"block":"none";
+
                    }
                   xUtils.cancelBubble(e);
                 });
