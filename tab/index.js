@@ -8,14 +8,21 @@
 
       render:function(xtab){
          if(!xtab){
-         tab='xTab';
+         xtab='xTab';
          }
-        var tabs= document.getElementsByClassName(tab);
-
+        var tabs= document.getElementsByClassName(xtab);
+        
         for (var k = 0; k < tabs.length; k++) 
         {
           (function(k){ 
           var tab=tabs[k];
+            var orientation=tab.getAttribute('orientation');
+            if(orientation && orientation.toString().toLowerCase()=="h"){
+                tab.className=tab.className.replace('xTab','xHTab');
+                 var $cl=document.createElement('div');
+                 $cl.className='cl';
+               tab.appendChild($cl);
+            }
           var $title= xUtils.getElementByClass(tab,'title');
           var $content=xUtils.getElementByClass(tab,'content');
          var _thisNodes=$content.children;

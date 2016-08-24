@@ -1,5 +1,5 @@
 .xTab{
-
+  margin-right: 5px;
 }
 .xTab .content>div {
     display: none;
@@ -48,4 +48,89 @@
 .xTab .title>ul>li>span:hover {
     border-bottom: 3px solid #ff5031;
     color: #ff5031;
+}
+
+.cl{clear: both;}
+
+.xHTab{
+   border: 1px solid #f2f2f2;
+   width: 100%;
+   position: relative;
+   margin: 0 auto;
+    margin-right: 5px;
+}
+.xHTab .title{
+    width: 30%;
+    height: 100%;
+    float: left;
+    overflow: scroll;
+    overflow-x:hidden
+}
+.xHTab .title>ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0.0rem;
+    background: #fff;
+    text-align: left;
+    border-right: 1px solid #f2f2f2;
+    font-size: 14px;
+    
+}
+.xHTab .title>ul>li{padding: 12px;
+
+border-left: 3px solid transparent;
+border-right: 1px solid transparent;
+border-top: 1px solid transparent;
+border-bottom: 1px solid #f2f2f2;
+text-align: center;
+}
+.xHTab .title>ul>li:first-child{
+  border-top: 1px solid transparent;  
+}
+.xHTab .tab-titlehover{
+   border-left: 3px solid #ff5031 !important;
+     background-color: #f2f2f2;
+    color: #ff5031; 
+}
+.xHTab .content{
+      width: 70%;
+      height: 100%;
+      float: left;
+      background-color: #f2f2f2;
+      overflow: scroll;
+      overflow-x:hidden
+      
+
+}
+.xHTab .content>div{display: none;}
+.xHTab .content>div:first-child{display: block;}
+.xHTab .content>div{word-wrap: break-word;width: 100%;border-left: 1px solid #f2f2f2;margin: 3px;}
+
+
+@media screen and (min-width: 1024px) {
+    .xHTab .title{
+    width: 200px;
+    height: 100%;
+    float: left;
+    overflow: scroll;
+    overflow-x:hidden
+}
+
+.xHTab .content{
+      width: 824px;
+      height: 100%;
+      float: left;
+      background-color: #f2f2f2;
+      overflow: scroll;
+      overflow-x:hidden
+      
+
+}
+
+.xHTab{
+   border: 1px solid #f2f2f2;
+   width: 1024px;
+   position: relative;
+   margin: 0 auto;
+}
 }
