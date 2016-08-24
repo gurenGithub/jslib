@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+	   <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/xUtils/cm.css">
+	<script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+     <div class="header">xPup</div>
+     <table border="0" cellpadding="0" cellspacing="0">
+    
+    <tr class="htr">
+    	<td>方法</td>
+    	<td>说明</td>
+    	<td>参数</td>
+    	<td>示例</td>
+
+  	<tr>
+    		<td class="method">show(tartgetId,pupId,opts) </td>
+    		<td class="desc">显示悬浮窗（左）</td>
+    		<td class="opts">
+               <p class="paramItem">@tartgetId:触发弹出层标签,</p>
+               <p class="paramItem">@pupId:弹出层</p>
+               <p class="paramItem">@opts:{event:'click',orientation:'left'}</p>
+    		</td>
+    		<td class="demo" ><span onclick="fn_show(this)">示例
+                   <div class="xPup" id='xpup_left'>
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content">需要手动构建xPup格式</div>
+                   </div>
+    		</span><span id='leftSourceCode'>源码
+
+                <div class="xPup"  targetId='leftSourceCode' orientation='right' >
+                   	<div class="title"><span class="close"></span>显示悬浮窗（左）</div>
+                   	<div class="content">
+                   		 <p class="param"> < span onclick="fn_show(this)" >示例</p>
+                          <p class="paramItem">   < div class="xPup" id='xpup_left'></p>
+                              <p class="paramItem"> 	< div class="title">< span class="close">< /span>标题< /div></p>
+                            	 <p class="paramItem"> < div class="content">< /div></p>
+                            <p class="paramItem">  < /div></p>
+    		              <p class="param"> < /span></p>
+    		               <p class="param"> < script type="text/javascript"></p>
+	                        <p class="paramItem"> function fn_show(e) {</p>
+		                 <p class="paramItem">xPup.show(e,'xpup_left')</p>
+                       	<p class="paramItem">}</p>
+                         <p class="param"> < /script></p>
+                   	</div>
+                   </div>
+    		</span>
+                    
+                  
+    		</td>
+    	</tr>
+   
+
+
+  	<tr>
+    		<td class="method">show(tartgetId,pupId,opts) </td>
+    		<td class="desc">显示悬浮窗（右）</td>
+    		<td class="opts">
+               <p class="paramItem">@tartgetId:触发弹出层标签,</p>
+               <p class="paramItem">@pupId:弹出层</p>
+               <p class="paramItem">@opts:{event:'click',orientation:'right'}</p>
+    		</td>
+    		<td class="demo" ><span onclick="fn_showRight(this)">示例
+                   <div class="xPup" id='xpup_right'>
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content">需要手动构建xPup格式</div>
+                   </div>
+    		</span><span id='rightSourceCode'>源码
+
+                <div class="xPup"  targetId='rightSourceCode' orientation='right' >
+                   	<div class="title"><span class="close"></span>显示悬浮窗（左）</div>
+                   	<div class="content">
+                   		 <p class="param"> < span onclick="fn_showRight(this)" >示例</p>
+                          <p class="paramItem">   < div class="xPup" id='xpup_left'></p>
+                              <p class="paramItem"> 	< div class="title">< span class="close">< /span>标题< /div></p>
+                            	 <p class="paramItem"> < div class="content">< /div></p>
+                            <p class="paramItem">  < /div></p>
+    		              <p class="param"> < /span></p>
+    		               <p class="param"> < script type="text/javascript"></p>
+	                        <p class="paramItem"> function fn_show(e) {</p>
+		                 <p class="paramItem">xPup.show(e,'xpup_right',{orientation:'right'})</p>
+                       	<p class="paramItem">}</p>
+                         <p class="param"> < /script></p>
+                   	</div>
+                   </div>
+    		</span>
+                    
+                  
+    		</td>
+    	</tr>
+
+
+    		<tr>
+    		<td class="method">render() 自动解析DOM节点</td>
+    		<td class="desc">显示悬浮窗（左）</td>
+    		<td class="opts">
+               <p class="paramItem">@tartgetId:触发弹出层标签,</p>
+               <p class="paramItem">@pupId:弹出层</p>
+               <p class="paramItem">@opts:{event:'click',orientation:'left'}</p>
+    		</td>
+    		<td class="demo" >
+    		<span id='autoLeft'>示例
+                   <div class="xPup" targetId='autoLeft'>
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content">需要手动构建xPup格式</div>
+                   </div>
+    		</span>
+
+    		<span id='autoLeftSourceCode'>源码
+
+
+               <div class="xPup" targetId='autoLeftSourceCode' orientation='right' >
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content"> 
+                   	  <p class="param">< span id='autoLeft'>示例</p>
+                        <p class="paramItem"> < div class="xPup" targetId='autoLeft'></p>
+                        <p class="paramItem"> < div class="title"><span class="close">< /span>标题< /div></p>
+                   	    <p class="paramItem"> < div class="content">需要手动构建xPup格式< /div></p>
+                       <p class="param">  < /div></p></div>
+                   </div>
+                    
+    		</span>
+    		</span>
+                    
+                  
+    		</td>
+    	</tr>
+
+
+    	</tr>
+
+
+    		<tr>
+    		<td class="method">render()  自动解析DOM节点</td>
+    		<td class="desc">显示悬浮窗（右）</td>
+    		<td class="opts">
+               <p class="paramItem">@tartgetId:触发弹出层标签,</p>
+               <p class="paramItem">@pupId:弹出层</p>
+               <p class="paramItem">@opts:{event:'click',orientation:'left'}</p>
+    		</td>
+    		<td class="demo" >
+    		<span id='autoRight'>示例
+                   <div class="xPup" targetId='autoRight' orientation='right'>
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content">需要手动构建xPup格式</div>
+                   </div>
+    		</span>
+
+    		<span id='autoRightSourceCode'>源码
+
+
+               <div class="xPup" targetId='autoRightSourceCode' orientation='right' >
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content"> 
+                   	  <p class="param">< span id='autoRight'>示例</p>
+                        <p class="paramItem">   < div class="xPup" targetId='autoRight'></p>
+                        <p class="paramItem"> 	< div class="title"><span class="close">< /span>标题< /div></p>
+                   	    <p class="paramItem"> < div class="content">需要手动构建xPup格式< /div></p>
+                       <p class="param">  < /div></p></div>
+                   </div>
+                    
+    		</span>
+    		</span>
+                    
+                  
+    		</td>
+    	</tr>
+
+
+    	</tr>
+
+
+    		<tr>
+    		<td class="method">render() 自动解析DOM节点</td>
+    		<td class="desc">鼠标移动显示悬浮窗（右）</td>
+    		<td class="opts">
+               <p class="paramItem">@tartgetId:触发弹出层标签,</p>
+               <p class="paramItem">@pupId:弹出层</p>
+               <p class="paramItem">@opts:{event:'mouseover',orientation:'right'}</p>
+    		</td>
+    		<td class="demo" >
+    		<span id='automouseoverRight'>示例
+                   <div class="xPup" targetId='automouseoverRight' event ='mouseover' orientation='right' >
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content">需要手动构建xPup格式</div>
+                   </div>
+    		</span>
+
+    		<span id='auto_mouseOverRightSourceCode'>源码
+
+
+               <div class="xPup" targetId='auto_mouseOverRightSourceCode' orientation='right' >
+                   	<div class="title"><span class="close"></span>标题</div>
+                   	<div class="content"> 
+                   	  <p class="param">< span id='automouseoverRight'>示例</p>
+                        <p class="paramItem">   < div class="xPup" targetId='automouseoverRight' event ='mouseover'></p>
+                        <p class="paramItem"> 	< div class="title"><span class="close">< /span>标题< /div></p>
+                   	    <p class="paramItem"> < div class="content">需要手动构建xPup格式< /div></p>
+                       <p class="param">  < /div></p></div>
+                   </div>
+                    
+    		</span>
+    		</span>
+                    
+                  
+    		</td>
+    	</tr>
+    </table>
+
+    <div class="header"><a href="pup.rar">源码下载</a></div>
+</body>
+<script type="text/javascript">
+	
+
+	function fn_show(e) {
+		
+		xPup.show(e,'xpup_left')
+	}
+
+	function fn_showRight(e)
+	{
+		xPup.show(e,'xpup_right',{orientation:'right'});
+	}
+</script>
+</html>

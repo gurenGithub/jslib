@@ -1,0 +1,74 @@
+
+.xPup{
+	 position: absolute;min-width: 300px;
+	 min-height: 200px;
+	 max-width: 500px;
+	 background: #fff;
+	box-shadow: 0px 0px 2px   #e3e3e3;
+	 border-radius: 3px;
+     padding: 10px 20px 10px 20px;
+     z-index: 20;
+     display: none;
+     border:1px solid #e3e3e3;
+       color: #000;
+}
+.xPup:after{background: url('images/triangle.png');position: absolute;
+    width: 10px;
+    height: 10px;
+    display: block;
+    content: '';
+    top: -10px;
+    left: 20px;
+}
+
+.xRightPup{
+	 position: absolute;min-width: 300px;
+	 min-height: 200px;
+	 max-width: 500px;
+	 background: #fff;
+	box-shadow: 0px 0px 2px   #e3e3e3;
+	 border-radius: 3px;
+     padding: 10px 20px 10px 20px;
+     z-index: 20;
+     display: none;
+      border:1px solid #e3e3e3;
+        color: #000;
+}
+.xRightPup:after{background: url('images/triangle.png');position: absolute;
+    width: 10px;
+    height: 10px;
+    display: block;
+    content: '';
+    top: -10px;
+    right: 20px !important;
+}
+.xPup .title{ border-bottom: 1px solid #e3e3e3;height: 38px;line-height: 38px; text-align: left;width: 100%;}
+.xPup .title .close{float: right;
+	height: 30px;
+	width: 5px;
+	margin-right: 10px;
+	line-height: 30px;
+}
+.xPup .content{
+	  padding: 10px 0px 10px 0px;
+	  word-wrap: break-word;
+	   font-size: 14px;
+	
+}
+
+.xRightPup .title{ border-bottom: 1px solid #e3e3e3;height: 38px;line-height: 38px;text-align: left;width: 100%; }
+.xRightPup .content{
+	  padding: 10px 0px 10px 0px;
+	  word-wrap: break-word;
+	  font-size: 14px;
+	    
+}
+
+.xRightPup .title .close{float: right;
+	height: 30px;
+	width: 5px;
+	margin-right: 10px;
+	line-height: 30px;
+}
+
+.xRightPup .title .close:hover{cursor: pointer;}

@@ -1,0 +1,29 @@
+
+	table{width: 1024px; margin: 0 auto;border-top:1px solid #bce8f1;border-left:1px solid #bce8f1;}
+	.htr td{color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1; height: 30px;line-height: 30px;text-align: center;padding: 8px 12px;
+font-size: 16px;}
+table td{border-right:1px solid #bce8f1;border-bottom:1px solid #bce8f1;font-size: 14px;padding: 15px 15px;word-wrap: break-word;
+}}
+	.method{width: 300px;text-align: left;}
+	.desc{width: 200px;}
+	.opts{width: 350px;}
+	.demo{text-align: center;color: #ff5031;width: 150px;}
+	.demo:hover{cursor: pointer;margin: 0 auto;}
+		.demo span{padding: 5px 10px;}
+	.param{padding-left: 20px;text-align: left;}
+	.paramItem{padding-left: 50px;text-align: left;}
+	.header{text-align: left;   border-bottom: 3px solid #ff5031; padding: 10px 0px;margin: 0 auto;font-size: 25px;line-height: 50px;
+		width: 1024px;height: 50px;}
+   a{color: #000; text-decoration: none;}
+   body{margin-bottom: 200px;}
+
+@media screen and (max-width: 1020px) {
+    table{width: 100%;}
+    .header{width: 100%; word-wrap: break-word;}
+    .method{width: 20%; word-wrap: break-word;}
+    .desc{width: 30%; word-wrap: break-word;}
+    .opts{width: 30%; word-wrap: break-word;}
+    .demo{width: 30%; word-wrap: break-word;}
+}

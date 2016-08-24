@@ -1,0 +1,31 @@
+select{
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance:none;
+    border-right: 0;
+    width: 120px;
+    display: inline-block;
+    position: absolute;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    padding: 10px 20px 10px 15px;
+    /*将select透明度设置为0，不要忘记了透明度为0的标签还是可以触发它的其他事件*/
+}
+
+
+.selectHolder{
+    border: 1px solid #e5e5e5;
+    color: #666;
+    background: url(images/searchTypeBg.png) right center no-repeat;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    display: inline-block;
+    /*创建一个外围框将select包含起来，自定义下拉按钮的背景*/
+
+}
+.selectHolder span{
+    position: absolute;z-index: -20;padding-left: 20px;
+    /*显示选中选项文字*/
+}

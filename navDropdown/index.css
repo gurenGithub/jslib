@@ -1,0 +1,26 @@
+.xNavDropdown{position: relative;width: 200px;height: 300px;background: #FFF;}
+.xNavDropdown>ul{margin: 0px;padding: 0px;width: 100%;list-style: none;padding-left: 10px;}
+.xNavDropdown>ul>li{padding:0;height: 40px;}
+.xNavDropdown>ul>li>a{padding: 0px;width: 100%;background: #fff;border:1px solid transparent;padding:10px 0px 10px 0px;
+	left: -2px;position: absolute;
+	z-index: 10;
+	text-align: center;background-image: url('images/nav-right-arrow.png');
+	background-repeat: no-repeat;
+	background-position: 190px 6px;width: 200px;text-wrap:normal;}
+.xNavDropdown>ul>li>.a1:hover{border:1px solid #e3e3e3;left:0px;border-right:1px solid transparent;background: #fff;z-index: 10;;position: absolute;z-index: 10;text-align: center;margin-left: -2px;padding-right: 2px;}
+.xNavDropdown>ul>li>a:hover{}
+.xNavDropdown-item-hover{
+	border:1px solid #e3e3e3 !important;
+	left:0px !important;
+	border-right:1px solid transparent !important;
+	background: #fff !important;
+	z-index: 10 !important;
+	position: absolute !important;
+	text-align: center  !important; 
+	margin-left: -2px !important;
+	padding-right: 2px !important;
+    border-bottom: 1px solid #ff5031 !important;
+}
+.xNavDropdown>ul>li>ul{margin: 0px;padding: 0px;position: absolute;top: 0px;left: 200px;width: 200px;height: 300px;border:1px solid #e3e3e3;list-style: none;z-index: 5;padding: 10px;display: none;background: #fff;}
+.xNavDropdown>ul>li>ul>li{padding: 5px 15px 5px 15px;}
+

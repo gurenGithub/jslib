@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">
+
+      .modal{width: 100%;height: 100%;position: fixed;top: 0px;left: 0px;margin:auto;}
+      .modal .backup{width: 100%;height: 100%;z-index: 9998;background-color: #bbb;opacity: 0.5; filter: (opacity=50);position: absolute;}
+      .modal .body{width: 400px;height: 300px;top: 50%;left: 50%;margin-left: -200px;margin-top: -150px;background: #FFF;position: absolute;
+      	z-index: 9999;}
+      .modal .body .title{height: 30px;line-height: 30px;border-bottom:1px solid #CCC; padding: 10px 10px;}
+      		.modal .body .title .close{float: right;}
+      	.modal .body .content{padding: 10px 10px; }
+
+
+      	.header{text-align: left;   border-bottom: 3px solid #ff5031; padding: 10px 0px;margin: 0 auto;font-size: 25px;line-height: 30px;
+		 height: 30px;padding-left: 20px;}
+		.code{background: yellow;}
+	</style>
+</head>
+<body>
+    <div class="modal" style="display: none;">
+    	 <div class="backup"></div>
+         <div class="body">
+         	<div class="title"><span class="close">x <!--兼容IE8以下浏览器,IE8以下浏览器如果float:right会换行不见 --> </span> 标题</div>
+            <div class="content">内容</div>
+         </div>
+    </div>
+
+   <div class="header">构建前准备工作(理论)</div>
+     <ul>
+     	 <li>1、<span class="code">position: fixed;</span>我们应该先了解下fixed属性的说明：fixed总是以body为定位时的对象，总是根据浏览器的窗口来进行元素的定位。</li>
+     	 <li>
+     	 	2、<span class="code">z-index: 999;</span> 说明，z-index属性只是对同级元素（position:relative或者posiction:absolute元素）起作用
+     	 </li>
+     	 <li>3、我们搭建的模式化窗口的原理固定一个 {div style='position: fixed' } 里面嵌套一个模糊DIV(z-index:99998)跟一个显示内容DIV(z-index:9999)
+     	  </li>
+     </ul>
+
+
+      <div class="header">样式代码</div>
+
+       <div>
+       	
+       	.modal{width: 100%;height: 100%;position: fixed;top: 0px;left: 0px;margin:auto;}
+      .modal .backup{width: 100%;height: 100%;z-index: 9998;background-color: #bbb;opacity: 0.5; filter: (opacity=50);position: absolute;}
+      .modal .body{width: 400px;height: 300px;top: 50%;left: 50%;margin-left: -200px;margin-top: -150px;background: #FFF;position: absolute;
+      	z-index: 9999;}
+       </div>
+
+
+       <div class="header">HTML</div>
+
+       <div>
+       	 <div class="modal">
+    	 <div class="backup"></div>
+         <div class="body">
+         	<div class="title"><span class="close">x <!--兼容IE8以下浏览器,IE8以下浏览器如果float:right会换行不见 --> </span> 标题</div>
+            <div class="content">内容</div>
+         </div>
+    </div>
+       </div>
+
+       <div class="header">接下来我们需要做的事情就是用JS编写生成格式的HTML</div>
+       <div>这么简单的CSS就可以生成我们所要的模块化窗口，是不是很容易？</div>
+       <div>是不是我们应该尝试用JS代码生成这么简单的HTML格式，通过设置display:'block'就可以生成我们想要的模块化窗口</div>
+
+
+       <div class="header">开工</div>
+       <script type="text/javascript">
+       	
+       	  var modal=(function(){
+
+               var methods={
+               	show:function(title,content){
+
+               		var $modal=document.createElement('div');
+               		$modal.className='modal';
+                     $modal.style.display='block';
+               		var $body=document.createElement('div');
+               		$body.className='body';
+
+               		var $bg=document.createElement('div');
+               		$bg.className='backup';
+
+               		$modal.appendChild($body);
+               		$modal.appendChild($bg);
+               		document.body.appendChild($modal);
+
+
+               		//接下来就开始添加标题关闭按钮
+               	     
+
+               	}
+               }
+
+               return methods;
+       	  })()
+
+
+          // modal.show();
+       </script>
+</body>
+</html>

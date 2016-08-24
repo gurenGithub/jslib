@@ -1,0 +1,127 @@
+.fade {
+	opacity: 0;
+	-webkit-transition: opacity .15s linear;
+	-o-transition: opacity .15s linear;
+	transition: opacity .15s linear
+}
+.fade.in {
+	opacity: 1
+}
+.xmodal-dialog {
+	position: fixed;
+	z-index: 9998;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	display: block;
+	border: 0px;
+	margin: 0 auto
+}
+.xmodal-dialog  .dialog-backup {
+	background: rgb(51, 51, 51);
+	opacity: .5;
+	filter: alpha(opacity=50);
+	z-index: 9998;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	-ms-transition: all 0.2s linear;
+	transition: all 0.2s linear
+}
+.xmodal-dialog .dialog-body {
+	z-index: 9999;
+	width: 400px;
+	height: 300px;
+	margin: 0 auto;
+	padding: 0px;
+	background: #FFf;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	margin-left: -200px;
+	margin-top: -150px;
+	border-radius: 3px;
+	box-shadow: 0px 0px 3px  #CCC;
+	border: 1px solid #e5e5e5;
+	color: #000000 !important;
+	display: block;
+	overflow: hidden
+}
+.xmodal-dialog .title {
+	border-bottom: 1px solid #e5e5e5;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 10px;
+	font-weight: bold;
+	margin: 0px;
+	text-align: left
+}
+.xmodal-dialog .title .close {
+	float: right;
+	height: 30px;
+	width: 5px;
+	margin-right: 10px;
+	line-height: 30px
+}
+.xmodal-dialog .title .close:hover {
+	cursor: pointer
+}
+.xmodal-dialog .content {
+	padding: 10px 10px;
+	clear: both;
+	font-size: 14px;
+	min-height: 50px
+}
+.xmodal-dialog .buttons {
+	position: absolute;
+	bottom: 0px;
+	height: 25px;
+	line-height: 25px;
+	padding: 5px 10px;
+	width: 100%;
+	text-align: right;
+	border-top: 1px solid #e5e5e5;
+	font-size: 14px
+}
+.xmodal-dialog .buttons .button {
+	padding: 5px 10px
+}
+.xmodal-dialog .buttons .button:hover {
+	cursor: pointer
+}
+.xmodal-dialog .buttons .lastButton {
+	margin-right: 10px
+}
+.alert-info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1
+}
+.alert-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6
+}
+.alert-warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc
+}
+.alert-error {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1
+}
+.loadding {
+	background: url('images/loading.gif') no-repeat;
+	background-position: center left;
+	height: 32px;
+	padding-left: 32px;
+	display: block;
+	line-height: 32px
+}

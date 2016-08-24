@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+     <meta http-equiv="content-type" content="text/html;charset=utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	 <link rel="stylesheet" type="text/css" href="index.css">
+	 <script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+	 <script type="text/javascript" src="index.js"></script>
+	 	 <link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/pup/index.css">
+	 <script type="text/javascript" src="http://www.smallui.com/js/lib/pup/index.js"></script>
+	
+<style type="text/css">
+	
+	body{background: #FFF;}
+
+	table{width: 1024px; margin: 0 auto;border-top:1px solid #bce8f1;border-left:1px solid #bce8f1;}
+	.htr td{color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1; height: 30px;line-height: 30px;text-align: center;padding: 8px 12px;
+font-size: 16px;}
+table td{border-right:1px solid #bce8f1;border-bottom:1px solid #bce8f1;font-size: 14px;padding: 15px 15px;word-wrap: break-word;
+}}
+	.method{width: 300px;text-align: left;}
+	.desc{width: 200px;}
+	.opts{width: 350px;}
+	.demo{text-align: center;color: #ff5031;width: 150px;}
+	.demo:hover{cursor: pointer;margin: 0 auto;}
+		.demo span{padding: 5px 10px;}
+	.param{padding-left: 20px;text-align: left;}
+	.paramItem{padding-left: 50px;text-align: left;}
+	.header{text-align: left;   border-bottom: 3px solid #ff5031; padding: 10px 0px;margin: 0 auto;font-size: 25px;line-height: 50px;
+		width: 1024px;height: 50px;}
+   a{color: #000; text-decoration: none;}
+  body{padding-bottom: 200px;}
+</style>
+</head>
+<body>
+<div>
+	
+	<div class="header">xDialog</div>
+    <table border="0" cellpadding="0" cellspacing="0">
+    
+    <tr class="htr">
+    	<td>方法</td>
+    	<td>说明</td>
+    	<td>参数</td>
+    	<td>示例</td>
+
+    </tr>
+    	<tr>
+    		<td class="method">modal(opts) </td>
+    		<td class="desc">模块化弹窗</td>
+    		<td class="opts">
+    		<p class="param">opts={</p>
+    		   <p class="paramItem">title:'标题' ,</p>
+			    <p class="paramItem">width : '宽度(400)',</p>
+			    <p class="paramItem">height : '高度(300)',</p>
+			    <p class="paramItem">buttons:'按钮([{title,click}])',</p>
+			    <p class="paramItem">content:'内容',</p>
+			    <p class="paramItem">src:'http路径',</p>
+			    <p class="paramItem">onClose:'关闭事件'</p>
+    		    <p class="param">  }</p>
+    
+    		  </td>
+    		<td class="demo" ><span onclick="fn_custom()">示例</span><span id='modalSourceCode'>源码</span>
+
+
+    <div class="xPup" targetId='modalSourceCode' orientation="right">
+   	 <div class='title'>xDialog.modal(opts)</div>
+   	 <div class='content'><p class="param">	xDialog.modal({</p>
+	 		 		<p class="paramItem">title:'测试',</p>
+	 		 		<p class="paramItem">width:1100,</p>
+	 		 		<p class="paramItem">height:500,</p>
+	 		 		<p class="paramItem">src:'http://www.baidu.com',</p>
+	 		 		<p class="paramItem">onClose:function(e){</p>
+
+                    <p class="paramItem">  alert('弹出层关闭');</p>
+	 		 		
+	 		   <p class="param">}});</p>
+</div>
+   </div>
+    		</td>
+    	</tr>
+
+    	<tr>
+    		<td class="method">error(content,title,opts) </td>
+    		<td class="desc">错误提示窗口</td>
+    		<td class="opts">
+    			
+               <p class="paramItem">@content :'提示内容' </p>
+               <p class="paramItem">@content :'标题' </p>
+               <p class="paramItem">@opts :'modal->opts' </p>
+    		</td>
+    		<td class="demo"><span onclick="fn_error()">示例</span><span id='errorSourceCode'>源码</span>
+
+  
+
+                    <div class="xPup" targetId='errorSourceCode' orientation="right">
+   	     <div class='title'>xDialog.error(content,title)</div>
+   	      <div class='content'>
+   	   <p class="param">	xDialog.error('出错提示信息')</p>
+	 		 		
+    		</td>
+    		</tr>
+
+    		<tr>
+    		<td class="method">success(content,title,opts) </td>
+    		<td class="desc">提示窗口</td>
+    		<td class="opts">
+    			
+               <p class="paramItem">@content :'提示内容' </p>
+               <p class="paramItem">@content :'标题' </p>
+               <p class="paramItem">@opts :'modal->opts' </p>
+    		</td>
+    		<td class="demo"><span onclick="fn_success()">示例</span><span id='successSourceCode'>源码</span>
+
+  
+
+                    <div class="xPup" targetId='successSourceCode' orientation="right">
+   	     <div class='title'>xDialog.success(content,title)</div>
+   	      <div class='content'>
+   	   <p class="param">	xDialog.success('成功窗口提示信息')</p>
+	 		 		
+    		</td>
+    		</tr>
+
+
+<tr>
+    		<td class="method">conform(content,onSure,onCanel,title,opts) </td>
+    		<td class="desc">是否确认窗口</td>
+    		<td class="opts">
+    			
+               <p class="paramItem">@content :'提示内容' </p>
+                <p class="paramItem">@onSure :'确定事件' </p>
+               <p class="paramItem">@onCanel :'取消事件' </p>
+               <p class="paramItem">@content :'标题' </p>
+               <p class="paramItem">@opts :'modal->opts' </p>
+    		</td>
+    		<td class="demo"><span onclick="fn_conform()">示例</span><span id='conformSourceCode'>源码</span>
+
+  
+
+                    <div class="xPup" targetId='conformSourceCode' orientation="right">
+   	     <div class='title'>xDialog.conform(content,title)</div>
+   	      <div class='content'>
+   	   <p class="param">	
+   	       <p class="paramItem">xDialog.conform('是否确定',</p>
+   	                         <p class="paramItem">   function(e)</p>
+   	                           <p class="paramItem">  {alert('是')</p>
+   	                            <p class="paramItem"> },</p>
+   	                            <p class="paramItem"> function(e)</p>
+   	                            <p class="paramItem"> {</p>
+   	                            <p class="paramItem"> alert('否')</p>
+
+   	                           <p class="paramItem">  })</p>
+	 		 		
+    		</td>
+    		</tr>
+<tr>
+    		<td class="method">loadding() </td>
+    		<td class="desc">错误提示窗口</td>
+    		<td class="opts">
+    		
+    		</td>
+    		<td class="demo"><span onclick="fn_loadding()">示例</span><span id='loaddingSourceCode'>源码</span>
+
+  
+
+                    <div class="xPup" targetId='loaddingSourceCode' orientation="right">
+   	     <div class='title'>xDialog.loadding()</div>
+   	      <div class='content'>
+   	   <p class="param">	xDialog.loadding()</p>
+	 		 		
+    		</td>
+    		</tr>
+
+
+<tr>
+    		<td class="method">close(onClose) </td>
+    		<td class="desc">关闭提示窗口</td>
+    		<td class="opts">
+    		
+    		</td>
+    		<td class="demo"><span >示例</span><span id='closeSourceCode'>源码</span>
+
+  
+
+                    <div class="xPup" targetId='closeSourceCode' orientation="right">
+   	     <div class='title'>xDialog.close()</div>
+   	      <div class='content'>
+   	   <p class="param">	xDialog.close()</p>
+	 		 		
+    		</td>
+    		</tr>
+    </table>
+   
+</div>
+
+<div class="header"><a href="dialog.rar">源码下载</a></div>
+  <script type="text/javascript">
+	 	
+
+	 	function fn_custom(argument) {
+	 		 	xDialog.modal(
+	 		 		{title:'测试',
+	 		 		width:1100,
+	 		 		height:500,
+	 		 		src:'http://www.baidu.com',
+	 		 		onClose:function(e){
+
+                      alert('弹出层关闭');
+	 		 		//xDialog.alert('弹出层关闭');
+	 		   	}});
+
+	 		 	//xDialog.alert('提示信息','提示信息')
+	 	}
+	 	function fn_alert(argument) {
+	 		 	//xDialog.modal({title:'测试',width:1100,height:500,src:'http://www.baidu.com'});
+
+	 		 	xDialog.alert('提示信息','提示信息')
+	 	}
+	 	function fn_error(argument) {
+	 		 	//xDialog.modal({title:'测试',width:1100,height:500,src:'http://www.baidu.com'});
+
+	 		 	xDialog.error('出错')
+	 	}
+	 	function fn_success(argument) {
+	 		 	//xDialog.modal({title:'测试',width:1100,height:500,src:'http://www.baidu.com'});
+
+	 		 	xDialog.success('执行成功')
+	 	}
+	 	function fn_conform(argument) {
+	 		 	//xDialog.modal({title:'测试',width:1100,height:500,src:'http://www.baidu.com'});
+
+	 		 	xDialog.conform('是否确定',function(e){alert('是')},function(e){alert('否')})
+	 	}
+	
+       function fn_loadding(argument) {
+	 		 	//xDialog.modal({title:'测试',width:1100,height:500,src:'http://www.baidu.com'});
+
+	 		 	xDialog.loadding();
+	 	}
+
+	 </script>
+</html>
