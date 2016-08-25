@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/xUtils/cm.css">
+	<script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+      
+
+    <div class="header">xSingleTree</div>
+    <div id='test'></div>
+    <div class="header">xSingleTree</div>
+    <div class="header">帮助文档</div>
+    <table border="0" cellpadding="0" cellspacing="0">
+    
+    <tr class="htr">
+      <td>方法</td>
+      <td>说明</td>
+      <td>参数</td>
+      <td>示例</td>
+
+    
+    </tr>
+    <tr>
+      <td>render(opts,containerId)</td>
+      <td>根据DOM节点自动加载</td>
+      <td>@opts
+         
+         </td>
+      <td></td>
+      </tr>
+      </table>
+   <div class="header"><a href="xSingleTree.rar">源码下载</a></div>
+
+    <div class="header"><a href="https://github.com/gurengitbub/jslib" target="_blank">github：https://github.com/gurengitbub/jslib</a></div>
+      <script type="text/javascript">
+      	
+      	var opts={
+            value:{country:'1',province:null,city:null,area:null},
+            text:'中国 广东省 海珠区',
+      		displayField:'text',
+      		valueField:'value',
+      		parentField:'parentId',
+      		
+      			data:[
+      			      {text:'中国',value:'1','parentId':null},
+      			      {text:'广东省',value:'2','parentId':'1'},
+      			      {text:'天河区',value:'3','parentId':'2'},
+      			      {text:'棠东',value:'7','parentId':'3'},
+      			      {text:'番禺区',value:'4','parentId':'2'},
+      			      {text:'黄埔区',value:'5','parentId':'2'},
+      			      {text:'海珠区',value:'6','parentId':'2'}
+      			      ],
+
+      			      onChange:function(value,text)
+      			      { 
+                         
+                                    //document.getElementById('testText').innerHTML=text;
+      			      	//alert(text);
+      			      }
+      	}
+      	var tree=new xSingleTree();
+      	tree.render(opts,'test')
+
+      </script>
+</body>
+</html>

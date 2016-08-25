@@ -68,6 +68,21 @@ var xUtils = (function() {
         }
       }
     },
+    foreach:function(array,onEach){
+      for (var k = array.length - 1; k >= 0; k--)
+          {
+              onEach(array[k],k) 
+          }
+
+    },
+    clearNode:function(dom){
+
+      var children=dom.children;
+      for (var i = 0; i < children.length; i++) {
+        
+          dom.removeChild(children[i])
+      }
+    },
     getOffset:function(el){
       var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft; 
       var scrollY = document.documentElement.scrollTop || document.body.scrollTop; 
