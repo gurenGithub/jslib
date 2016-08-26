@@ -1,0 +1,57 @@
+.xTip{position: relative;clear: both; padding:5px ;}
+.xTip .content{position: relative;
+	           background: #Fff;
+	           padding: 15px 15px;
+	           border-radius: 5px;
+               margin:3px ;display: block;
+               word-wrap: break-word;
+               max-width: 88%;
+               font-size: 15px;
+	           }
+.xTip .left{text-align: left ;float: left;}
+.xTip .left:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid #fff;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	content: ' ';
+	position: absolute;
+	top: 6px;
+	left: -16px;
+}
+.xTip .right{ text-align: right;float: right;}
+.xTip .right:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid #fff;
+	border-bottom: 8px solid transparent;
+	content: ' ';
+	position: absolute;
+	top: 6px;
+	right: -16px;
+}
+
+
+.xTip .top{ text-align:center;float: right;}
+.xTip .top:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid #fff;
+	content: ' ';
+	position: absolute;
+	top: -15px;
+	right: 49%;
+}
+
+.xTip .bottom{ text-align:center;float: right;}
+.xTip .bottom:before {
+	border-top: 8px solid  #fff ;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	content: ' ';
+	position: absolute;
+	bottom: -15px;
+	right: 49%;
+}

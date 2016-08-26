@@ -1,0 +1,65 @@
+.xTalk{position: relative;clear: both; padding:0.125rem ;}
+.xTalk .content{position: relative;
+	           background: #Fff;
+	           padding: 0.375rem 0.375rem;
+	           border-radius: 0.125rem;
+               margin:0.075rem ;display: block;
+               word-wrap: break-word;
+               max-width: 80%;
+               font-size: 15px;
+               clear: both;
+	           }
+.xTalk .left{text-align: left ;float: left;clear: right;}
+.xTalk .left:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid #fff;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	content: ' ';
+	position: absolute;
+	top: 6px;
+	left: -14px;
+}
+.xTalk .right{ text-align: right;float: right;}
+.xTalk .right:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid #fff;
+	border-bottom: 8px solid transparent;
+	content: ' ';
+	position: absolute;
+	top: 6px;
+	right: -14px;
+}
+.xTalk .right:after {
+	clear: right;
+
+}
+
+.xTalk .top{ text-align:center;float: right;}
+.xTalk .top:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid #fff;
+	content: ' ';
+	position: absolute;
+	top: -15px;
+	right: 49%;
+}
+
+.xTalk .bottom{ text-align:center;float: right;}
+.xTalk .bottom:before {
+	border-top: 8px solid  #fff ;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	content: ' ';
+	position: absolute;
+	bottom: -15px;
+	right: 49%;
+}
+
+.xTalk:after{
+  display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;
+}
