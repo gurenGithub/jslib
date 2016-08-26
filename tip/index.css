@@ -1,5 +1,5 @@
-.xTip{position: relative;clear: both; padding:5px ;}
-.xTip .content{position: relative;
+.xTip{position: relative;clear: both; padding:10px;text-align: center ;display: inline-block;}
+.xTip .content{
 	           background: #Fff;
 	           padding: 15px 15px;
 	           border-radius: 5px;
@@ -7,8 +7,13 @@
                word-wrap: break-word;
                max-width: 88%;
                font-size: 15px;
+               min-width: 100px;
+               max-width: 300px;
+               display: none;
+               z-index: 10;
+               background: #fff;
 	           }
-.xTip .left{text-align: left ;float: left;}
+.xTip .left{text-align: left ;right: 0px; top: 0px;position: absolute;}
 .xTip .left:before {
 	border-top: 8px solid transparent;
 	border-right: 8px solid #fff;
@@ -19,7 +24,7 @@
 	top: 6px;
 	left: -16px;
 }
-.xTip .right{ text-align: right;float: right;}
+.xTip .right{ text-align: right; top: 0px;position: absolute;}
 .xTip .right:before {
 	border-top: 8px solid transparent;
 	border-right: 8px solid  transparent ;
@@ -32,26 +37,31 @@
 }
 
 
-.xTip .top{ text-align:center;float: right;}
+.xTip .top{ text-align:center; top: 0px;right: -50%; position: absolute;}
 .xTip .top:before {
-	border-top: 8px solid transparent;
-	border-right: 8px solid  transparent ;
-	border-left: 8px solid transparent;
-	border-bottom: 8px solid #fff;
-	content: ' ';
-	position: absolute;
-	top: -15px;
-	right: 49%;
-}
-
-.xTip .bottom{ text-align:center;float: right;}
-.xTip .bottom:before {
 	border-top: 8px solid  #fff ;
 	border-right: 8px solid  transparent ;
 	border-left: 8px solid transparent;
 	border-bottom: 8px solid transparent;
 	content: ' ';
 	position: absolute;
-	bottom: -15px;
 	right: 49%;
+	bottom: -15px;
+	
+}
+
+.xTip .bottom{ text-align:center; top: 0px;right: -50%; position: absolute;}
+.xTip .bottom:before {
+	border-top: 8px solid transparent ;
+	border-right: 8px solid  transparent ;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid  #fff  ;
+	content: ' ';
+	position: absolute;
+	top: -15px;
+	right: 49%;
+}
+
+.xTip:after{
+  display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;
 }
