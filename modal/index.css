@@ -5,7 +5,7 @@
  left: 0px;top: 0px;
  display: none;
 }
-.xModal .body{transform: translate(-50%, -50%);
+.xModal .center{transform: translate(-50%, -50%);
     -webkit-transform:translate(-50%, -50%);
 	left: 50% !important;top:50% !important;margin: 0px !important;
 }
