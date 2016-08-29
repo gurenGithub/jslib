@@ -66,7 +66,7 @@ var xModal = (function(argument) {
 					var $modal = xmodals[i];
 					var $close = xUtils.getElementByClass($modal, 'close');
 					var $bg = xUtils.getElementByClass($modal, 'bg');
-					var $content = xUtils.getElementByClass($modal, 'content');
+					var $content = xUtils.getElementByClass($modal, 'body');
 					if (!$close) {
 						$close = xUtils.getElementByClass($content, 'close');
 					}
