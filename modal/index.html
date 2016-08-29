@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>xModalButton</title>
+	<title>xModal</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
   <meta content="yes" name="apple-mobile-web-app-capable"> 
@@ -16,14 +16,109 @@
 </head>
 <body>
 
-fjdslajfldsa
+ <div class="header">xModal</div>
+     <table border="0" cellpadding="0" cellspacing="0">
+    
+    <tr class="htr">
+      <td>css样式</td>
+      <td>说明</td>
+      <td>参数</td>
+      <td>示例</td>
+    </tr>
+
+     <tr >
+      <td>xModal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr >
+      <td>bg</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr >
+      <td>content</td>
+      <td></td>
+      <td>可结合 conter left top bottom right 类控制内容窗口位置（可自定义）</td>
+      <td></td>
+    </tr>
+     <tr >
+      <td>title</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr >
+      <td>close</td>
+      <td>默认自带hide事件</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+     <tr class="htr">
+      <td>JS方法(xModal)</td>
+      <td>说明</td>
+      <td>参数</td>
+      <td>示例</td>
+    </tr>
+
+      <tr >
+      <td>show(selectorId)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+      <tr >
+      <td>hide(selectorId)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+ 
+      <tr >
+      <td>toggle(selectorId)</td>
+      <td></td>
+      <td></td>
+      <td><span id='showModal' onclick="onclick_showModal()">点击切换</span></td>
+    </tr>
+
+      <tr >
+      <td>remove(selectorId)</td>
+      <td>移除DOM节点</td>
+      <td></td>
+      <td></td>
+    </tr>
+<tr class="htr">
+      <td>Docm属性</td>
+      <td>说明</td>
+      <td>参数</td>
+      <td>示例</td>
+    </tr>
+     <tr >
+      <td>onShow()</td>
+      <td>Dom节点属性</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+     <tr >
+      <td>onHide()</td>
+      <td>Dom节点属性</td>
+      <td></td>
+      <td></td>
+    </tr>
+    </table>
+
 <br/>
-<span id='showModal' onclick="onclick_showModal()">点击切换</span>
-   <div class="xModal" id='xmodal'>
+  <div class="header"><a href="modal.rar">源码下载</a></div>
+    <div class="header"><a href="https://github.com/gurengitbub/jslib">github：https://github.com/gurengitbub/jslib</a></div>
+   <div class="xModal" id='xmodal' onShow="onshow" onHide='onhide' >
    	    <div class="bg"></div>
-         <span class="close"></span>
-   	    <div class="content">
-           
+   	    <div class="content conter" >
+            <div class="title">测试</div>
         </div>
    </div>
    <script type="text/javascript">
@@ -32,6 +127,15 @@ fjdslajfldsa
      {
          xModal.toggle('xmodal')
 
+     }
+
+     function onshow(){
+
+        alert('onshow')
+     }
+
+     function onhide(){
+    alert('onHide');
      }
 
    </script>
