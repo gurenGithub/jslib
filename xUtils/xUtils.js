@@ -97,7 +97,12 @@ var offset=el.getBoundingClientRect();
       var x = e.pageX || e.clientX + scrollX; 
       var y = e.pageY || e.clientY + scrollY; 
       return { 'x': x, 'y': y }; 
-    }
+    },
+     getSelector:function(selectorId) {
+
+    return typeof selectorId == 'object' ? selectorId : document.getElementById(selectorId);
+
+  }
   }
   return methods;
 })()

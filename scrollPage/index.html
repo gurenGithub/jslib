@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滚动加载</title>
+
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="../xUtils/cm.css">
+    <link rel="stylesheet" type="text/css" href="../pup/index.css">
+    <script type="text/javascript" src="../xUtils/xUtils.js"></script>
+    <script type="text/javascript" src="../pup/index.js"></script>
+    <script type="text/javascript" src="../xutils/jquery-1.8.2.min.js"></script>
+   
+	<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+     <div class="header">xScrollPage</div>
+     <table border="0" cellpadding="0" cellspacing="0">
+    
+    <tr class="htr">
+      <td>方法</td>
+      <td>说明</td>
+      <td>参数</td>
+      <td>示例</td>
+
+    
+    </tr>
+    <tr>
+      <td>render(selector,onfun)</td>
+      <td>根据DOM节点自动加载</td>
+      <td>@className: 类名
+          @onfun 回调函数</td>
+      <td>
+
+        <span id = 'id1576986792' > 源码
+
+                 <div class='xPup'  targetId='id1576986792' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>&lt;script type="text/javascript"&gt;
+	
+ xUtils.addEvent(window, 'load', function() 
+ {
+ 	//如果有jquery会启用jquery方式，没有则原生JS滚动模式
+   xScrollPage.render('#test',function()
+   {
+   	alert('加载更多数据')
+   	  for (var i = 0; i &lt; 20 ;i++) {
+   		 jQuery('&lt;p&gt;'+i+'&lt;/p&gt;').insertBefore(jQuery('#test'))
+   	}
+   	   
+   });
+ })
+&lt;/script&gt;</pre></div></div></span>
+               </td>
+
+    
+    </tr>
+    </table>
+    <div class="header"><a href="scrollPage.rar">源码下载</a></div>
+
+    <div class="header"><a href="https://github.com/gurengitbub/jslib">github：https://github.com/gurengitbub/jslib</a></div>
+   <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p> <p>A</p>
+      <p id='test'>加载更多</p> 
+</body>
+<script type="text/javascript">
+	
+ xUtils.addEvent(window, 'load', function() 
+ {
+ 	//如果有jquery会启用jquery方式，没有则原生JS滚动模式
+   xScrollPage.render('#test',function()
+   {
+   	alert('加载更多数据')
+   	  for (var i = 0; i < 20 ;i++) {
+   		 jQuery('<p>'+i+'</p>').insertBefore(jQuery('#test'))
+   	}
+   	   
+   });
+ })
+</script>
+</html>
