@@ -1,0 +1,13 @@
+
+.share{
+
+}
+.share .qzone{width: 24px;height: 24px;background: url(images/share_05.png) no-repeat;display: inline-block;float: left;display: block;    background-position: center center;}
+.share a{margin-right: 5px;}
+.share a:hover{cursor: pointer;}
+
+.share .pengyou{
+width: 24px;height: 24px;background: url(images/share_16.png) no-repeat;display: inline-block;float: left;display: block;background-position: center center;}
+
+
+.sina{width: 24px;height: 24px;background: url(images/share_17.png) no-repeat;display: inline-block;float: left;display: block;background-position: center center;}
