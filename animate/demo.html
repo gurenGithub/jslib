@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../xUtils/animate.min.css">
+
+	<style type="text/css">
+
+
+
+@keyframes xBounceInLeft{
+
+	0%{  transform: translate3d(-3000px,0,0);
+	     -webkit-transform :translate3d(-3000px,0,0);  }
+	70%{transform: translate3d(-20px,0,0);
+	     -webkit-transform :translate3d(-20px,0,0); }
+	80%{transform: translate3d(10px,0,0);
+	     -webkit-transform :translate3d(10px,0,0);}
+	 90%{transform: translate3d(-10px,0,0);
+	     -webkit-transform :translate3d(-10px,0,0);}
+	      95%{transform: translate3d(5px,0,0);
+	     -webkit-transform :translate3d(5px,0,0);}
+	100%{ transform: none;-webkit-transform:none; }
+}
+
+@keyframes xSlideOutLeft{
+
+	from {transform: translate3d(0,0,0);
+	     -webkit-transform :translate3d(0,0,0); }
+	to{transform: translate3d(-3000px,0,0);
+	     -webkit-transform :translate3d(-3000px,0,0);visibility: hidden; }
+}
+
+@keyframes xshake{
+
+
+from,to{
+		 transform: translate3d(0,0,0);
+  	 -webkit-transform:translate3d(0,0,0);
+}
+  10%, 30%, 50%, 70%, 90%{
+  	 transform: translate3d(10px,0,0);
+  	 -webkit-transform:translate3d(10px,0,0);
+  	}
+ 20%,40%,60%,80%{
+ 	transform: translate3d(-10px,0,0);
+ 	-transform-transition:translate3d(-10px,0,0);
+ }	
+}
+
+@-webkit-keyframes xshake{
+
+  10%, 30%, 50%, 70%, 90%{
+  	 transition: translate3d(10px,0,0);
+  	 -webkit-transition:translate3d(10px,0,0);
+  	}
+ 20%,40%,60%,80%{
+ 	transition: translate3d(-10px,0,0);
+ 	-webkit-transition:translate3d(-10px,0,0);
+ }	
+}
+  
+@keyframes xRollIn{from{transform: translate3d(100%,0,0) rotate3d(0,0,1,-120deg);
+
+	     -webkit-transform :translate3d(100%,0,0) rotate3d(0,0,1,-120deg);
+	     opacity: 0;} to{transform: none;
+	     -webkit-transform :none;
+	     opacity: 1;}}
+
+
+   .xSlideLeft{
+     	width: 100px;
+     	background: red;
+     	height: 100px;
+     	margin: 0 auto;
+     	position: absolute;
+     	top: 300px;left: 300px;
+     	animation: xshake 1s linear;
+     	
+     }
+	</style>
+</head>
+<body>
+    <div class="xSlideLeft "></div>
+</body>
+</html>
