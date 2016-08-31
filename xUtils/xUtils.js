@@ -19,7 +19,7 @@ if (!document.getElementsByClassName) {
 
 var xUtils = (function() {
   var methods = {
-
+    isAutoLoad:true,
     getWidth: function(id, cssWidth) {
       var $$ = null;
       if (typeof id == "string") {
@@ -82,6 +82,28 @@ var xUtils = (function() {
         
           dom.removeChild(children[i])
       }
+    },
+    getWinSize:function(){
+
+
+              var width=0;
+              var height=0;
+                    if(window.innerHeight!= undefined){
+                        height= window.innerHeight;
+                        width= window.innerWidth;
+                    }
+                    else{
+                        var B= document.body, D= document.documentElement;
+                        height= Math.min(D.clientHeight, B.clientHeight);
+
+                        width= Math.min(D.clientWidth, B.clientWidth);
+                    }
+                    return {width:width,height:height};
+    },
+    getWinScroll:function(){
+     var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+      var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft;
+      return {left:scrollLeft,top:scrollTop};
     },
     getOffset:function(el){
       var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft; 

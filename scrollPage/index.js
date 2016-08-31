@@ -20,9 +20,9 @@ var xScrollPage=(function(){
            xUtils.addEvent(window,'scroll',function()
            {
 
-               var windowHeight=window.innerHeight;
-               var bodyScrollTop=document.body.scrollTop
-              
+               var windowHeight=xUtils.getWinSize().lenght;
+               var winScroll=xUtils.getWinScroll();
+               var bodyScrollTop=winScroll.top;
                var selectors=xUtils.getSelector(selectorId);
                if(!selectors){
                	return ;
