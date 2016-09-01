@@ -1,4 +1,4 @@
- var xSwith = (function() {
+ var xSwitch = (function() {
 
 
      var methods = {
@@ -82,5 +82,5 @@
 
 
  xUtils.addEvent(window, 'load', function() {
-     xSwith.render();
+     xSwitch.render();
  })
