@@ -4,9 +4,9 @@
 }
 .xAccordion .item{
  
-  transition:height 2s;
-  -moz-transition:height 2s; /* Firefox 4 */
-  -webkit-transition:height 2s; /* Safari and Chrome */
+  transition:height 0.5s;
+ 
+  -webkit-transition:height 0.5s; /* Safari and Chrome */
   -o-transition:height 2s; /* Opera */
    border: 1px solid #ccc;
    margin-bottom: 5px;
@@ -15,4 +15,4 @@
    border-radius: 5px;
 }
 .xAccordion .item .header{width: 100% !important;height: 50px;line-height: 50px;  border-bottom: 1px solid #ccc;padding: 0px 20px;}
-.xAccordion .item .content{padding: 0px 20px;}
+.xAccordion .item .content{padding: 0px 20px;margin:0 auto;}
