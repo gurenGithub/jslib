@@ -17,11 +17,20 @@ var xAccordion=(function() {
             		 	(function(k){
 
             		 		var $item=$items[k];
+
+            		 		var _onShow=$item.getAttribute('onShow');
+            		 		var _onHide=$item.getAttribute('onHide');
             		 		var $header=xUtils.getElementByClass($item,'header');
             		 		var $content=xUtils.getElementByClass($item,'content');
             		 		xUtils.addEvent($header,'click',function(e){
                                   var display=$content.style.display;
-                                  $content.style.display =display!='none'?'none':'block';
+                                  var isHidden=display!='none';
+                                  $content.style.display =isHidden ?'none':'block';
+                                  if(isHidden ==true & _onHide){
+                                     eval(_onHide+'(this)') 
+                                  }else if(isHidden==false && _onShow){
+                                      eval(_onShow+'(this)') 
+                                  }
             		 			  xUtils.cancelBubble(e);
             		 		})
             		 	})(k)
