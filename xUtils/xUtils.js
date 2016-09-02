@@ -68,6 +68,24 @@ var xUtils = (function() {
         }
       }
     },
+getElementsByClass:function(dom,className){
+
+  var eles=[];
+   if (dom.className.indexOf(className) > -1) {
+        return dom;
+      }
+      var nodes = dom.children;
+      for (var i = 0; i < nodes.length; i++) {
+
+        var node = nodes[i];
+        if (node.className.indexOf(className) > -1) {
+          eles.push(node);
+        }
+      }
+
+      return eles;
+}
+    ,
     foreach:function(array,onEach){
       for (var k = array.length - 1; k >= 0; k--)
           {
