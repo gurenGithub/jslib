@@ -220,6 +220,7 @@ xCombo.prototype.setValue = function(value, text) {
 }
 xCombo.prototype.clearValue=function(){
 	this.eles.$hValue.val('');
+	 this.setSubCombo();
 }
 xCombo.prototype.renderValue=function(){
 
