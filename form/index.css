@@ -20,7 +20,6 @@ input[type=text]:focus{
 	display: table-cell;
 	text-align: top;
 	height: 37px;
-	overflow: hidden;
 	padding: 0px;margin: 0 auto;
 }
 .pt{}
@@ -39,9 +38,36 @@ input[type=text]:focus{
 .xForm .select{
 	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
 }
+.xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
+.xForm .select>ul>li:hover{background: #f2f2f2;}
 .xForm .line{margin-bottom: 5px;clear: both;}
 .xForm .select{height: 100%;height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;}
 .xForm .select:before{
+	content: 'h';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    right: 0px;
+    position: absolute;
+}
+
+.xForm .combo{
+	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
+}
+.xForm .combo .active{background: #f2f2f2;}
+.xForm .combo>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
+.xForm .combo .item{}
+.xForm .combo>ul>li:hover{background: #f2f2f2;}
+.xForm .combo{height: 100%;height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;}
+.xForm .combo:before{
 	content: 'h';    
     font-family: cgs!important;
     font-style: normal!important;
