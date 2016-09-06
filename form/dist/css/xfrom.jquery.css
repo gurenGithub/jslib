@@ -265,7 +265,7 @@
 input::-ms-clear { display: none; } 
 .xForm input[type=text]
 {
-	height: 37px;
+	height: 36px;
 	border:0px solid #CCC;	
 	outline:none;
     background: #fff;
