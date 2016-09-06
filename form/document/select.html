@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>select</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="../index.css">
+	<script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../dist/css/xfrom.jquery.min.css">
+	<script type="text/javascript" src="../dist/xfrom.jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		function onTestShow(){
+              jQuery('#id_age_stuffix').text('事件：显示事件');
+		}
+		function onTestHide(){
+              //jQuery('#id_age_stuffix').text('事件：隐藏事件');
+		}
+		function onTestSelect(value,text){
+                
+                jQuery('#id_age_stuffix').text('事件：选中事件，Value:'+value+',Text:'+text);
+		}
+
+		jQuery(function(){
+
+			if(parent && parent.setHeight){
+                parent.setHeight(jQuery(document.body).height()) 
+			}
+		})
+	</script>
+</head>
+<body>
+<div class="document">
+      <div class="header">xSelect 下拉框  </div>
+
+      	<form class="xForm">
+   
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">示例</span> 
+	    <span class="select" ><input type="text" value="18"  ></input>
+         <ul>
+           <li >19</li>
+           <li >18</li>    
+          </ul>
+	    </span>
+	</div>
+	  </div>
+	 </form>
+      <div class="api">
+      	<table border="0" cellpadding="0" cellspacing="0">
+      		<tr class="htr"><td class="member">成员</td><td>说明</td><td>其他</td> </tr>
+
+      		<tr >
+      		   <td class="member">render(opts)</td><td class="desc"><pre>
+      			 @opts={
+      			   selecor:null,
+      			   onShow:null,
+      			   onHide:null,
+      			   onSelect:null,
+      			   pId:null,
+      			   pField:null
+      			 }
+      		</pre></td>
+               
+      		<td class="remark">
+      			   <p><span>@selecor</span> <span>jQuery对象|Dom对象</span></p>
+                   <p><span>@onShow</span> <span>显示事件</span></p>
+                   <p><span>@onHide</span> <span>隐藏事件</span></p>
+                   <p><span>@onSelect</span> <span>选中事件</span></p>
+                   <p><span>@pId</span> <span>父节点Id</span></p>
+                   <p><span>@pField</span> <span>与父节点关联字段</span></p>
+      		</td> </tr>
+
+      			<tr >
+      		   <td class="member">getValue()</td><td class="desc">
+      			    获取值
+      		</td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+
+      		<tr >
+      		   <td class="member">setValue(value)</td>
+      		   <td class="desc">
+      			    设置值
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+
+      		<tr class="htr"><td class="member" colspan="3">Dom属性</td> </tr>
+
+<tr >
+      		   <td class="member">class</td>
+      		   <td class="desc">
+      			    select
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+      		<tr >
+      		   <td class="member">onShow</td>
+      		   <td class="desc">
+      			    显示事件，function对象
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+      		<tr >
+      		   <td class="member">onHide</td>
+      		   <td class="desc">
+      			    隐藏事件， function对象
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+      		<tr >
+      		   <td class="member">onSelect</td>
+      		   <td class="desc">
+      			    选中事件，function对象
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+
+      		<tr >
+      		   <td class="member">pField</td>
+      		   <td class="desc">
+      			    与父节点关联字段
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+
+      		<tr >
+      		   <td class="member">pId</td>
+      		   <td class="desc">
+      			    父节点Id
+      		   </td>
+               
+      		<td class="remark">
+      			   
+      		</td> </tr>
+      	</table>
+      </div> 
+      <div class="demos">
+      <div class="header"></div>
+      	  <div class="demo">
+      	  	<div class="title">简单下拉框</div>
+      	  	<div class="example">
+      	  	<form class="xForm">
+   
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">年龄</span> 
+	    <span class="select" onSelect='onTestSelect' onShow='onTestShow' onHide='onTestHide'><input type="text" value="18"  ></input>
+         <ul>
+           <li >19</li>
+           <li >18</li>    
+          </ul>
+	    </span>
+	    <span class="stuffix" id='id_age_stuffix'>事件:</span>
+	</div>
+	  </div>
+	 </form>
+      	  	</div>
+      	  	<div class="code">
+<pre>&lt;form class="xForm"&gt;   
+       &lt;div class="line"&gt;
+	    &lt;div class="control"&gt;
+	      &lt;span class="prefix"&gt;年龄&lt;/span&gt; 
+	       &lt;span class="select" &gt;&lt;input type="text" value="18"  &gt;&lt;/input&gt;
+             &lt;ul&gt;
+              &lt;li &gt;19&lt;/li&gt;
+              &lt;li &gt;18&lt;/li&gt;    
+             &lt;/ul&gt;
+	      &lt;/span&gt;
+	   &lt;/div&gt;
+	  &lt;/div&gt;
+	 &lt;/form&gt;</
+      	  		</pre>
+      	  	</div>
+      	  </div>
+
+
+      	  <div class="demo">
+      	  	<div class="title">级联下拉框</div>
+      	  	<div class="example">
+      	  	<form class="xForm">
+   
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">省份</span> 
+	    <span class="select" 
+	    id='id_province'><input type="text" 
+	    readonly="readonly"></input>
+         <ul>
+           <li isSelected='Y' value='1'>广东</li>
+           <li value='2'>广西</li>   
+          </ul>
+	     </span>
+	   </div>
+	  </div>
+
+	   <div class="line">
+	  <div class="control">
+	  <span class="prefix">地市</span> 
+	    <span class="select" id='sl_city' 
+	      pId='id_province' value='1' pField='province'> <input type="text" readonly="readonly" ></input>
+         <ul>
+           <li province='1' value='1'>广州市</li>
+           <li province='2' value='2'>南宁</li> 
+          </ul>
+	    </span>
+	</div>
+	  </div>
+
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">区域</span> 
+	    <span class="select" id='sl_area' pId='sl_city' pField='city'  ><input value="1" type="text" readonly="readonly" ></input>
+         <ul>
+           <li city='1' value='1'>越秀区</li>
+           <li city='2' value='2'>南宁</li> 
+          </ul>
+	    </span>
+	</div>
+	  </div>
+	 </form>
+      	  	</div>
+      	  	<div class="code">
+<pre>	&lt;form class="xForm"&gt;
+   
+ &lt;div class="line"&gt;
+	  &lt;div class="control"&gt;
+	  &lt;span class="prefix"&gt;省份&lt;/span&gt; 
+	    &lt;span class="select"
+	    id='id_province'&gt;&lt;input type="text" 
+	    readonly="readonly"&gt;&lt;/input&gt;
+         &lt;ul&gt;
+           &lt;li isSelected='Y' value='1'&gt;广东&lt;/li&gt;
+           &lt;li value='2'&gt;广西&lt;/li&gt;   
+          &lt;/ul&gt;
+	     &lt;/span&gt;
+	   &lt;/div&gt;
+	  &lt;/div&gt;
+
+	   &lt;div class="line"&gt;
+	  &lt;div class="control"&gt;
+	  &lt;span class="prefix"&gt;地市&lt;/span&gt; 
+	    &lt;span class="select" id='sl_city' 
+	     pId='id_province' value='1' pField='province'&gt; 
+	     &lt;input type="text" readonly="readonly" &gt;&lt;/input&gt;
+         &lt;ul&gt;
+           &lt;li province='1' value='1'&gt;广州市&lt;/li&gt;
+           &lt;li province='2' value='2'&gt;南宁&lt;/li&gt; 
+          &lt;/ul&gt;
+	    &lt;/span&gt;
+	&lt;/div&gt;
+	  &lt;/div&gt;
+
+ &lt;div class="line"&gt;
+	  &lt;div class="control"&gt;
+	  &lt;span class="prefix"&gt;区域&lt;/span&gt; 
+	    &lt;span class="select" id='sl_area' pId='sl_city' pField='city'  &gt;
+	    &lt;input value="1" type="text" readonly="readonly" &gt;&lt;/input&gt;
+         &lt;ul&gt;
+           &lt;li city='1' value='1'&gt;越秀区&lt;/li&gt;
+           &lt;li city='2' value='2'&gt;南宁&lt;/li&gt; 
+          &lt;/ul&gt;
+	    &lt;/span&gt;
+	&lt;/div&gt;
+	  &lt;/div&gt;
+	 &lt;/form&gt;</pre>
+      	  	</div>
+      	  </div>
+      </div>
+      </div>
+</body>
+</html>

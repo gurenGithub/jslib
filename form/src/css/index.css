@@ -1,18 +1,22 @@
 
-
-input[type=text]
+input::-ms-clear { display: none; } 
+.xForm input[type=text]
 {
-	height: 32px;
+	height: 37px;
 	border:0px solid #CCC;	
 	outline:none;
+    background: #fff;
+    margin: 0 auto !important;
+    float: left;
 }
 
-input[type=text]:focus{
+.xForm input[type=text]:focus{
 	border:0px solid #CCC;
 	background: #f2f2f2;
 	outline:none;
+    
 }
-.xForm{line-height: 35px;}
+.xForm{line-height: 35px;background: #fff;}
 .xForm input{height: 35px;line-height: 35px;width: 250px;}
 .xForm .control{
 	border:1px solid #CCC;
@@ -21,11 +25,12 @@ input[type=text]:focus{
 	text-align: top;
 	height: 37px;
 	padding: 0px;margin: 0 auto;
+    clear: both;
 }
 .pt{}
 .pt:hover{cursor: pointer;}
-.xForm  .prefix{padding:0px 15px;border:0px solid #CCC !important;  border-right:1px solid #CCC !important;height: 100%;display: inline-block;float: left;}
-.xForm  .stuffix{padding:0px 15px;border:0px solid #CCC !important; border-left:1px solid #CCC !important;height: 100%;display: inline-block;}
+.xForm  .prefix{padding:0px 15px !important;border:0px solid #CCC !important;  border-right:1px solid #CCC !important;height: 100%;display: inline-block;float: left;}
+.xForm  .stuffix{padding:0px 15px !important;border:0px solid #CCC !important; border-left:1px solid #CCC !important;height: 100%;display: inline-block;float: left;}
 .xForm .text{padding:5px 0px;}
 .xForm .numer{}
 .xFrom .int{}

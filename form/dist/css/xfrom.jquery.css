@@ -1,0 +1,377 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "cgs";
+  src:url("fonts/cgs.eot");
+  src:url("fonts/cgs.eot?#iefix") format("embedded-opentype"),
+    url("fonts/cgs.woff") format("woff"),
+    url("fonts/cgs.ttf") format("truetype"),
+    url("fonts/cgs.svg#cgs") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "cgs" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ic-"]:before,
+[class*=" ic-"]:before {
+  font-family: "cgs" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-checking1:before {
+  content: "a";
+}
+.ic-global53:before {
+  content: "b";
+}
+.ic-industry10:before {
+  content: "c";
+}
+.ic-link21:before {
+  content: "d";
+}
+.ic-angle-right:before {
+  content: "e";
+}
+.ic-angle-up:before {
+  content: "f";
+}
+.ic-angle-left:before {
+  content: "g";
+}
+.ic-angle-down:before {
+  content: "h";
+}
+.ic-search-find:before {
+  content: "i";
+}
+.ic-chevron-left:before {
+  content: "j";
+}
+.ic-chevron-right:before {
+  content: "k";
+}
+.ic-chevron-up:before {
+  content: "l";
+}
+.ic-chevron-down:before {
+  content: "m";
+}
+.ic-user:before {
+  content: "n";
+}
+.ic-gongyingshangguanli:before {
+  content: "o";
+}
+.ic-cross-mark:before {
+  content: "p";
+}
+.ic-question:before {
+  content: "q";
+}
+.ic-menu:before {
+  content: "r";
+}
+.ic-clock97:before {
+  content: "t";
+}
+.ic-edit45:before {
+  content: "u";
+}
+.ic-iconfont:before {
+  content: "v";
+}
+.ic-iconfont-1:before {
+  content: "w";
+}
+.ic-iconfont-2:before {
+  content: "x";
+}
+.ic-iconfont-3:before {
+  content: "y";
+}
+.ic-iconfont-4:before {
+  content: "z";
+}
+.ic-iconfont-5:before {
+  content: "A";
+}
+.ic-iconfont-6:before {
+  content: "B";
+}
+.ic-iconfont-7:before {
+  content: "C";
+}
+.ic-iconfont-8:before {
+  content: "D";
+}
+.ic-iconfont-9:before {
+  content: "E";
+}
+.ic-iconfont-10:before {
+  content: "F";
+}
+.ic-iconfont-11:before {
+  content: "G";
+}
+.ic-iconfont-12:before {
+  content: "H";
+}
+.ic-iconfont-13:before {
+  content: "I";
+}
+.ic-iconfont-14:before {
+  content: "J";
+}
+.ic-iconfont-15:before {
+  content: "K";
+}
+.ic-iconfont-16:before {
+  content: "L";
+}
+.ic-iconfont-17:before {
+  content: "M";
+}
+.ic-smiley3:before {
+  content: "N";
+}
+.ic-user146:before {
+  content: "P";
+}
+.ic-email-envelope:before {
+  content: "Q";
+}
+.ic-close-circle:before {
+  content: "R";
+}
+.ic-plus:before {
+  content: "S";
+}
+.ic-upload:before {
+  content: "T";
+}
+.ic-test4-1:before {
+  content: "O";
+}
+.ic-test4:before {
+  content: "s";
+}
+.ic-social-500px:before {
+  content: "U";
+}
+.ic-social-adobe:before {
+  content: "V";
+}
+.ic-eye:before {
+  content: "U";
+}
+.ic-star-two:before {
+  content: "V";
+}
+.ic-facebook:before {
+  content: "W";
+}
+.ic-youtube:before {
+  content: "X";
+}
+.ic-weibo:before {
+  content: "Y";
+}
+.ic-instagram:before {
+  content: "Z";
+}
+.ic-google-plus:before {
+  content: "0";
+}
+.ic-calendar:before {
+  content: "1";
+}
+.ic-iconfont-shoucang:before {
+  content: "W";
+}
+.ic-iconfont-socialwhatsapp:before {
+  content: "X";
+}
+.ic-iconfont-tengxunweibo:before {
+  content: "Y";
+}
+.ic-menu-1:before {
+  content: "2";
+}
+.ic-menu3bar:before {
+  content: "3";
+}
+.ic-arrow-right-light:before {
+  content: "4";
+}
+.ic-arrow-down-light:before {
+  content: "5";
+}
+.ic-arrow-up-light:before {
+  content: "6";
+}
+.ic-arrow-left-light:before {
+  content: "7";
+}
+.ic-heart:before {
+  content: "8";
+}
+.ic-heart-empty:before {
+  content: "9";
+}
+.ic-trash-bin:before {
+  content: "!";
+}
+.ic-doc:before {
+  content: "\"";
+}
+.ic-fangdajing:before {
+  content: "#";
+}
+.ic-dash:before {
+  content: "$";
+}
+.ic-iconfont-tishi:before {
+  content: "%";
+}
+.ic-verified:before {
+  content: "&";
+}
+.ic-star:before {
+  content: "'";
+}
+
+
+input::-ms-clear { display: none; } 
+.xForm input[type=text]
+{
+	height: 37px;
+	border:0px solid #CCC;	
+	outline:none;
+    background: #fff;
+    margin: 0 auto !important;
+    float: left;
+}
+
+.xForm input[type=text]:focus{
+	border:0px solid #CCC;
+	background: #f2f2f2;
+	outline:none;
+    
+}
+.xForm{line-height: 35px;background: #fff;}
+.xForm input{height: 35px;line-height: 35px;width: 250px;}
+.xForm .control{
+	border:1px solid #CCC;
+	border-radius: 2px;
+	display: table-cell;
+	text-align: top;
+	height: 37px;
+	padding: 0px;margin: 0 auto;
+    clear: both;
+}
+.pt{}
+.pt:hover{cursor: pointer;}
+.xForm  .prefix{padding:0px 15px !important;border:0px solid #CCC !important;  border-right:1px solid #CCC !important;height: 100%;display: inline-block;float: left;}
+.xForm  .stuffix{padding:0px 15px !important;border:0px solid #CCC !important; border-left:1px solid #CCC !important;height: 100%;display: inline-block;float: left;}
+.xForm .text{padding:5px 0px;}
+.xForm .numer{}
+.xFrom .int{}
+.xForm .date{}
+.xForm .select{}
+.xForm .combo{}
+.xForm .checkbox{}
+.xForm .radio{}
+.xForm .control input[type=text]{margin: 0 auto;padding: 0px ;border: 0px solid #CCC !important;}
+.xForm .select{
+	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
+}
+.xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
+.xForm .select>ul>li:hover{background: #f2f2f2;}
+.xForm .line{margin-bottom: 5px;clear: both;}
+.xForm .select{height: 100%;height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;}
+.xForm .select:before{
+	content: 'h';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    right: 0px;
+    position: absolute;
+}
+
+.xForm .combo{
+	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
+}
+.xForm .combo .active{background: #f2f2f2;}
+.xForm .combo>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
+.xForm .combo .item{}
+.xForm .combo>ul>li:hover{background: #f2f2f2;}
+.xForm .combo{height: 100%;height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;}
+.xForm .combo:before{
+	content: 'h';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    right: 0px;
+    position: absolute;
+}
+.xForm   .prefix,.xForm   input,.xForm   select, .xForm   span{vertical-align: middle;}
+
+.xForm .search {height: 37px;}
+.xForm .search .content {border:0px solid #CCC;display: inline-block;float: left;height: 100%;}
+.xForm .search input[type=text]{border-top:1px solid #ccc !important;border-bottom:1px solid #ccc !important;height: 35px;}
+.xForm .search .prefix{border:1px solid #ccc !important;height: 100%;}
+.xForm .search .btn-search {
+border:1px solid #d71d48;
+	height: 100%;padding: 0px 20px !important;background: #d71d48; vertical-align: middle;text-align: center;display: inline-block;}
+.xForm  .search .prefix,.xForm  .search input,.xForm  .search select, .xForm  .search .stuffix{vertical-align: middle;}
+.xForm  .search .btn-search:before{
+	content: '#';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    color: #fff;
+}
+
+
+.xForm  .search .btn-search:hover{cursor: pointer;}

@@ -1,0 +1,27 @@
+*{word-wrap: black;}
+.document {width: 800px;margin: 0 auto;padding: 0px}
+.document .header{height: 50px;line-height: 50px;text-align: left;}
+.document .header:after{content: '（帮助文档）'}
+.document .api {}
+.document .api .header{}
+.document .api .member{width: 200px;text-align: left;}
+.document .api .desc{width: 300px;text-align: left;}
+.document .api .remark{width: 300px;text-align: left;}
+
+	table{width: 800px; margin: 0 auto;border-top:1px solid #bce8f1;border-left:1px solid #bce8f1;}
+	.htr td{color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1; height: 30px;line-height: 30px;text-align: center;padding: 8px 12px;
+font-size: 16px;}
+table td{border-right:1px solid #bce8f1;border-bottom:1px solid #bce8f1;font-size: 14px;padding: 15px 15px;word-wrap: break-word;
+}}
+
+.demos {margin-top: 20px;}
+.demos .header{height: 30px;line-height: 30px;text-align: left;border-bottom:1px dashed #CCC;margin-bottom: 10px; }
+.demos .header:after{content: '示例';}
+.demos .demo {margin-bottom: 20px;}
+.demos .demo .title{height: 30px;}
+.demos .demo .example{}
+.demos .demo .code{background:#f0f0f0;padding: 20px; }
+
+body{}

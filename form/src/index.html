@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="jquery/index.jquery.select.js"></script>
+	<script type="text/javascript" src="jquery/index.jquery.combo.js"></script>
+    <script type="text/javascript" src="jquery/index.jquery.js"></script>
+	<style type="text/css">
+       html,body,form{background: #fff;}
+	</style>
+
+	<script type="text/javascript">
+		
+
+	   function	onAgeSelect(value,text)
+	   {
+           var s=null;
+
+	   }
+
+	   function onProvinceSelect(value,text)
+	   {
+           //xForm.select.refresh(jQuery('#sl_city'),function(){
+           //   	 return 'province='+value;
+           //   })
+	   }
+	   function onCitySelect(value,text){
+
+          //  xForm.select.refresh(jQuery('#sl_area'),function(){
+          //    	 return 'city='+value;
+          //    })
+	   }
+
+	   function onLoadDataTest(e)
+	   {
+           var me=this;
+	   	   setTimeout(function()
+	   	   {
+             me.refresh([{text:"广东",value:1},{text:"广西",value:"2"}]);
+	   	   },2000)
+	    	 
+	   }
+	</script>
+</head>
+<body>
+
+<form class="xForm">
+  <div class="line">
+  <div class="control"><span class="prefix">姓名</span><input type="text" title="xx"></input><span class="stuffix pt ">ss</span></div></div>
+	 
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">年龄</span> 
+	    <span class="select" onSelect='onAgeSelect'><input type="text" value="1"  ></input>
+         <ul>
+           <li value='1'>A</li>
+           <li value='2'>B</li>    
+          </ul>
+	    </span>
+	</div>
+	  </div>
+
+
+	 <div class="line">
+	  <div class="control">
+	  <span class="prefix">省份</span> 
+	    <span class="select" onSelect="onProvinceSelect" 
+	    id='id_province'><input type="text" 
+	    readonly="readonly"></input>
+         <ul>
+           <li isSelected='Y' value='1'>广东</li>
+           <li value='2'>广西</li>   
+          </ul>
+	     </span>
+	   </div>
+	  </div>
+
+	   <div class="line">
+	  <div class="control">
+	  <span class="prefix">地市</span> 
+	    <span class="select" id='sl_city' 
+	     onSelect="onCitySelect" pId='id_province' value='1' pField='province'> <input type="text" readonly="readonly" ></input>
+         <ul>
+           <li province='1' value='1'>广州市</li>
+           <li province='2' value='2'>南宁</li> 
+          </ul>
+	    </span>
+	</div>
+	  </div>
+
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">区域</span> 
+	    <span class="select" id='sl_area' pId='sl_city' pField='city'  ><input value="1" type="text" readonly="readonly" ></input>
+         <ul>
+           <li city='1' value='1'>越秀区</li>
+           <li city='2' value='2'>南宁</li> 
+          </ul>
+	    </span>
+	</div>
+	  </div>
+
+
+ <div class="line">
+	  <div class="control">
+	  <span class="prefix">combo</span> 
+	    <span class="combo" id='sl_area'  
+	        data='["广东","广西"]' 
+	        tField='text' 
+	        vField='value' 
+	        pField='parent',
+	        subNode='dl',
+	        isMultiSelect='N' 
+	        ><input type="text" value="广西" ></input>
+         
+	    </span>
+
+
+	</div>
+
+	<div class="control">
+	  <span class="prefix">combo</span> 
+	    <span class="combo" id='sl_area'  
+	        data='["广东","广西"]' 
+	        tField='text' 
+	        vField='value' 
+	        pField='parent',
+	        subNode='dl',
+	        isMultiSelect='Y' 
+	        ><input type="text" value="广西" ></input>
+         
+	    </span>
+
+	    
+	</div>
+
+
+	<div class="control">
+	  <span class="prefix">combo</span> 
+	    <span class="combo" id='sl_area'  
+	        data='[{text:"广东",value:1},{text:"广西",value:"2"}]' 
+	        tField='text' 
+	        vField='value' 
+	        pField='parent',
+	        subNode='dl',
+	        isMultiSelect='N' 
+	        ><input type="text" value="1" ></input>
+         
+	    </span>
+
+	    
+	</div>
+	  </div>
+
+	   <div class="line">
+	   	  <div class="control">
+	  <span class="prefix">combo</span> 
+	    <span class="combo" id='sl_area'  
+	        tField='text' 
+	        vField='value' 
+	        pField='parent',
+	        subNode='dl',
+	        isMultiSelect='N' 
+	        onLoadData="onLoadDataTest"
+	        ><input type="text" value="1" ></input>
+         
+	    </span>
+
+	    
+	</div>
+
+	   </div>
+
+
+	    <div class="line">
+	   	  <div class="control">
+	  <span class="prefix">combo省份</span> 
+	    <span class="combo" 
+	        tField='text' 
+	        vField='value' 
+	        pField='parent',
+	        isMultiSelect='N' 
+	        data='[{text:"广东",value:1},{text:"广西",value:"2"}]',
+	         id='cm_province'
+	        ><input type="text" value="1" ></input>
+         
+	    </span>
+
+	    
+	</div>
+
+
+	  	  <div class="control">
+	  <span class="prefix">combo城市</span> 
+	    <span class="combo"   
+	         tField='text' 
+	         vField='city' 
+	         pField='province',
+	         isMultiSelect='N' 
+	         data='[{text:"广州",city:1,province:1},{text:"南宁",city:"2",province:2}]',
+	         id='cm_city'
+	         pid='cm_province'
+	        ><input type="text" value="1" ></input>
+         
+	    </span>
+
+	    
+	</div>
+
+
+	  <div class="control">
+	  <span class="prefix">combo地区</span> 
+	    <span class="combo"   
+	         tField='text' 
+	         vField='area' 
+	         pField='city',
+	         isMultiSelect='N' 
+	         data='[{text:"天河区",area:1,city:1},{text:"南宁区",area:"2",city:2}]',
+	         id='cm_area'
+	         pid='cm_city'
+	        ><input type="text"  ></input>
+         
+	    </span>
+
+	    
+	</div>
+	   </div>
+    <input type="text" title="xx"></input>
+    <input type="text" title="xx"></input>
+    <input type="text" title="xx"></input>
+
+
+ 
+    <div class="search">
+    	<div class="content">
+    	     <span class="prefix">姓名</span><input type="text" title="xx"></input> 
+    	</div>
+    	<span class="btn-search"></span>
+    </div>
+</form>
+   
+
+</body>
+</html>
