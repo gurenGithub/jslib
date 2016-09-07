@@ -68,7 +68,7 @@ input::-ms-clear { display: none; }
     line-height: 35px;
     color: #bbb;
 }
-.xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+.xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
 	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
 .xForm .select>ul>li:hover{background: #f2f2f2;}
 .xForm .line{margin-bottom: 5px;clear: both;}
@@ -92,7 +92,7 @@ input::-ms-clear { display: none; }
     height: 100%;height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;
 }
 
-.xForm .autocomplete>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+.xForm .autocomplete>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
     background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
 .xForm .autocomplete .item{}
 .xForm .autocomplete>ul>li:hover{background: #f2f2f2;}
@@ -100,7 +100,7 @@ input::-ms-clear { display: none; }
 	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
 }
 .xForm .combo .active{background: #f2f2f2;}
-.xForm .combo>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+.xForm .combo>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
 	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
 .xForm .combo .item{}
 .xForm .combo>ul>li:hover{background: #f2f2f2;}
