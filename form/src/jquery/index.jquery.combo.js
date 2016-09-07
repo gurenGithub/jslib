@@ -25,7 +25,6 @@ xCombo.prototype.render = function(opts) {
 	$selector.append(this.eles.$ul)
 	this.eles.$text = jQuery('>input', $selector);
 	this.eles.$selector = $selector;
-
 	this.eles.$hValue = jQuery('<input type="hidden" />');
 
 	var name = this.eles.$text.attr('name');

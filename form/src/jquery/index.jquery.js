@@ -14,10 +14,17 @@ var xForm = (function(window) {
        }
        return {render:function(){}}
     },
+    autocomplete:function(){
+       if( typeof autocomplete !='undefined'){
+          return autocomplete;
+       }
+       return {render:function(){}}
+    },
     render: function() {
 
       this.select().render();
       this.combo().render();
+      this.autocomplete().render();
     }
   }
 

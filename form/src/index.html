@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="jquery/index.jquery.select.js"></script>
 	<script type="text/javascript" src="jquery/index.jquery.combo.js"></script>
+	<script type="text/javascript" src="jquery/index.jquery.autocomplete.js"></script>
     <script type="text/javascript" src="jquery/index.jquery.js"></script>
 	<style type="text/css">
        html,body,form{background: #fff;}
@@ -50,7 +51,10 @@
 
 <form class="xForm">
   <div class="line">
-  <div class="control"><span class="prefix">姓名</span><input type="text" title="xx"></input><span class="stuffix pt ">ss</span></div></div>
+  <div class="control">
+  <span class="prefix">姓名</span><input type="text" title="xx">
+  	
+  </input><span class="stuffix pt ">ss</span></div></div>
 	 
  <div class="line">
 	  <div class="control">
@@ -228,6 +232,81 @@
 
 	    
 	</div>
+	   </div>
+
+	   <div class="line">
+	   	
+	   	 <div class="control">
+	  <span class="prefix">autocompete</span> 
+	    <span class="autocomplete"   
+	         tField='text' 
+	         vField='value' 
+	         data='[{text:"天河区",value:1,city:1},{text:"南宁区",value:"2",city:2}]',
+	       
+	        ><input type="text"  ></input>
+         
+	    </span>
+
+	    
+	</div>
+&nbsp;
+	 <div class="control">
+	  <span class="prefix">autocompete-Ajax</span> 
+	    <span class="autocomplete"   
+	         tField='text' 
+	         vField='value' 
+	        loadData='loadAreaData',
+	       
+	        ><input type="text"  ></input>
+         
+	    </span>
+
+	    
+	</div>
+	<script type="text/javascript">
+		
+		function loadAreaData(text)
+		{
+
+			var me=this;
+           var data =[{text:"天河区",value:1,city:1},{text:"南宁区",value:"2",city:2}];
+			setTimeout(function(){
+                   var _newData=[];
+
+                   for (var i = 0; i < data.length; i++) {
+                   	 var item=data[i];
+                   	 if(item.text.indexOf(text)>-1){
+                   	 	_newData.push(item);
+                   	 }
+                   }
+                 me.refresh(_newData);
+
+			  },2000
+			)
+		}
+	</script>
+
+	<div class="control">
+	  <span class="prefix">autocompete-Ajax-自定义模块</span> 
+	    <span class="autocomplete"   
+	         tField='text' 
+	         vField='value' 
+	        loadData='loadAreaData'
+	        renderItem='autoCompleteRenderItem'
+	       
+	        ><input type="text"  ></input>
+         
+	    </span>
+
+	    
+	</div>
+	<script type="text/javascript">
+		
+  function autoCompleteRenderItem(item){
+
+  	  return  item.text +' : '+ item.value;
+  }
+	</script>
 	   </div>
     <input type="text" title="xx"></input>
     <input type="text" title="xx"></input>

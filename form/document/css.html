@@ -4,7 +4,12 @@
    <title>CSS样式</title>
    <meta http-equiv="content-type"content="text/html;charset=utf-8">
    <link rel="stylesheet"type="text/css"href="css/index.css">
-	<link rel="stylesheet"type="text/css"href="../dist/css/xfrom.jquery.min.css">
+	<!--<link rel="stylesheet"type="text/css"href="../dist/css/xfrom.jquery.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="../src/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="../src/css/index.css">
+	<link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/pup/index.css">
+  <script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+  <script type="text/javascript" src="http://www.smallui.com/js/lib/pup/index.js"></script>
 	
 </head>
 <body>
@@ -71,13 +76,22 @@
       			    
       		   </td>
                
-      		<td class="remark">
+      		<td class="remark" id = 'id1598113838'>
 
       			<span class="control">
       			  <span class="prefix">前缀</span>
       			   <input type="text"style="width:120px;"/> 
       			  <span class="stuffix pt ">后缀</span>
       			</span>
+
+      			
+                 <div class='xPup'  targetId='id1598113838' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>&lt;span class="control"&gt;
+      			  &lt;span class="prefix"&gt;前缀&lt;/span&gt;
+      			   &lt;input type="text"style="width:120px;"/&gt; 
+      			  &lt;span class="stuffix pt "&gt;后缀&lt;/span&gt;
+      			&lt;/span&gt;</pre></div></div>
       		</td>
 
           
@@ -90,8 +104,13 @@
       			    选择框 
       		   </td>
                
-      		<td class="remark">
+      		<td class="remark" id = 'id83412950'>
       			<span class="control"><span class="select"> <input type="text"/> </span></span> 
+
+      			
+                 <div class='xPup'  targetId='id83412950' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>&lt;span class="control"&gt;&lt;span class="select"&gt; &lt;input type="text"/&gt; &lt;/span&gt;&lt;/span&gt; </pre></div></div>
       		</td>
 
           
@@ -103,8 +122,112 @@
       			    组合下拉框 
       		   </td>
                
-      		<td class="remark">
+      		<td class="remark" id = 'id83412951'>
       			<span class="control"><span class="combo"> <input type="text"/> </span></span> 
+
+      			<div class='xPup'  targetId='id83412951' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>&lt;span class="control"&gt;&lt;span class="combo"&gt; &lt;input type="text"/&gt; &lt;/span&gt;&lt;/span&gt; </pre></div></div>
+      		</td>
+
+          
+      		 </tr>
+
+      		 <tr >
+      		   <td class="member">search</td>
+      		   <td class="desc">
+      			    搜索栏 
+      		   </td>
+               
+      		<td class="remark" id = 'id1416919844'>
+      			<div class="search">
+    	<div class="content">
+    	     <span class="prefix">关键字</span><input style="width: 130px;" type="text" title="xx"></input> 
+    	</div>
+    	<span class="btn-search"></span>
+    </div>
+
+
+      
+
+                 <div class='xPup'  targetId='id1416919844' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>&lt;div class="search"&gt;
+    	&lt;div class="content"&gt;
+    	     &lt;span class="prefix"&gt;关键字&lt;/span&gt;&lt;input style="width: 130px;" type="text" title="xx"&gt;&lt;/input&gt; 
+    	&lt;/div&gt;
+    	&lt;span class="btn-search"&gt;&lt;/span&gt;
+    &lt;/div&gt;</pre></div></div>
+      		</td>
+
+          
+      		 </tr>
+
+      		 <tr >
+      		   <td class="member">checkbox</td>
+      		   <td class="desc">
+      			    
+      		   </td>
+               
+      		<td class="remark">
+      			 <span class="checkbox"><label><input type="checkbox"></input>是否</label></span>  
+      		</td>
+
+          
+      		 </tr>
+      		 <tr >
+      		   <td class="member">radio</td>
+      		   <td class="desc">
+      			    
+      		   </td>
+               
+      		<td class="remark">
+      			 <span class="radio"><label><input type="radio"></input>是否</label></span>  
+      		</td>
+
+          
+      		 </tr>
+
+      		  <tr >
+      		   <td class="member">textarea</td>
+      		   <td class="desc">
+      			    
+      		   </td>
+               
+      		<td class="remark">
+      		<span class="control">
+      			 <span class="textarea"><textarea style="width:250px;"></textarea></span>  
+      			 </span>
+      		</td>
+
+          
+      		 </tr>
+
+      		   <tr >
+      		   <td class="member">pupselect</td>
+      		   <td class="desc">
+      			    
+      		   </td>
+               
+      		<td class="remark">
+      		<span class="control">
+      			 <span class="pupselect"><input width="120px;" type="text"></input></span>
+      			 </span>
+      		</td>
+
+          
+      		 </tr>
+
+      		  <tr >
+      		   <td class="member">autocomplete</td>
+      		   <td class="desc">
+      			    自动完成
+      		   </td>
+               
+      		<td class="remark">
+      		<span class="control">
+      			 <span class="autocomplete"><input width="120px;" type="text"></input></span>
+      			 </span>
       		</td>
 
           
