@@ -233,7 +233,7 @@ xAutoComplete.prototype.refresh=function(data)
 {
   
   this.opts.data=data;
-  this.renderItems(data)
+  this.renderItems(data);
 }
 
 

@@ -263,7 +263,7 @@
 
 
 input::-ms-clear { display: none; } 
-.xForm input[type=text]
+.xForm input[type=text],textarea
 {
 	height: 36px;
 	border:0px solid #CCC;	
@@ -273,7 +273,7 @@ input::-ms-clear { display: none; }
     float: left;
 }
 
-.xForm input[type=text]:focus{
+.xForm input[type=text]:focus,textarea:focus{
 	border:0px solid #CCC;
 	background: #f2f2f2;
 	outline:none;
@@ -298,15 +298,40 @@ input::-ms-clear { display: none; }
 .xForm .numer{}
 .xFrom .int{}
 .xForm .date{}
-.xForm .select{}
 .xForm .combo{}
 .xForm .checkbox{}
+.xForm .checkbox:hover{cursor: pointer;}
+.xForm .checkbox input[type=checkbox]{width: 16px;height: 16px;}
 .xForm .radio{}
+.xForm .textarea{}
+.xForm .textarea textarea{width: 250px;height: 35px;}
+.xForm .radio:hover{cursor: pointer;}
+.xForm .radio input[type=radio]{width: 16px;height: 16px;}
 .xForm .control input[type=text]{margin: 0 auto;padding: 0px ;border: 0px solid #CCC !important;}
 .xForm .select{
 	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
 }
-.xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+.xForm .pupselect{
+    height: 100%;
+    height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;
+}
+.xForm .pupselect:before{
+    content: 'I';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    right: 0px;
+    position: absolute;
+    line-height: 35px;
+    color: #bbb;
+}
+.xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
 	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
 .xForm .select>ul>li:hover{background: #f2f2f2;}
 .xForm .line{margin-bottom: 5px;clear: both;}
@@ -324,13 +349,21 @@ input::-ms-clear { display: none; }
     speak: none;
     right: 0px;
     position: absolute;
+    color: #bbb;
+}
+.xForm .autocomplete{
+    height: 100%;height: 35px;width: 250px;margin:0 auto;padding: 0px;float: left;position: relative;
 }
 
+.xForm .autocomplete>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+    background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
+.xForm .autocomplete .item{}
+.xForm .autocomplete>ul>li:hover{background: #f2f2f2;}
 .xForm .combo{
 	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
 }
 .xForm .combo .active{background: #f2f2f2;}
-.xForm .combo>ul{position: absolute;top: 37px;left: -1px;z-index: 10;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
+.xForm .combo>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
 	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
 .xForm .combo .item{}
 .xForm .combo>ul>li:hover{background: #f2f2f2;}
@@ -348,6 +381,7 @@ input::-ms-clear { display: none; }
     speak: none;
     right: 0px;
     position: absolute;
+    color: #bbb;
 }
 .xForm   .prefix,.xForm   input,.xForm   select, .xForm   span{vertical-align: middle;}
 
@@ -375,3 +409,5 @@ border:1px solid #d71d48;
 
 
 .xForm  .search .btn-search:hover{cursor: pointer;}
+
+

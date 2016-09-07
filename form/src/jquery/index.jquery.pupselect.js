@@ -18,7 +18,7 @@ xPupSelect.prototype.render = function(opts)
 xPupSelect.prototype.getValue=function(){
 
 }
-xPupSelect.prototype.setValue:function(value){
+xPupSelect.prototype.setValue=function(value){
 
 
 }
