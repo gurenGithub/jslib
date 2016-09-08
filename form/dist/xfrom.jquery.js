@@ -242,13 +242,19 @@ var autocomplete = (function(window) {
 
    var controls = [];
    var members = {
-     getAutocomple: function(selector) {
-        for (var i = 0; i < selects.length; i++) {
-        var item = selects[i];
-        if (item.opts.selector.attr('id') &&
-          selector.attr('id') &&
-          item.opts.selector.attr('id') == selector.attr('id')) {
-          return item;
+     get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return controls[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
+        for (var i = 0; i < controls.length; i++) {
+          var item = controls[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
         }
       }
       return null;
@@ -344,9 +350,23 @@ xCheckbox.prototype.onSelect=function(item){
 var checkbox=(function(){
        var controls=[];
        var members={
-             getCheckbox:function(selector){
-
-             },
+             get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return controls[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
+        for (var i = 0; i < controls.length; i++) {
+          var item = controls[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
+        }
+      }
+      return null;
+     },
              render:function(selector, opts) {
 
        if (!selector) {
@@ -381,7 +401,7 @@ function xCombo(argument) {
 	this.opts = {}
 	this.eles = {}
 	this.selectedItems = [];
-	this.isFirstTime=true;
+	this.isFirstTime = true;
 	// body...
 }
 xCombo.prototype.render = function(opts) {
@@ -399,7 +419,7 @@ xCombo.prototype.render = function(opts) {
 	var onSelect = opts.onSelect;
 	var onShow = opts.onShow;
 	var onHide = opts.onHide;
-	var onLoadData=opts.onLoadData;
+	var onLoadData = opts.onLoadData;
 	this.eles.$ul = jQuery('<ul></ul');
 	$selector.append(this.eles.$ul)
 	this.eles.$text = jQuery('>input', $selector);
@@ -427,25 +447,25 @@ xCombo.prototype.render = function(opts) {
 	this.eles.$text.keyup(function(event) {
 
 		var _text = jQuery(this).val();
-		me.selectedItems=[];
+		me.selectedItems = [];
 		me.clearValue();
-		me.renderItems(me.opts.data, function(item,text)
-		{
+		me.renderItems(me.opts.data, function(item, text) {
 			return me.getParentFilterExpress(item) && text.indexOf(_text) > -1;
 		})
 	});
 
-	this.eles.$ul.hover(function(){},function(){me.hide()})
-	
+	this.eles.$ul.hover(function() {}, function() {
+		me.hide()
+	})
 
-	if(this.opts.onLoadData)
-	{
+
+	if (this.opts.onLoadData) {
 
 		this.eles.$ul.append('<li>数据加载中...</li>');
-		eval(this.opts.onLoadData+'.call(this)')
-	}else{
-	   this.setValue(value);
-	   this.renderItems(opts.data);	
+		eval(this.opts.onLoadData + '.call(this)')
+	} else {
+		this.setValue(value);
+		this.renderItems(opts.data);
 	}
 }
 
@@ -453,28 +473,30 @@ xCombo.prototype.onFilter = function(text) {
 	return true;
 }
 
-xCombo.prototype.isMultiSelect=function(){
+xCombo.prototype.isMultiSelect = function() {
 
 
 	return this.opts.isMultiSelect == 'Y';
-				
+
 }
 
-xCombo.prototype.getData=function(){
+xCombo.prototype.getData = function() {
 
 	return [];
 }
-xCombo.prototype.refresh=function(data){
-	 this.opts.data=data;
-	 this.eles.$ul.append('<li>数据加载中...</li>');
-	 this.setValue(this.getValue());
-	 this.renderItems(data);
-	 
+xCombo.prototype.refresh = function(data) {
+	this.opts.data = data;
+	this.eles.$ul.append('<li>数据加载中...</li>');
+	this.setValue(this.getValue());
+	this.renderItems(data);
+
 }
 
 xCombo.prototype.renderItems = function(data, onFilter) {
 
-    if(!data || data.length==0){return;}
+	if (!data || data.length == 0) {
+		return;
+	}
 	var me = this;
 	this.eles.$ul.empty();
 	for (var i = 0; i < data.length; i++) {
@@ -489,50 +511,49 @@ xCombo.prototype.renderItems = function(data, onFilter) {
 				value = item[me.opts.vField];
 				parent = item[me.opts.pField];
 			}
-			if (onFilter && onFilter(item,text) == false) {
+			if (onFilter && onFilter(item, text) == false) {
 				return;
 			}
 			var $li = jQuery('<li></li>');
 			if (me.opts.renderItem) {
-				$li.append(me.opts.renderItem(item,text))
+				$li.append(me.opts.renderItem(item, text))
 			}
-            if(me.isMultiSelect()){
-            	$li.addClass('item');
-            }
+			if (me.isMultiSelect()) {
+				$li.addClass('item');
+			}
 			$li.html(text);
 			$li.attr('value', value);
 			$li.attr(me.opts.pField, parent);
 			$li.click(function(event) {
 
-                
-				if(value==me.getValue()){
+
+				if (value == me.getValue()) {
 					return;
 				}
-				if (me.opts.isMultiSelect == 'Y') 
-				{
+				if (me.opts.isMultiSelect == 'Y') {
 
-					var hasActive= $li.hasClass('active');
-					 if(hasActive){
-					 	me.removeItem(item);
-					 	$li.removeClass('active');
+					var hasActive = $li.hasClass('active');
+					if (hasActive) {
+						me.removeItem(item);
+						$li.removeClass('active');
 
-					 }else{
-					 	me.addItem(item);
-					 	  $li.addClass('active');
-					 }
-                   
+					} else {
+						me.addItem(item);
+						$li.addClass('active');
+					}
+
 				} else {
 					me.hide();
-					me.selectedItems=[];
+					me.selectedItems = [];
 					$li.siblings().removeClass('active');
-                    $li.addClass('active');
+					$li.addClass('active');
 					me.setValue(value, text);
 				}
 				event.stopPropagation();
 			})
-            if(jQuery.inArray(item,me.selectedItems)>-1){
-            	$li.addClass('active');
-            }
+			if (jQuery.inArray(item, me.selectedItems) > -1) {
+				$li.addClass('active');
+			}
 			me.eles.$ul.append($li);
 
 		})(item)
@@ -542,36 +563,36 @@ xCombo.prototype.renderItems = function(data, onFilter) {
 xCombo.prototype.show = function() {
 
 
-    this.FilterForParent();
+	this.FilterForParent();
 	this.eles.$ul.show();
 }
 xCombo.prototype.hide = function() {
 
 
-     this.eles.$selector.attr('isValid',this.selectedItems.length>0?'Y':'N')
+	this.eles.$selector.attr('isValid', this.selectedItems.length > 0 ? 'Y' : 'N')
 	this.eles.$ul.hide();
 }
 xCombo.prototype.getValue = function() {
-    return this.eles.$hValue.val()
+	return this.eles.$hValue.val()
 }
-xCombo.prototype.addItem=function(item){
+xCombo.prototype.addItem = function(item) {
 	this.selectedItems.push(item);
 	this.renderValue()
 }
-xCombo.prototype.removeItem=function(item){
+xCombo.prototype.removeItem = function(item) {
 
 
 	for (var i = 0; i < this.selectedItems.length; i++) {
-		 var _item=this.selectedItems[i];
-		 if(_item==item){
-		 	 	this.selectedItems.splice(i,1);
-		 }
+		var _item = this.selectedItems[i];
+		if (_item == item) {
+			this.selectedItems.splice(i, 1);
+		}
 	}
 	this.renderValue()
 }
 xCombo.prototype.selectedItems = [];
 xCombo.prototype.setValue = function(value, text) {
-	var me=this;
+	var me = this;
 	if (text) {
 		this.eles.$text.val(text);
 	}
@@ -587,7 +608,7 @@ xCombo.prototype.setValue = function(value, text) {
 			}
 			if (_value) {
 				if (value.toString().indexOf(_value.toString()) > -1) {
-                  this.selectedItems.push(item)
+					this.selectedItems.push(item)
 
 				}
 			}
@@ -596,110 +617,116 @@ xCombo.prototype.setValue = function(value, text) {
 
 	this.renderValue();
 }
-xCombo.prototype.clearValue=function(){
+xCombo.prototype.clearValue = function() {
 	this.eles.$hValue.val('');
-	 this.setSubCombo();
+	this.setSubCombo();
 }
-xCombo.prototype.renderValue=function(){
+xCombo.prototype.renderValue = function() {
 
-var me=this;
-	var texts=[],values=[];
+	var me = this;
+	var texts = [],
+		values = [];
 
 	for (var i = 0; i < this.selectedItems.length; i++) {
-			var item = this.selectedItems[i];
-			var _value,_text;
-			if (typeof item == "string") {
-				_text=_value = item;
-			} else {
-                _text =item[me.opts.tField];
-				_value = item[me.opts.vField];
-			}
-
-			texts.push(_text);
-			values.push(_value);
+		var item = this.selectedItems[i];
+		var _value, _text;
+		if (typeof item == "string") {
+			_text = _value = item;
+		} else {
+			_text = item[me.opts.tField];
+			_value = item[me.opts.vField];
 		}
 
-		this.eles.$text.val(texts.join(','));
-		this.eles.$hValue.val(values.join(','));
+		texts.push(_text);
+		values.push(_value);
+	}
 
-       if(this.opts.onSelect){
-         	this.opts.onSelect.call(this);
-       }
+	this.eles.$text.val(texts.join(','));
+	this.eles.$hValue.val(values.join(','));
 
-      this.setSubCombo();
-      
-}
+	if (this.opts.onSelect) {
+		this.opts.onSelect.call(this);
+	}
 
-xCombo.prototype.getParentFilterExpress=function(item){
-	var me=this;
-   $parentNode = jQuery('.combo[id=' + this.eles.$selector.attr('pId') + ']');
-        if ($parentNode && $parentNode.length > 0) {
-           var parentCombo=combo.getCombo($parentNode);
-          if (parentCombo) {
-          	  var parentValue= parentCombo.getValue();
-              var parentNodepField =this.opts.pField;
-             	return  parentValue.toString().indexOf(item[parentNodepField])>-1;
-             
-          }
-        }
-        return true;
-}
-xCombo.prototype.FilterForParent=function(){
-              var me=this;
-  
-             this.renderItems(this.opts.data,function(item){
-             	return me.getParentFilterExpress(item);
-             });
-         
+	this.setSubCombo();
 
 }
-xCombo.prototype.isFirstTime=true;
-xCombo.prototype.setSubCombo=function(){
-   
- 
- if(this.isFirstTime){
- 	this.isFirstTime=false;
- 	return;
- }
-   var me=this;
-   $subNode = jQuery('.combo[pId=' + this.eles.$selector.attr('id') + ']');
-        if ($subNode && $subNode.length > 0) {
-           var subCombo=combo.getCombo($subNode);
-          if (subCombo) {
-          	 var parentValue= this.getValue();
-              var subNodepField = $subNode.attr('pField');
-             subCombo.renderItems(subCombo.opts.data,function(item){
-             	return item[subNodepField]==me.getValue();
-             });
-             subCombo.selectedItems=[];
-             subCombo.setValue('');
-          }
-        }
+
+xCombo.prototype.getParentFilterExpress = function(item) {
+	var me = this;
+	$parentNode = jQuery('.combo[id=' + this.eles.$selector.attr('pId') + ']');
+	if ($parentNode && $parentNode.length > 0) {
+		var parentCombo = combo.get($parentNode);
+		if (parentCombo) {
+			var parentValue = parentCombo.getValue();
+			var parentNodepField = this.opts.pField;
+			return parentValue.toString().indexOf(item[parentNodepField]) > -1;
+
+		}
+	}
+	return true;
+}
+xCombo.prototype.FilterForParent = function() {
+	var me = this;
+
+	this.renderItems(this.opts.data, function(item) {
+		return me.getParentFilterExpress(item);
+	});
+
+
+}
+xCombo.prototype.isFirstTime = true;
+xCombo.prototype.setSubCombo = function() {
+
+
+	if (this.isFirstTime) {
+		this.isFirstTime = false;
+		return;
+	}
+	var me = this;
+	$subNode = jQuery('.combo[pId=' + this.eles.$selector.attr('id') + ']');
+	if ($subNode && $subNode.length > 0) {
+		var subCombo = combo.get($subNode);
+		if (subCombo) {
+			var parentValue = this.getValue();
+			var subNodepField = $subNode.attr('pField');
+			subCombo.renderItems(subCombo.opts.data, function(item) {
+				return item[subNodepField] == me.getValue();
+			});
+			subCombo.selectedItems = [];
+			subCombo.setValue('');
+		}
+	}
 }
 var combo = (function() {
 
 	var combos = [];
 	var members = {
-        getCombo:function(selector){
-        	for (var i = 0; i < combos.length; i++) 
-        	{
-        		var item=combos[i];
-        		if(item.opts.selector.attr('id')&& 
-        		 selector.attr('id') && 
-        		 item.opts.selector.attr('id')==selector.attr('id')){
-        			return item;
-        		}
-        	}
-         return null;
-        },
+
+		get: function(selector) {
+			if (typeof selector === "number") {
+				return combos[selector];
+			} else if (typeof selector === 'string') {
+				selector = jQuery(selector);
+			} else {
+				for (var i = 0; i < combos.length; i++) {
+					var item = combos[i];
+					if (item.opts.selector &&
+						jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+						return item;
+					}
+				}
+			}
+			return null;
+		},
 		render: function(selector) {
 			if (!selector) {
 				$selectors = jQuery('.combo');
 			}
-        var me=this;
+			var me = this;
 			for (var i = 0; i < $selectors.length; i++) {
 
-				
+
 
 				(function(i) {
 
@@ -712,17 +739,16 @@ var combo = (function() {
 					eval('(' + '_data={data:' + ($seletor.attr('data') || '[]') + '}' + ')');
 					opts.data = _data.data;
 					opts.vField = $seletor.attr('vField');
-					
+
 					opts.onLoadData = $seletor.attr('onLoadData');
 					opts.pField = $seletor.attr('pField');
 					opts.subNode = $seletor.attr('subNode');
-					opts.value = $seletor.attr('value')|| jQuery('>input:first',$seletor).val();
+					opts.value = $seletor.attr('value') || jQuery('>input:first', $seletor).val();
 					opts.isMultiSelect = $seletor.attr('isMultiSelect');
 					var xcombox = new xCombo();
 
-					opts.onSelect = function() 
-					{
-						var me=this;
+					opts.onSelect = function() {
+						var me = this;
 						var onSelect = this.eles.$selector.attr('onSelect');
 						if (onSelect) {
 							eval(onSelect + '.call($seletor,me.getValue(),me.getText())');
@@ -730,7 +756,7 @@ var combo = (function() {
 					}
 					combos.push(xcombox);
 					xcombox.render(opts);
-					
+
 				})(i)
 			}
 
@@ -919,9 +945,23 @@ xRadio.prototype.onSelect=function(item){
 var radio=(function(){
        var controls=[];
        var members={
-             getradio:function(selector){
-
-             },
+               get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return controls[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
+        for (var i = 0; i < controls.length; i++) {
+          var item = controls[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
+        }
+      }
+      return null;
+     },
              render:function(selector, opts) {
 
        if (!selector) {
@@ -1131,13 +1171,19 @@ var radio=(function(){
 
    var selects = [];
    var members = {
-     getSelect: function(selector) {
+     get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return selects[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
         for (var i = 0; i < selects.length; i++) {
-        var item = selects[i];
-        if (item.opts.selector.attr('id') &&
-          selector.attr('id') &&
-          item.opts.selector.attr('id') == selector.attr('id')) {
-          return item;
+          var item = selects[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
         }
       }
       return null;
@@ -1145,13 +1191,13 @@ var radio=(function(){
      getSubSelect:function(selector)
      {
         $subNode = jQuery('.select[pId=' + selector.attr('id') + ']');
-        return this.getSelect($subNode);
+        return this.get($subNode);
      },
      getParentSelect:function(selector){
         $parentNode = jQuery('.select[id=' +selector.attr('pId') + ']');
-        var parentSelect= this.getSelect($parentNode);
+        var parentSelect= this.get($parentNode);
         if(parentSelect){
-           parentSelect.opts.subSelect=this.getSelect(selector);
+           parentSelect.opts.subSelect=this.get(selector);
         }
         return parentSelect;
      },

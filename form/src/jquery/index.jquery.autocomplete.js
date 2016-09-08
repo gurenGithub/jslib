@@ -242,13 +242,19 @@ var autocomplete = (function(window) {
 
    var controls = [];
    var members = {
-     getAutocomple: function(selector) {
-        for (var i = 0; i < selects.length; i++) {
-        var item = selects[i];
-        if (item.opts.selector.attr('id') &&
-          selector.attr('id') &&
-          item.opts.selector.attr('id') == selector.attr('id')) {
-          return item;
+     get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return controls[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
+        for (var i = 0; i < controls.length; i++) {
+          var item = controls[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
         }
       }
       return null;

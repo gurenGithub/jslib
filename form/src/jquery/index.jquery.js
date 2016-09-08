@@ -4,33 +4,33 @@ var xForm = (function(window) {
 
     select:function(){
        if( typeof select !='undefined'){
-        return select;
+         return this.select=select;
        }
-       return {render:function(){}}
+       return this.select={render:function(){}}
     },
     combo:function(){
        if( typeof combo !='undefined'){
-          return combo;
+          return this.combo=combo;
        }
-       return {render:function(){}}
+       return this.combo={render:function(){}}
     },
     checkbox:function(){
        if( typeof checkbox !='undefined'){
-          return checkbox;
+          return this.checkbox=checkbox;
        }
-       return {render:function(){}}
+       return this.checkbox={render:function(){}}
     },
     radio:function(){
        if( typeof radio !='undefined'){
-          return radio;
+          return this.radio=radio;
        }
-       return {render:function(){}}
+       return this.radio={render:function(){}}
     },
     autocomplete:function(){
        if( typeof autocomplete !='undefined'){
-          return autocomplete;
+          return this.autocomplete=autocomplete;
        }
-       return {render:function(){}}
+       return this.autocomplete={render:function(){}}
     },
     render: function() {
 

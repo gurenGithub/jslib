@@ -80,9 +80,23 @@ xRadio.prototype.onSelect=function(item){
 var radio=(function(){
        var controls=[];
        var members={
-             getradio:function(selector){
-
-             },
+               get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return controls[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
+        for (var i = 0; i < controls.length; i++) {
+          var item = controls[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
+        }
+      }
+      return null;
+     },
              render:function(selector, opts) {
 
        if (!selector) {

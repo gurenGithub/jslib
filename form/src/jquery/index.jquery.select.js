@@ -177,13 +177,19 @@
 
    var selects = [];
    var members = {
-     getSelect: function(selector) {
+     get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return selects[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
         for (var i = 0; i < selects.length; i++) {
-        var item = selects[i];
-        if (item.opts.selector.attr('id') &&
-          selector.attr('id') &&
-          item.opts.selector.attr('id') == selector.attr('id')) {
-          return item;
+          var item = selects[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
         }
       }
       return null;
@@ -191,13 +197,13 @@
      getSubSelect:function(selector)
      {
         $subNode = jQuery('.select[pId=' + selector.attr('id') + ']');
-        return this.getSelect($subNode);
+        return this.get($subNode);
      },
      getParentSelect:function(selector){
         $parentNode = jQuery('.select[id=' +selector.attr('pId') + ']');
-        var parentSelect= this.getSelect($parentNode);
+        var parentSelect= this.get($parentNode);
         if(parentSelect){
-           parentSelect.opts.subSelect=this.getSelect(selector);
+           parentSelect.opts.subSelect=this.get(selector);
         }
         return parentSelect;
      },
