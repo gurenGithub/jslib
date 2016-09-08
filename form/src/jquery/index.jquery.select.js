@@ -221,14 +221,14 @@
        {
         var $selector = jQuery(this);
         var newOpts={};
-        for (var item in opts){
-           newOpts.item=opts[item];
-        }
          newOpts.pField=$selector.attr('pField');
          newOpts.onShow=$selector.attr('onShow');
          newOpts.onHide=$selector.attr('onHide');
          newOpts.onSelect=$selector.attr('onSelect');
          newOpts.selector = $selector;
+         for (var item in opts){
+           newOpts.item=opts[item];
+        }
          var xselect = new xSelect(newOpts);
          selects.push(xselect);
          xselect.render(newOpts);

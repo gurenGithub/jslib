@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script type="text/javascript" src="../../../xutils/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../jquery/index.jquery.date.js"></script>
+	<script type="text/javascript">
+		
+
+
+     
+     var date=new Date('2016-09-0');
+
+     var year=date.getYear();
+     var month=date.getMonth();
+     var day=date.getDate();
+
+     var week=date.getDay();
+
+
+jQuery(function(){
+var _xdata=new xDate();
+     _xdata.render({value:'2016-09-8',selector:'#testDate'})
+
+})
+     
+     
+     // 计算指定年月的天数
+var getDays = function(year, month) {
+    // month 取自然值，从 1-12 而不是从 0 开始
+    return new Date(year, month, 0).getDate()
+
+    // 如果 month 按 javascript 的定义从 0 开始的话就是
+    // return new Date(year, month + 1, 0).getDate()
+}
+     var days= getDays(2016,9);
+
+	</script>
+</head>
+<body>
+<div class="xForm">
+<span class="control">
+<span class="date" id='testDate'>
+	<input type='text'></input>
+</span>
+</span>
+  </div>
+</body>
+</html>
