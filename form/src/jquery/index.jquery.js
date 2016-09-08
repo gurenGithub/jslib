@@ -14,6 +14,18 @@ var xForm = (function(window) {
        }
        return {render:function(){}}
     },
+    checkbox:function(){
+       if( typeof checkbox !='undefined'){
+          return checkbox;
+       }
+       return {render:function(){}}
+    },
+    radio:function(){
+       if( typeof radio !='undefined'){
+          return radio;
+       }
+       return {render:function(){}}
+    },
     autocomplete:function(){
        if( typeof autocomplete !='undefined'){
           return autocomplete;
@@ -25,6 +37,8 @@ var xForm = (function(window) {
       this.select().render();
       this.combo().render();
       this.autocomplete().render();
+      this.checkbox().render();
+      this.radio().render();
     }
   }
 

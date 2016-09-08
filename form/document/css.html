@@ -4,11 +4,13 @@
    <title>CSS样式</title>
    <meta http-equiv="content-type"content="text/html;charset=utf-8">
    <link rel="stylesheet"type="text/css"href="css/index.css">
-	<link rel="stylesheet"type="text/css"href="../dist/css/xfrom.jquery.min.css">
-	<link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/pup/index.css">
-    <script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
-    <script type="text/javascript" src="http://www.smallui.com/js/lib/pup/index.js"></script>
-	<script type="text/javascript" src="document.js"></script>
+   <link rel="stylesheet" type="text/css" href="../dist/css/xfrom.jquery.min.css">
+   <link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/pup/index.css">
+    <script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
+   <script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+   <script type="text/javascript" src="http://www.smallui.com/js/lib/pup/index.js"></script>
+   <script type="text/javascript" src="../dist/xfrom.jquery.min.js"></script>
+  <script type="text/javascript" src="document.js"></script>
 </head>
 <body>
       <div class="document xForm">
@@ -162,25 +164,38 @@
       		 </tr>
 
       		 <tr >
-      		   <td class="member">checkbox</td>
+      		   <td class="member"> <a href="checkbox.html" target="_self">checkbox</a> </td>
       		   <td class="desc">
       			    
       		   </td>
                
-      		<td class="remark">
-      			 <span class="checkbox"><label><input type="checkbox"></input>是否</label></span>  
+      		<td class="remark" id = 'id1469197413'>
+      			 <span class="checkbox"><label><input type="checkbox"></input>否</label></span>  
+             <span class="checkbox"><label class="checked"><input type="checkbox"></input>是</label></span> 
+
+
+                 <div class='xPup'  targetId='id1469197413' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>         &lt;span class="checkbox"&gt;&lt;label&gt;&lt;input type="checkbox"&gt;&lt;/input&gt;否&lt;/label&gt;&lt;/span&gt;  
+             &lt;span class="checkbox"&gt;&lt;label class="checked"&gt;&lt;input type="checkbox"&gt;&lt;/input&gt;是&lt;/label&gt;&lt;/span&gt; </pre></div></div>
       		</td>
 
           
       		 </tr>
       		 <tr >
-      		   <td class="member">radio</td>
+      		   <td class="member"> <a href="radio.html" target="_self">radio</a></td>
       		   <td class="desc">
       			    
       		   </td>
                
-      		<td class="remark">
-      			 <span class="radio"><label><input type="radio"></input>是否</label></span>  
+      		<td class="remark"   id='id1469197414'>
+      			 <span class="radio"><label><input type="radio"></input>是</label></span>  
+              <span class="radio"><label class="checked"><input type="radio"></input>是</label></span> 
+
+              <div class='xPup'  targetId='id1469197414' orientation='right' >
+                    <div class='title'><span class='close'></span>示例源码</div>
+                    <div class='content'><pre>         &lt;span class="radio"&gt;&lt;label&gt;&lt;input type="radio"&gt;&lt;/input&gt;否&lt;/label&gt;&lt;/span&gt;  
+             &lt;span class="radio"&gt;&lt;label class="checked"&gt;&lt;input type="radio"&gt;&lt;/input&gt;是&lt;/label&gt;&lt;/span&gt; </pre></div></div>
       		</td>
 
           
@@ -217,7 +232,7 @@
       		 </tr>
 
       		  <tr >
-      		   <td class="member">autocomplete</td>
+      		   <td class="member"><a href="autocomplete.html" target="_self">autocomplete</a></td>
       		   <td class="desc">
       			    自动完成
       		   </td>

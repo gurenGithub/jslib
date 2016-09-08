@@ -37,13 +37,100 @@ input::-ms-clear { display: none; }
 .xForm .date{}
 .xForm .combo{}
 .xForm .checkbox{}
+.xForm .checkbox>label:hover{cursor: pointer;}
+.xForm .checkbox>label{position: relative;line-height: 16px;height: 16px;}
+.xForm .checkbox>label:before{
+    content: 'x';    
+    speak: none;
+    left: 0px;
+    top:0px;
+    position: absolute;
+    line-height: 35px;
+    color: #FFF;
+    border:1px solid #ccc;
+    background: #FFF;
+    line-height: 16px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+}
+.xForm .checkbox .checked{
+    
+
+}
+.xForm .checkbox .checked:before{
+    content: 'G';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    left: 0px;
+    top:0px;
+    position: absolute;
+    line-height: 35px;
+    color: #FFF;
+    border:1px solid #d71d48;
+    background: #d71d48;
+    line-height: 16px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+}
 .xForm .checkbox:hover{cursor: pointer;}
-.xForm .checkbox input[type=checkbox]{width: 16px;height: 16px;}
+.xForm .checkbox input[type=checkbox]{width: 16px;height: 16px;margin:0 auto; padding: 0px;margin-right: 8px;opacity: 0;filter:alpha(opacity=0);}
 .xForm .radio{}
 .xForm .textarea{}
 .xForm .textarea textarea{width: 250px;height: 35px;}
+
+
 .xForm .radio:hover{cursor: pointer;}
-.xForm .radio input[type=radio]{width: 16px;height: 16px;}
+.xForm .radio input[type=radio]{width: 16px;height: 16px;margin:0 auto; padding: 0px;margin-right: 8px;opacity: 0;filter:alpha(opacity=0);}
+.xForm .radio  label{position: relative;height: 16px;}
+.xForm .radio  label:before{
+    left: 0px;
+    top:0px;
+    position: absolute;
+    line-height: 35px;
+    color: #FFF;
+    border:1px solid #ccc;
+    background: #fff;
+    line-height: 16px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    border-radius: 8px; 
+    content: ' '
+}
+
+.xForm .radio  .checked:before{
+    content: 'G';    
+    font-family: cgs!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    speak: none;
+    left: 0px;
+    top:0px;
+    position: absolute;
+    line-height: 35px;
+    color: #FFF;
+    border:1px solid #d71d48;
+    background: #d71d48;
+    line-height: 16px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    border-radius: 8px; 
+}
 .xForm .control input[type=text]{margin: 0 auto;padding: 0px ;border: 0px solid #CCC !important;}
 .xForm .select{
 	padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;
@@ -66,7 +153,7 @@ input::-ms-clear { display: none; }
     right: 0px;
     position: absolute;
     line-height: 35px;
-    color: #bbb;
+    
 }
 .xForm .select>ul{position: absolute;top: 37px;left: -1px;z-index: 100;display: none;margin:0 auto;padding: 0px;border:1px solid #CCC;
 	background: #FFF ;min-width: 250px;list-style: none;min-height: 30px;}
