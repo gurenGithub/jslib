@@ -2,13 +2,15 @@
 <html>
 <head>
 	<title></title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<link rel="stylesheet" type="text/css" href="../index.css">
-	<script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../dist/css/xfrom.jquery.min.css">
-	<script type="text/javascript" src="../dist/xfrom.jquery.min.js"></script>
-    <script type="text/javascript" src="document.js"></script>
+<meta http-equiv="content-type"content="text/html;charset=utf-8">
+   <link rel="stylesheet"type="text/css"href="css/index.css">
+   <link rel="stylesheet" type="text/css" href="../dist/css/xfrom.jquery.min.css">
+   <link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/pup/index.css">
+    <script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
+   <script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+   <script type="text/javascript" src="http://www.smallui.com/js/lib/pup/index.js"></script>
+   <script type="text/javascript" src="../dist/xfrom.jquery.min.js"></script>
+  <script type="text/javascript" src="document.js"></script>
 </head>
 <body>
 
@@ -16,22 +18,45 @@
 <div class="document">
       <div class="header">xAutoComplete 自动补全  </div>
 
-<form class="xForm">
+<div class="demos">
+      <div class="header"></div>
+     
+
+             <div class="demo">
+            <div class="title">autocompete-string 集合</div>
+            <div class="example">
+            <form class="xForm">
   <div class="line">
   <div class="control">
-	  <span class="prefix">autocompete-json集合</span> 
-	    <span class="autocomplete"   
-	         tField='text' 
-	         vField='value' 
-	         data='[{text:"天河区",value:1,city:1},{text:"南宁区",value:"2",city:2}]',
-	       
-	        ><input type="text"  ></input>
+      <span class="autocomplete"   
+           data='["A","B","C"]'
          
-	    </span>
+          ><input type="text"  ></input>
+         
+      </span>
 
-	    
-	</div></div>
+
+      
+  </div></div>
     </form>
+            </div>
+            <div class="code">
+            <pre>
+        &lt;form class="xForm"&gt;
+         &lt;div class="line"&gt;
+         &lt;div class="control"&gt;
+        &lt;span class="autocomplete"   
+           data='["A","B","C"]'
+          &gt;&lt;input type="text"  &gt;&lt;/input&gt;
+         
+      &lt;/span&gt;
+                 
+      &lt;/div&gt;&lt;/div&gt;
+     &lt;/form&gt;</
+            </pre>
+            </div>
+            </div>
+            </div>
     <div class="api">
       	<table border="0" cellpadding="0" cellspacing="0">
       		<tr class="htr"><td class="member">成员</td><td>说明</td><td>其他</td> </tr>

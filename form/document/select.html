@@ -29,20 +29,47 @@
 <div class="document">
       <div class="header">xSelect 下拉框  </div>
 
-      	<form class="xForm">
+      <div class="demos">
+      <div class="header"></div>
+          <div class="demo">
+            <div class="title">简单下拉框</div>
+            <div class="example">
+            <form class="xForm">
    
  <div class="line">
-	  <div class="control">
-	  <span class="prefix">示例</span> 
-	    <span class="select" ><input type="text" value="18"  ></input>
+    <div class="control">
+    <span class="prefix">年龄</span> 
+      <span class="select" onSelect='onTestSelect' onShow='onTestShow' onHide='onTestHide'><input type="text" value="18"  ></input>
          <ul>
            <li >19</li>
            <li >18</li>    
           </ul>
-	    </span>
-	</div>
-	  </div>
-	 </form>
+      </span>
+      <span class="stuffix" id='id_age_stuffix'>事件:</span>
+  </div>
+    </div>
+   </form>
+            </div>
+            <div class="code">
+<pre>&lt;form class="xForm"&gt;   
+       &lt;div class="line"&gt;
+      &lt;div class="control"&gt;
+        &lt;span class="prefix"&gt;年龄&lt;/span&gt; 
+         &lt;span class="select" &gt;&lt;input type="text" value="18"  &gt;&lt;/input&gt;
+             &lt;ul&gt;
+              &lt;li &gt;19&lt;/li&gt;
+              &lt;li &gt;18&lt;/li&gt;    
+             &lt;/ul&gt;
+        &lt;/span&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/form&gt;</
+              </pre>
+            </div>
+          </div>
+          </div>
+          
+
       <div class="api">
       	<table border="0" cellpadding="0" cellspacing="0">
       		<tr class="htr"><td class="member">成员</td><td>说明</td><td>其他</td> </tr>
