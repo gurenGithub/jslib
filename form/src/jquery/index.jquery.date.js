@@ -82,7 +82,7 @@ xDate.prototype.getCurrentDateText = function(value) {
       var date=new Date();
       me.opts.currentDate=date;
       me.renderContent(me.opts.currentDate);
-      me.setTitle();
+      
    })
   return $title;
 }
@@ -95,7 +95,7 @@ xDate.prototype.renderHeader = function() {
   this.eles.$headerContent = $headerContent;
 
   this.opts.currentDate = new Date(this.getValue());
-  this.setTitle();
+  
   var $right = jQuery('<span class="right pt"></span>');
   $left.click(function() {
     if (me.opts.status == 'month') {
@@ -208,7 +208,6 @@ xDate.prototype.renderYearContent = function()
           me.eles.$monthContent.show();
         }
         $yearContent.remove();
-        me.setTitle();
         me.renderContent(me.opts.currentDate);
       })
     })(li, i)
@@ -249,7 +248,6 @@ xDate.prototype.renderMonthContent = function() {
       {
         me.opts.currentDate.setMonth(i);
         $monthContent.remove();
-        me.setTitle();
         me.renderContent(me.opts.currentDate);
       })
     })(li, i)
@@ -276,7 +274,8 @@ xDate.prototype.renderContent = function(value) {
   var $content = jQuery('<div class="content"></div>');
   this.eles.$content = $content;
   var $ul = jQuery('<ul></ul>');
-  var value = typeof value === 'string' ? new Date(value) : (value || new Date());
+  var value = (typeof value === 'string' &&  value) ? new Date(value) : (value || new Date());
+  this.opts.currentDate=value;
   var week = this.getWeek(value);
   var year = this.getYear(value);
   var month = this.getMonth(value);
@@ -313,7 +312,8 @@ xDate.prototype.renderContent = function(value) {
   }
 
   $content.append($ul);
-  this.eles.$date.append($content)
+  this.eles.$date.append($content);
+  this.setTitle();
 };
 xDate.prototype.renderFooter = function() 
 {
@@ -330,13 +330,13 @@ xDate.prototype.renderYear = function() {
 xDate.prototype.getDayArray = function(year, month) {
   var date = new Date(year, month, 1);
   var week = this.getWeek(date);
-  var preMaxDay = this.getMaxDays(year, month - 1);
+  var preMaxDay = this.getMaxDays(month==0 ? (year-1) : year, (month==0 ? 11 : month - 1));
   var days = []
-  for (var i = preMaxDay + (week == 0 ? (-1) : (1 - week)); i < preMaxDay; i++) {
+  for (var i = preMaxDay+1+ (week == 0 ? (-6) : (1 - week)); i < (preMaxDay+1); i++) {
     days.push({
       day: i,
       isCurrentMonth: false,
-      value: year + '-' + (month) + '-' + i
+      value: (month ==0 ?(year-1) :year) + '-' + ( month ==0 ? 12: month) + '-' + i
     });
   }
   var thisMax = this.getMaxDays(year, month);
@@ -355,7 +355,7 @@ xDate.prototype.getDayArray = function(year, month) {
     days.push({
       day: i,
       isCurrentMonth: false,
-      value: year + '-' + (month + 2) + '-' + i
+      value: ((month + 2) ==13 ?( year+1 ) :year) + '-' + ((month + 2)==13 ? 1 :(month + 2)) + '-' + i
     });
   }
 
@@ -377,8 +377,9 @@ xDate.prototype.getValue = function() {
 
   return this.eles.$text.val();
 }
-xDate.prototype.getMaxDays = function(year, month) {
-  return new Date(year, month + 1, 0).getDate()
+xDate.prototype.getMaxDays = function(year, month)
+{
+  return new Date(year, (month+1) , 0).getDate()
 }
 
 xDate.prototype.getWeek = function(date) {
