@@ -1,0 +1,25 @@
+.process{position: relative;height: 30px;list-style: none;margin:0 auto;padding: 0px;float: left;}
+.process .line{
+	content: ' '; 
+    border-bottom:10px solid #CCC;
+    height: 10px;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top:0px;
+    overflow: hidden;
+    z-index: 5;
+    left: 55px;
+    width: 540px;
+}
+.process .item{border-radius:15px;background: #CCC;display: block;height: 30px;width: 30px;position: relative;margin-left: 50px;margin-right: 50px;
+float: left;z-index: 30};
+.process .item:first-child{margin-left: 0px}
+.process .item:last-child{margin-right: 50px;}
+.process .active{position: relative;}
+.process .active:before{
+	 border-radius:10px;
+	 background: red;display: block;height: 20px;width: 20px;position: relative;
+     content: ' ';margin:0 auto;top: 5px;
+}
+.process .item .content{position: absolute;left: -50px;top:33px;width: 130px;word-wrap:break-word;text-align: center;}
