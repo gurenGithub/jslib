@@ -77,7 +77,9 @@
       			   onHide:null,
       			   oncombo:null,
       			   pId:null,
-      			   pField:null
+      			   pField:null,
+               onLoadData:null,
+               renderItem:null
       			 }
       		</pre>
                     </td>
@@ -89,6 +91,8 @@
                         <p><span>@oncombo</span> <span>选中事件</span></p>
                         <p><span>@pId</span> <span>父节点Id</span></p>
                         <p><span>@pField</span> <span>与父节点关联字段</span></p>
+                        <p><span>@onLoadData</span> <span>自定义数据</span></p>
+                        <p><span>@renderItem</span> <span>自定义列表内容</span></p>
                     </td>
                 </tr>
 
@@ -121,6 +125,22 @@
                     <td class="remark"></td>
                 </tr>
                 <tr>
+                    <td class="member">onLoadData</td>
+                    <td class="desc">
+                        自定义数据，function对象
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+                 <tr>
+                    <td class="member">renderItem</td>
+                    <td class="desc">
+                        自定义列表内容，function对象
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+                 <tr>
                     <td class="member">onShow</td>
                     <td class="desc">
                         显示事件，function对象
