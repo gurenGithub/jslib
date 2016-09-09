@@ -84,12 +84,25 @@ input::-ms-clear { display: none; }
     left: 8px;
     top:10px;
 }
+.xForm .date .header .title>span{padding: 0px 5px;}
+.xForm .date .header .title .year{}
 .xForm .date .header .left{width: 14%;display: block;float: left;height: 100%;}
 .xForm .date .header .right{width: 14%;display: block;float: left;height: 100%;}
 .xForm .date .header .content{width: 72%;display: block;float: left;height: 100%;text-align: center;font-size: 16px;}
 .xForm .date .body{position: absolute;top: 36px;left: -1px;background: #fff;border:1px solid #CCC;margin:0 auto;padding:0px;display: none;min-width: 250px;}
-.xForm .date  .body .content{font-size: 14px; }
+.xForm .date  .body .yearContent{font-size: 14px; }
+.xForm .date .body .yearContent>ul{list-style: none;margin: 0 auto;padding:0px;}
+.xForm .date  .body .yearContent>ul>li{width: 20%;float: left;text-align: center;}
+.xForm .date  .body .yearContent>ul>li:hover{background: #f2f2f2}
+.xForm .date  .body .yearContent{font-size: 14px; }
+.xForm .date  .body .yearContent .active{background: #ff871c;}
 
+.xForm .date  .body .monthContent{font-size: 14px; }
+.xForm .date .body .monthContent>ul{list-style: none;margin: 0 auto;padding:0px;}
+.xForm .date  .body .monthContent>ul>li{width: 16%;float: left;text-align: center;}
+.xForm .date  .body .monthContent>ul>li:hover{background: #f2f2f2}
+.xForm .date  .body .monthContent{font-size: 14px; }
+.xForm .date  .body .monthContent .active{background: #ff871c;}
 .xForm .date  .body .content .currentDay{background: #ff871c;}
 .xForm .date  .body .content .isNotCurrentMonth{color: #ccc;}
 .xForm .date .body .content>ul{list-style: none;margin: 0 auto;padding:0px;}
