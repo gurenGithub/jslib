@@ -237,8 +237,12 @@ xAutoComplete.prototype.refresh=function(data)
 }
 
 
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
 
-var autocomplete = (function(window) {
+window.xUi.autocomplete = (function(window) {
 
    var controls = [];
    var members = {

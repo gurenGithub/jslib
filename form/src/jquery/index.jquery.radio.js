@@ -76,8 +76,12 @@ xRadio.prototype.onSelect=function(item){
 }
 
 
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
 
-var radio=(function(){
+window.xUi.radio=(function(){
        var controls=[];
        var members={
                get: function(selector)

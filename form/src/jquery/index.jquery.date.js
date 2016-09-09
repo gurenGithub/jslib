@@ -395,3 +395,59 @@ xDate.prototype.getYear = function(date) {
 xDate.prototype.getDay = function(date) {
   return date.getDate();
 }
+
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
+
+window.xUi.date=(function(){
+       var controls=[];
+       var members={
+             get: function(selector)
+      {
+      if (typeof selector === "number") {
+        return controls[selector];
+      } else if (typeof selector === 'string') {
+        selector = jQuery(selector);
+      } else {
+        for (var i = 0; i < controls.length; i++) {
+          var item = controls[i];
+          if (item.opts.selector &&
+            jQuery(item.opts.selector)[0] == jQuery(selector)[0]) {
+            return item;
+          }
+        }
+      }
+      return null;
+     },
+     render:function(selector, opts) {
+
+       if (!selector) {
+         selector = '.date';
+       }
+       if (!opts) {
+         opts = {};
+       }
+       
+       var me=this;
+       jQuery(selector).each(function(item) 
+       {
+        var $selector = jQuery(this);
+        var newOpts={};
+        for (var item in opts){
+           newOpts.item=opts[item];
+        }
+         newOpts.onSelect=$selector.attr('onSelect');
+         newOpts.selector = $selector;
+         var control = new xDate(newOpts);
+         controls.push(control);
+         control.render(newOpts);
+       })
+             }
+       }
+
+       return members;
+
+})()
+

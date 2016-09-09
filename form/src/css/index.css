@@ -69,6 +69,7 @@ input::-ms-clear { display: none; }
     position: absolute;
     right: 8px;
     top:10px;
+    z-index: 10;
 }
 .xForm .date .header:after{
     font-family: "cgs" !important;
@@ -83,11 +84,12 @@ input::-ms-clear { display: none; }
     position: absolute;
     left: 8px;
     top:10px;
+    z-index: 10;
 }
 .xForm .date .header .title>span{padding: 0px 5px;}
 .xForm .date .header .title .year{}
-.xForm .date .header .left{width: 14%;display: block;float: left;height: 100%;}
-.xForm .date .header .right{width: 14%;display: block;float: left;height: 100%;}
+.xForm .date .header .left{width: 14%;display: block;float: left;height: 100%;position: relative;background: transparent;z-index: 20;}
+.xForm .date .header .right{width: 14%;display: block;float: left;height: 100%;background: transparent;z-index: 20;position: relative;}
 .xForm .date .header .content{width: 72%;display: block;float: left;height: 100%;text-align: center;font-size: 16px;}
 .xForm .date .body{position: absolute;top: 36px;left: -1px;background: #fff;border:1px solid #CCC;margin:0 auto;padding:0px;display: none;min-width: 250px;}
 .xForm .date  .body .yearContent{font-size: 14px; }

@@ -299,7 +299,10 @@ xCombo.prototype.setSubCombo = function() {
 		}
 	}
 }
-var combo = (function() {
+if(typeof window.xForm != 'undefined' ){
+
+
+window.xForm.combo = (function() {
 
 	var combos = [];
 	var members = {
@@ -372,3 +375,4 @@ var combo = (function() {
 
 	return members;
 })()
+}

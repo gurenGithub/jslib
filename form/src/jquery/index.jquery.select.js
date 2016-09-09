@@ -172,8 +172,12 @@
     
  }
 
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
 
- var select = (function(window) {
+window.xUi.select = (function(window) {
 
    var selects = [];
    var members = {

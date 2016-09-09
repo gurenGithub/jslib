@@ -47,8 +47,12 @@ xCheckbox.prototype.onSelect=function(item){
 }
 
 
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
 
-var checkbox=(function(){
+window.xUi.checkbox=(function(){
        var controls=[];
        var members={
              get: function(selector)

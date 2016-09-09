@@ -1,44 +1,30 @@
 var xForm = (function(window) {
 
   var members = {
+    date:null,
+    select:null,
+    combo:null,
+    autocomplete:null,
+    checkbox:null,
+    radio:null
+    ,
+    init:function(){
+          this.initUI('date');
+          this.initUI('select');
+          this.initUI('combo');
+          this.initUI('autocomplete');
+          this.initUI('checkbox');
+          this.initUI('radio');
+    },
+    initUI:function(type){
+       this[type] = (typeof xUi !='undefined' &&  typeof xUi[type] != 'undefined')  ?  xUi[type] : {render:function(){}};
 
-    select:function(){
-       if( typeof select !='undefined'){
-         return this.select=select;
+       if(this[type].render){
+         this[type].render();
        }
-       return this.select={render:function(){}}
-    },
-    combo:function(){
-       if( typeof combo !='undefined'){
-          return this.combo=combo;
-       }
-       return this.combo={render:function(){}}
-    },
-    checkbox:function(){
-       if( typeof checkbox !='undefined'){
-          return this.checkbox=checkbox;
-       }
-       return this.checkbox={render:function(){}}
-    },
-    radio:function(){
-       if( typeof radio !='undefined'){
-          return this.radio=radio;
-       }
-       return this.radio={render:function(){}}
-    },
-    autocomplete:function(){
-       if( typeof autocomplete !='undefined'){
-          return this.autocomplete=autocomplete;
-       }
-       return this.autocomplete={render:function(){}}
     },
     render: function() {
-
-      this.select().render();
-      this.combo().render();
-      this.autocomplete().render();
-      this.checkbox().render();
-      this.radio().render();
+      this.init();
     }
   }
 
