@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>combo</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="../index.css">
+    <script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../dist/css/xfrom.jquery.min.css">
+    <script type="text/javascript" src="../dist/xfrom.jquery.min.js"></script>
+    <script type="text/javascript" src="document.js"></script>
+    <script type="text/javascript">
+
+        function onTestShow() {
+            jQuery('#id_age_stuffix').text('事件：显示事件');
+        }
+        function onTestHide() {
+            //jQuery('#id_age_stuffix').text('事件：隐藏事件');
+        }
+        function onTestcombo(value, text) {
+
+            jQuery('#id_age_stuffix').text('事件：选中事件，Value:' + value + ',Text:' + text);
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="document">
+        <div class="header">xcombo 下拉框  </div>
+
+        <div class="demos">
+            <div class="header"></div>
+            <div class="demo">
+                <div class="title">autocompete-json集合</div>
+                <div class="example">
+                    <form class="xForm">
+                        <div class="line">
+                            <div class="control">
+                                <span class="autocomplete"
+                                      tfield='text'
+                                      vfield='value'
+                                      data='[{text:"天河区",value:1,city:1},{text:"南宁区",value:"2",city:2}]'>
+                                    <input type="text"></input>
+                                </span>
+                            </div>
+                    </form>
+                </div>
+                <div class="code">
+<pre>   &lt;form class="xForm"&gt;
+      &lt;div class="line"&gt;
+      &lt;div class="control"&gt;
+      &lt;span class="autocomplete"   
+           tField='text' 
+           vField='value' 
+           data='[{text:"天河区",value:1,city:1},{text:"南宁区",value:"2",city:2}]'&gt;
+           &lt;input type="text"  &gt;&lt;/input&gt; 
+      &lt;/span&gt;
+     &lt;/div&gt;
+   &lt;/form&gt;</pre>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="api">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr class="htr"><td class="member">成员</td><td>说明</td><td>其他</td> </tr>
+
+                <tr>
+                    <td class="member">render(opts)</td>
+                    <td class="desc">
+                        <pre>
+      			 @opts={
+      			   selecor:null,
+      			   onShow:null,
+      			   onHide:null,
+      			   oncombo:null,
+      			   pId:null,
+      			   pField:null
+      			 }
+      		</pre>
+                    </td>
+
+                    <td class="remark">
+                        <p><span>@selecor</span> <span>jQuery对象|Dom对象</span></p>
+                        <p><span>@onShow</span> <span>显示事件</span></p>
+                        <p><span>@onHide</span> <span>隐藏事件</span></p>
+                        <p><span>@oncombo</span> <span>选中事件</span></p>
+                        <p><span>@pId</span> <span>父节点Id</span></p>
+                        <p><span>@pField</span> <span>与父节点关联字段</span></p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="member">getValue()</td>
+                    <td class="desc">
+                        获取值
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+
+                <tr>
+                    <td class="member">setValue(value)</td>
+                    <td class="desc">
+                        设置值
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+
+                <tr class="htr"><td class="member" colspan="3">Dom属性</td> </tr>
+
+                <tr>
+                    <td class="member">class</td>
+                    <td class="desc">
+                        combo
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+                <tr>
+                    <td class="member">onShow</td>
+                    <td class="desc">
+                        显示事件，function对象
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+                <tr>
+                    <td class="member">onHide</td>
+                    <td class="desc">
+                        隐藏事件， function对象
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+                <tr>
+                    <td class="member">oncombo</td>
+                    <td class="desc">
+                        选中事件，function对象
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+
+                <tr>
+                    <td class="member">pField</td>
+                    <td class="desc">
+                        与父节点关联字段
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+
+                <tr>
+                    <td class="member">pId</td>
+                    <td class="desc">
+                        父节点Id
+                    </td>
+
+                    <td class="remark"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="demos">
+            <div class="demo">
+                <div class="example">
+                    <div class="title">autocompete-ajax 加载</div>
+                </div>
+                <div class="example">
+                    <div class="xForm">
+                        <div class="control">
+                            <span class="prefix">autocompete-loadAreaData 自定义数据</span>
+                            <span class="autocomplete"
+                                  tfield='text'
+                                  vfield='value'
+                                  loaddata='loadAreaData'>
+                                <input type="text" />
+
+                            </span>
+
+
+                        </div>
+                        <script type="text/javascript">
+
+                            function loadAreaData(text) {
+
+                                var me = this;
+                                var data = [{ text: "天河区", value: 1, city: 1 }, { text: "南宁区", value: "2", city: 2 }];
+                                setTimeout(function () {
+                                    var _newData = [];
+
+                                    for (var i = 0; i < data.length; i++) {
+                                        var item = data[i];
+                                        if (item.text.indexOf(text) > -1) {
+                                            _newData.push(item);
+                                        }
+                                    }
+                                    me.refresh(_newData);
+
+                                }, 2000
+                                )
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="code">
+
+                    <pre>&lt;div class="xForm"&gt;
+                        &lt;div class="control"&gt;
+                            &lt;span class="prefix"&gt;autocompete-loadAreaData 自定义数据&lt;/span&gt;
+                            &lt;span class="autocomplete"
+                                  tfield='text'
+                                  vfield='value'
+                                  loaddata='loadAreaData'&gt;
+                                &lt;input type="text" /&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;script type="text/javascript"&gt;
+                            function loadAreaData(text) {
+                                var me = this;
+                                var data = [{ text: "天河区", value: 1, city: 1 }, { text: "南宁区", value: "2", city: 2 }];
+                                setTimeout(function () {
+                                    var _newData = [];
+                                    for (var i = 0; i &lt; data.length; i++) {
+                                        var item = data[i];
+                                        if (item.text.indexOf(text) &gt; -1) {
+                                            _newData.push(item);
+                                        }
+                                    }
+                                    me.refresh(_newData);
+                                }, 2000
+                                )
+                            }
+                        &lt;/script&gt;
+                    &lt;/div&gt;</pre>
+                </div>
+            </div>
+
+
+            <div class="demo">
+                <div class="example">
+                    <div class="title">autocompete-string 集合</div>
+                    <div class="example">
+                        <form class="xForm">
+                            <div class="line">
+                                <div class="control">
+                                    <span class="autocomplete" data='["A","B","C"]'>
+                                        <input type="text"></input>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="code">
+
+                        <pre>  &lt;form class="xForm"&gt;
+           &lt;div class="line"&gt;
+              &lt;div class="control"&gt;
+                &lt;span class="autocomplete"  data='["A","B","C"]'&gt;
+                 &lt;input type="text"  &gt;&lt;/input&gt;
+                &lt;/span&gt;
+             &lt;/div&gt;
+           &lt;/div&gt;
+         &lt;/form&gt;</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="title">级联</div>
+                <div class="xForm">
+                    <div class="line">
+                        <div class="control">
+                            <span class="prefix">combo省份</span>
+                            <span class="combo"
+                                  tfield='text'
+                                  vfield='value'
+                                  pfield='parent' ,
+                                  ismultiselect='N'
+                                  data='[{text:"广东",value:1},{text:"广西",value:"2"}]' ,
+                                  id='cm_province'>
+                                <input type="text" value="1" />
+
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="line">
+                        <div class="control">
+                            <span class="prefix">combo城市</span>
+                            <span class="combo"
+                                  tfield='text'
+                                  vfield='city'
+                                  pfield='province' ,
+                                  ismultiselect='N'
+                                  data='[{text:"广州",city:1,province:1},{text:"南宁",city:"2",province:2}]'
+                                  id='cm_city'
+                                  pid='cm_province'>
+                                <input type="text" value="1" />
+
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="line">
+                        <div class="control">
+                            <span class="prefix">combo地区</span>
+                            <span class="combo"
+                                  tfield='text'
+                                  vfield='area'
+                                  pfield='city' ,
+                                  ismultiselect='N'
+                                  data='[{text:"天河区",area:1,city:1},{text:"南宁区",area:"2",city:2}]' ,
+                                  id='cm_area'
+                                  pid='cm_city'>
+                                <input type="text" />
+
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="code">
+                    <pre>    &lt;div class="xForm"&gt;
+                    &lt;div class="line"&gt;
+                        &lt;div class="control"&gt;
+                            &lt;span class="prefix"&gt;combo省份&lt;/span&gt;
+                            &lt;span class="combo"
+                                  tfield='text'
+                                  vfield='value'
+                                  pfield='parent' ,
+                                  ismultiselect='N'
+                                  data='[{text:"广东",value:1},{text:"广西",value:"2"}]' ,
+                                  id='cm_province'&gt;
+                                &lt;input type="text" value="1" /&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="line"&gt;
+                        &lt;div class="control"&gt;
+                            &lt;span class="prefix"&gt;combo城市&lt;/span&gt;
+                            &lt;span class="combo"
+                                  tfield='text'
+                                  vfield='city'
+                                  pfield='province' ,
+                                  ismultiselect='N'
+                                  data='[{text:"广州",city:1,province:1},{text:"南宁",city:"2",province:2}]'
+                                  id='cm_city'
+                                  pid='cm_province'&gt;
+                                &lt;input type="text" value="1" /&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="line"&gt;
+                        &lt;div class="control"&gt;
+                            &lt;span class="prefix"&gt;combo地区&lt;/span&gt;
+                            &lt;span class="combo"
+                                  tfield='text'
+                                  vfield='area'
+                                  pfield='city' ,
+                                  ismultiselect='N'
+                                  data='[{text:"天河区",area:1,city:1},{text:"南宁区",area:"2",city:2}]' ,
+                                  id='cm_area'
+                                  pid='cm_city'&gt;
+                                &lt;input type="text" /&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;</pre>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
