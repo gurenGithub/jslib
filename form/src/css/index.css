@@ -25,8 +25,10 @@ input::-ms-clear { display: none; }
 	text-align: top;
 	height: 37px;
 	padding: 0px;margin: 0 auto;
-    clear: both;
+    float: left;
+    margin: 5px;
 }
+.xForm:after{content: ' ';clear: both;}
 .xForm .arrow-left{
     position: relative;
 }
@@ -47,15 +49,15 @@ input::-ms-clear { display: none; }
 .xForm .text{padding:5px 0px;}
 .xForm .numer{}
 .xFrom .int{}
-.xForm .date{padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;position: relative;}
-.xForm .date .header{
+.xForm .date,.xForm .month,.xForm .year{padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;position: relative;float: left;}
+.xForm .date .header,.xForm .month .header,.xForm .year .header{
    
     height: 38px;
     line-height: 38px;
     border-bottom: 1px solid #f2f2f2;
 
 }
-.xForm .date .header:before{
+.xForm .date .header:before,.xForm .month .header:before,.xForm .year .header:before{
      font-family: "cgs" !important;
     font-style: normal !important;
     font-weight: normal !important;
@@ -71,7 +73,7 @@ input::-ms-clear { display: none; }
     top:10px;
     z-index: 10;
 }
-.xForm .date .header:after{
+.xForm .date .header:after,.xForm .month .header:after,.xForm .year .header:after{
     font-family: "cgs" !important;
     font-style: normal !important;
     font-weight: normal !important;
@@ -86,30 +88,30 @@ input::-ms-clear { display: none; }
     top:10px;
     z-index: 10;
 }
-.xForm .date .header .title>span{padding: 0px 5px;}
+.xForm .date .header .title>span,.xForm .month .header .title>span,.xForm .year .header .title>span{padding: 0px 5px;}
 .xForm .date .header .title .year{}
-.xForm .date .header .left{width: 14%;display: block;float: left;height: 100%;position: relative;background: transparent;z-index: 20;}
-.xForm .date .header .right{width: 14%;display: block;float: left;height: 100%;background: transparent;z-index: 20;position: relative;}
-.xForm .date .header .content{width: 72%;display: block;float: left;height: 100%;text-align: center;font-size: 16px;}
-.xForm .date .body{position: absolute;top: 36px;left: -1px;background: #fff;border:1px solid #CCC;margin:0 auto;padding:0px;display: none;min-width: 250px;}
-.xForm .date  .body .yearContent{font-size: 14px; }
-.xForm .date .body .yearContent>ul{list-style: none;margin: 0 auto;padding:0px;}
-.xForm .date  .body .yearContent>ul>li{width: 20%;float: left;text-align: center;}
-.xForm .date  .body .yearContent>ul>li:hover{background: #f2f2f2}
-.xForm .date  .body .yearContent{font-size: 14px; }
-.xForm .date  .body .yearContent .active{background: #ff871c;}
+.xForm .date .header .left,.xForm .month .header .left,.xForm .year .header .left{width: 14%;display: block;float: left;height: 100%;position: relative;background: transparent;z-index: 20;}
+.xForm .date .header .right,.xForm .month .header .right,.xForm .year .header .right{width: 14%;display: block;float: left;height: 100%;background: transparent;z-index: 20;position: relative;}
+.xForm .date .header .content,.xForm .month .header .content,.xForm .year .header .content{width: 72%;display: block;float: left;height: 100%;text-align: center;font-size: 16px;}
+.xForm .date .body,.xForm .month .body,.xForm .year .body{position: absolute;top: 36px;left: -1px;background: #fff;border:1px solid #CCC;margin:0 auto;padding:0px;display: none;min-width: 250px;}
+.xForm .date  .body .yearContent,.xForm .month  .body .yearContent,.xForm .year  .body .yearContent{font-size: 14px; }
+.xForm .date .body .yearContent>ul,.xForm .month .body .yearContent>ul,.xForm .year .body .yearContent>ul{list-style: none;margin: 0 auto;padding:0px;}
+.xForm .date  .body .yearContent>ul>li,.xForm .month  .body .yearContent>ul>li,.xForm .year  .body .yearContent>ul>li{width: 20%;float: left;text-align: center;}
+.xForm .date  .body .yearContent>ul>li:hover,.xForm .month  .body .yearContent>ul>li:hover,.xForm .year  .body .yearContent>ul>li:hover{background: #f2f2f2}
+.xForm .date  .body .yearContent,.xForm .month  .body .yearContent{font-size: 14px; }
+.xForm .date  .body .yearContent .active,.xForm .month  .body .yearContent .active,.xForm .year  .body .yearContent .active{background: #ff871c;}
 
-.xForm .date  .body .monthContent{font-size: 14px; }
-.xForm .date .body .monthContent>ul{list-style: none;margin: 0 auto;padding:0px;}
-.xForm .date  .body .monthContent>ul>li{width: 16%;float: left;text-align: center;}
-.xForm .date  .body .monthContent>ul>li:hover{background: #f2f2f2}
-.xForm .date  .body .monthContent{font-size: 14px; }
-.xForm .date  .body .monthContent .active{background: #ff871c;}
-.xForm .date  .body .content .currentDay{background: #ff871c;}
-.xForm .date  .body .content .isNotCurrentMonth{color: #ccc;}
-.xForm .date .body .content>ul{list-style: none;margin: 0 auto;padding:0px;}
-.xForm .date  .body .content>ul>li{width: 14%;float: left;text-align: center;}
-.xForm .date  .body .content>ul>li:hover{background: #f2f2f2}
+.xForm .date  .body .monthContent,.xForm .month  .body .monthContent{font-size: 14px; }
+.xForm .date .body .monthContent>ul,.xForm .month .body .monthContent>ul{list-style: none;margin: 0 auto;padding:0px;}
+.xForm .date  .body .monthContent>ul>li,.xForm .month  .body .monthContent>ul>li{width: 16%;float: left;text-align: center;}
+.xForm .date  .body .monthContent>ul>li:hover,.xForm .month  .body .monthContent>ul>li:hover{background: #f2f2f2}
+.xForm .date  .body .monthContent,.xForm .month  .body .monthContent{font-size: 14px; }
+.xForm .date  .body .monthContent .active,.xForm .month  .body .monthContent .active{background: #ff871c;}
+.xForm .date  .body .content .currentDay, .xForm .month  .body .content .currentDay{background: #ff871c;}
+.xForm .date  .body .content .isNotCurrentMonth,.xForm .month  .body .content .isNotCurrentMonth{color: #ccc;}
+.xForm .date .body .content>ul,.xForm .month .body .content>ul{list-style: none;margin: 0 auto;padding:0px;}
+.xForm .date  .body .content>ul>li,.xForm .month  .body .content>ul>li{width: 14%;float: left;text-align: center;}
+.xForm .date  .body .content>ul>li:hover,.xForm .month  .body .content>ul>li:hover{background: #f2f2f2}
 .xForm .combo{}
 .xForm .checkbox{}
 .xForm .checkbox>label:hover{cursor: pointer;}
@@ -290,7 +292,7 @@ input::-ms-clear { display: none; }
 .xForm .search .prefix{border:1px solid #ccc !important;height: 100%;}
 .xForm .search .btn-search {
 border:1px solid #d71d48;
-	height: 100%;padding: 0px 20px !important;background: #d71d48; vertical-align: middle;text-align: center;display: inline-block;}
+	height: 100%;padding: 0px 20px !important;background: #d71d48; vertical-align: middle;text-align: center;display: inline-block;float: left;}
 .xForm  .search .prefix,.xForm  .search input,.xForm  .search select, .xForm  .search .stuffix{vertical-align: middle;}
 .xForm  .search .btn-search:before{
 	content: '#';    

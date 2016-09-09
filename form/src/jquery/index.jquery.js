@@ -15,6 +15,8 @@ var xForm = (function(window) {
           this.initUI('autocomplete');
           this.initUI('checkbox');
           this.initUI('radio');
+          this.initUI('month');
+          this.initUI('year');
     },
     initUI:function(type){
        this[type] = (typeof xUi !='undefined' &&  typeof xUi[type] != 'undefined')  ?  xUi[type] : {render:function(){}};
@@ -23,8 +25,12 @@ var xForm = (function(window) {
          this[type].render();
        }
     },
+    initControl:function(){
+        
+    },
     render: function() {
       this.init();
+      this.initControl();
     }
   }
 

@@ -257,7 +257,7 @@ xCombo.prototype.getParentFilterExpress = function(item) {
 	var me = this;
 	$parentNode = jQuery('.combo[id=' + this.eles.$selector.attr('pId') + ']');
 	if ($parentNode && $parentNode.length > 0) {
-		var parentCombo = combo.get($parentNode);
+		var parentCombo = xUi.combo.get($parentNode);
 		if (parentCombo) {
 			var parentValue = parentCombo.getValue();
 			var parentNodepField = this.opts.pField;
@@ -287,7 +287,7 @@ xCombo.prototype.setSubCombo = function() {
 	var me = this;
 	$subNode = jQuery('.combo[pId=' + this.eles.$selector.attr('id') + ']');
 	if ($subNode && $subNode.length > 0) {
-		var subCombo = combo.get($subNode);
+		var subCombo = xUi.combo.get($subNode);
 		if (subCombo) {
 			var parentValue = this.getValue();
 			var subNodepField = $subNode.attr('pField');
@@ -299,10 +299,12 @@ xCombo.prototype.setSubCombo = function() {
 		}
 	}
 }
-if(typeof window.xForm != 'undefined' ){
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
 
-
-window.xForm.combo = (function() {
+window.xUi.combo = (function() {
 
 	var combos = [];
 	var members = {
@@ -364,15 +366,8 @@ window.xForm.combo = (function() {
 				})(i)
 			}
 
-		},
-		getValue: function(selector) {
-
-		},
-		setValue: function(selector) {
-
 		}
 	}
 
 	return members;
 })()
-}

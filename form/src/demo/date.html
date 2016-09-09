@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/index.css">
 	<script type="text/javascript" src="../../../xutils/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="../jquery/index.jquery.date.js"></script>
+    <script type="text/javascript" src="../jquery/index.jquery.month.js"></script>
+    <script type="text/javascript" src="../jquery/index.jquery.year.js"></script>
     <script type="text/javascript" src="../jquery/index.jquery.js"></script>
 	<script type="text/javascript">
 		
@@ -54,6 +56,43 @@ var getDays = function(year, month) {
     <input type='text' value="2015/5/5"></input>
 </span>
 </span>
+
+
+<span class="control">
+<span class="prefix">年月份</span>
+<span class="month" id='testDate'>
+    <input type='text' value="2015-5"></input>
+</span>
+</span>
+
+<span class="control">
+<span class="prefix">月份</span>
+<span class="month" isOnly='y' id='testDate'>
+    <input type='text' value="5"></input>
+</span>
+</span>
+
+<span class="control">
+<span class="prefix">月份</span>
+<span class="month" isOnly='y' id='testDate'>
+    <input type='text' ></input>
+</span>
+</span>
+
+<span class="control">
+<span class="prefix">月份</span>
+<span class="year" >
+    <input type='text' ></input>
+</span>
+</span>
+<div class="line">
+<span class="control">
+   <span class="prefix">年</span>
+   <span class="year" >
+     <input type='text' value="2016" ></input>
+  </span>
+ </span>
+ </div>
   </div>
 </body>
 </html>
