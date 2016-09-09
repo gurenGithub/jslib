@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>xMonth</title>
+  <meta http-equiv="content-type"content="text/html;charset=utf-8">
+   <link rel="stylesheet"type="text/css"href="css/index.css">
+   <link rel="stylesheet" type="text/css" href="../dist/css/xfrom.jquery.min.css">
+   <link rel="stylesheet" type="text/css" href="http://www.smallui.com/js/lib/pup/index.css">
+    <script type="text/javascript" src="../../xutils/jquery-1.8.2.min.js"></script>
+   <script type="text/javascript" src="http://www.smallui.com/js/lib/xUtils/xUtils.js"></script>
+   <script type="text/javascript" src="http://www.smallui.com/js/lib/pup/index.js"></script>
+   <script type="text/javascript" src="../dist/xfrom.jquery.min.js"></script>
+  <script type="text/javascript" src="document.js"></script>
+</head>
+<body>
+      <div class="document">
+      <div class="header">xMonth</div>
+
+       <div class="demos">
+        <div class="header"></div>
+          <div class="demo">
+            <div class="example">
+            <div class="xForm">
+             <span class="control">
+              <span class="month" id='testmonth'>
+               <input type='text'></input>
+              </span>
+            </span>
+          </div>
+            </div>
+            <div class="code" >
+             <pre> &lt;div class="xForm"&gt;
+             &lt;span class="control"&gt;
+              &lt;span class="month" id='testmonth'&gt;
+               &lt;input type='text'&gt;&lt;/input&gt;
+              &lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/div&gt;</pre>
+            </div>
+          </div>
+          </div>
+      <div class="api">
+        <table border="0"cellpadding="0"cellspacing="0">
+          <tr class="htr"><td class="member">成员</td><td>说明</td><td>其他</td> </tr>
+            <tr >
+             <td class="member">
+                render(opts)
+             </td>
+             <td class="desc">
+                <pre>
+                  @opts={
+                         selector:null,
+                         onSelect:null,
+                         onHide:null,
+                         onShow:null,
+                         value:null,
+                         isOnly:false
+                         }
+                </pre>
+             </td>  
+             <td class="remark">
+                 
+             </td> 
+             </tr>
+            <tr >
+             <td class="member">
+                getValue()
+             </td>
+             <td class="desc">
+                获取值
+             </td>  
+             <td class="remark">
+                 
+             </td> 
+             </tr>
+               <tr >
+             <td class="member">
+                setValue(value)
+             </td>
+             <td class="desc">
+                @value 
+             </td>  
+             <td class="remark">
+                 有效的时间
+             </td> 
+             </tr>
+             <tr class="htr"><td class="member" colspan="3">Dom属性</td> </tr>
+
+            <tr >
+               <td class="member">class</td>
+               <td class="desc">
+                month
+               </td> 
+            <td class="remark">
+               
+            </td>
+          </tr>
+
+            <tr >
+               <td class="member">onSelect</td>
+               <td class="desc">
+                
+               </td> 
+            <td class="remark">
+               
+            </td>
+          </tr>
+           <tr >
+               <td class="member">onShow</td>
+               <td class="desc">
+                
+               </td> 
+            <td class="remark">
+               
+            </td>
+          </tr>
+           <tr >
+               <td class="member">onHide</td>
+               <td class="desc">
+                
+               </td> 
+            <td class="remark">
+               
+            </td>
+          </tr>
+          
+  <tr >
+               <td class="member">isOnly</td>
+               <td class="desc">
+                @isOnly :'Y'
+               </td> 
+            <td class="remark">
+                只显示月份，不显示年份
+            </td>
+          </tr>
+          </table>
+      </div>
+       <div class="demos">
+        <div class="header"></div>
+          <div class="demo">
+            <div class="example">
+            <div class="xForm">
+             <span class="control">
+              <span class="month" id='testmonth'>
+               <input type='text'></input>
+              </span>
+            </span>
+          </div>
+            </div>
+            <div class="code" >
+             <pre> &lt;div class="xForm"&gt;
+             &lt;span class="control"&gt;
+              &lt;span class="month" id='testmonth'&gt;
+               &lt;input type='text'&gt;&lt;/input&gt;
+              &lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/div&gt;</pre>
+            </div>
+          </div>
+          <div class="header">数字格式isOnly:'Y'</div>
+          <div class="demo">
+            <div class="example">
+            <div class="xForm">
+             <span class="control">
+              <span class="month" isOnly='Y'>
+               <input type='text' value='09'></input>
+              </span>
+            </span>
+          </div>
+            </div>
+            <div class="code" >
+             <pre> &lt;div class="xForm"&gt;
+             &lt;span class="control"&gt;
+              &lt;span class="month" isOnly='Y'&gt;
+               &lt;input value='09' type='text'&gt;&lt;/input&gt;
+              &lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/div&gt;</pre>
+            </div>
+          </div>
+          </div>
+          </div>
+</body>
+</html>

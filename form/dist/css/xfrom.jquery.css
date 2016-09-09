@@ -291,7 +291,7 @@ input::-ms-clear { display: none; }
     float: left;
     margin: 5px;
 }
-.xForm:after{content: ' ';clear: both;}
+.xForm:after{content: ' ';clear: both;display: block;height: 1px;}
 .xForm .arrow-left{
     position: relative;
 }
@@ -312,7 +312,27 @@ input::-ms-clear { display: none; }
 .xForm .text{padding:5px 0px;}
 .xForm .numer{}
 .xFrom .int{}
-.xForm .date,.xForm .month,.xForm .year{padding:0px 0px;border:0px solid #CCC !important;  height: 100%;display: inline-block;position: relative;float: left;}
+.xForm .date,.xForm .month,.xForm .year{
+    padding:0px 0px;border:0px solid #CCC !important;  
+    height: 100%;display: inline-block;position: relative;float: left;}
+.xForm .date:after,.xForm .month:after,.xForm .year:after{
+
+    font-family: "cgs" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: '1';
+    text-align:center;
+    position: absolute;
+    right: 8px;
+    top:10px;
+    z-index: 10;
+    color: #bbb;
+}
 .xForm .date .header,.xForm .month .header,.xForm .year .header{
    
     height: 38px;
@@ -320,6 +340,7 @@ input::-ms-clear { display: none; }
     border-bottom: 1px solid #f2f2f2;
 
 }
+
 .xForm .date .header:before,.xForm .month .header:before,.xForm .year .header:before{
      font-family: "cgs" !important;
     font-style: normal !important;
@@ -356,7 +377,11 @@ input::-ms-clear { display: none; }
 .xForm .date .header .left,.xForm .month .header .left,.xForm .year .header .left{width: 14%;display: block;float: left;height: 100%;position: relative;background: transparent;z-index: 20;}
 .xForm .date .header .right,.xForm .month .header .right,.xForm .year .header .right{width: 14%;display: block;float: left;height: 100%;background: transparent;z-index: 20;position: relative;}
 .xForm .date .header .content,.xForm .month .header .content,.xForm .year .header .content{width: 72%;display: block;float: left;height: 100%;text-align: center;font-size: 16px;}
-.xForm .date .body,.xForm .month .body,.xForm .year .body{position: absolute;top: 36px;left: -1px;background: #fff;border:1px solid #CCC;margin:0 auto;padding:0px;display: none;min-width: 250px;}
+.xForm .date .body,.xForm .month .body,.xForm .year .body{
+    position: absolute;top: 36px;left: -1px;
+    background: #fff;border:1px solid #CCC;margin:0 auto;padding:0px;display: none;min-width: 250px;
+    z-index: 50;  
+    }
 .xForm .date  .body .yearContent,.xForm .month  .body .yearContent,.xForm .year  .body .yearContent{font-size: 14px; }
 .xForm .date .body .yearContent>ul,.xForm .month .body .yearContent>ul,.xForm .year .body .yearContent>ul{list-style: none;margin: 0 auto;padding:0px;}
 .xForm .date  .body .yearContent>ul>li,.xForm .month  .body .yearContent>ul>li,.xForm .year  .body .yearContent>ul>li{width: 20%;float: left;text-align: center;}
@@ -365,7 +390,7 @@ input::-ms-clear { display: none; }
 .xForm .date  .body .yearContent .active,.xForm .month  .body .yearContent .active,.xForm .year  .body .yearContent .active{background: #ff871c;}
 
 .xForm .date  .body .monthContent,.xForm .month  .body .monthContent{font-size: 14px; }
-.xForm .date .body .monthContent>ul,.xForm .month .body .monthContent>ul{list-style: none;margin: 0 auto;padding:0px;}
+.xForm .date  .body .monthContent>ul,.xForm .month .body .monthContent>ul{list-style: none;margin: 0 auto;padding:0px;}
 .xForm .date  .body .monthContent>ul>li,.xForm .month  .body .monthContent>ul>li{width: 16%;float: left;text-align: center;}
 .xForm .date  .body .monthContent>ul>li:hover,.xForm .month  .body .monthContent>ul>li:hover{background: #f2f2f2}
 .xForm .date  .body .monthContent,.xForm .month  .body .monthContent{font-size: 14px; }

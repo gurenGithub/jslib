@@ -843,9 +843,9 @@ xDate.prototype.getCurrentDateText = function(value) {
   this.opts.currentDate = date;
 
   var $title = jQuery('<div class="title "></div>');
-  var $year = jQuery('<span class="year pt"></span>');
+  var $year = jQuery('<span class=" pt"></span>');
   $year.html(this.getYear(date) + this.dates[0]);
-  var $month = jQuery('<span class="month pt"></span>');
+  var $month = jQuery('<span class=" pt"></span>');
   $month.html((this.getMonth(date) + 1) + this.dates[1]);
   var $day = jQuery('<span class="day pt"></span>')
   $day.html(this.getDay(date) + this.dates[2]);
@@ -1357,9 +1357,9 @@ xMonth.prototype.getCurrentDateText = function(value) {
 
   this.opts.currentDate = date;
   var $title = jQuery('<div class="title "></div>');
-  var $year = jQuery('<span class="year pt"></span>');
+  var $year = jQuery('<span class=" pt"></span>');
   $year.html(this.getYear(date) + this.dates[0]);
-  var $month = jQuery('<span class="month pt"></span>');
+  var $month = jQuery('<span class=" pt"></span>');
   $month.html((this.getMonth(date) + 1) + this.dates[1]);
   var me = this;
   $year.click(function() {
@@ -2136,7 +2136,7 @@ xYear.prototype.getCurrentDateText = function(value) {
 
   this.opts.currentDate = date;
   var $title = jQuery('<div class="title "></div>');
-  var $year = jQuery('<span class="year pt"></span>');
+  var $year = jQuery('<span class=" pt"></span>');
   $year.html(this.getYear(date) + this.dates[0]);
   var $month = jQuery('<span class="month pt"></span>');
   $month.html((this.getMonth(date) + 1) + this.dates[1]);
