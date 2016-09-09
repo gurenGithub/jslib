@@ -664,7 +664,7 @@ xCombo.prototype.getParentFilterExpress = function(item) {
 	var me = this;
 	$parentNode = jQuery('.combo[id=' + this.eles.$selector.attr('pId') + ']');
 	if ($parentNode && $parentNode.length > 0) {
-		var parentCombo = combo.get($parentNode);
+		var parentCombo = xUi.combo.get($parentNode);
 		if (parentCombo) {
 			var parentValue = parentCombo.getValue();
 			var parentNodepField = this.opts.pField;
@@ -694,7 +694,7 @@ xCombo.prototype.setSubCombo = function() {
 	var me = this;
 	$subNode = jQuery('.combo[pId=' + this.eles.$selector.attr('id') + ']');
 	if ($subNode && $subNode.length > 0) {
-		var subCombo = combo.get($subNode);
+		var subCombo = xUi.combo.get($subNode);
 		if (subCombo) {
 			var parentValue = this.getValue();
 			var subNodepField = $subNode.attr('pField');
@@ -706,10 +706,12 @@ xCombo.prototype.setSubCombo = function() {
 		}
 	}
 }
-if(typeof window.xForm != 'undefined' ){
+if(typeof window.xUi == 'undefined' )
+{
+   window.xUi={};
+} 
 
-
-window.xForm.combo = (function() {
+window.xUi.combo = (function() {
 
 	var combos = [];
 	var members = {
@@ -771,18 +773,12 @@ window.xForm.combo = (function() {
 				})(i)
 			}
 
-		},
-		getValue: function(selector) {
-
-		},
-		setValue: function(selector) {
-
 		}
 	}
 
 	return members;
 })()
-}
+
 var _getSelector = function(selector) {
 
   if (typeof selector === 'string') {
@@ -1256,6 +1252,7 @@ var xForm = (function(window) {
           this.initUI('checkbox');
           this.initUI('radio');
           this.initUI('month');
+          this.initUI('year');
     },
     initUI:function(type){
        this[type] = (typeof xUi !='undefined' &&  typeof xUi[type] != 'undefined')  ?  xUi[type] : {render:function(){}};
@@ -1264,8 +1261,12 @@ var xForm = (function(window) {
          this[type].render();
        }
     },
+    initControl:function(){
+        
+    },
     render: function() {
       this.init();
+      this.initControl();
     }
   }
 
@@ -2140,16 +2141,13 @@ xYear.prototype.getCurrentDateText = function(value) {
   var $month = jQuery('<span class="month pt"></span>');
   $month.html((this.getMonth(date) + 1) + this.dates[1]);
   var me = this;
-  $year.click(function() {
+  $year.click(function() 
+  { 
+     me.opts.currentDate=new Date();
      me.renderYearContent();
   });
-
-  $month.click(function() 
-  {
-     me.renderMonthContent();
-  })
  $title.append($year);
- $title.append($month);
+
   return $title;
 }
 xYear.prototype.renderHeader = function() {
@@ -2242,11 +2240,8 @@ xYear.prototype.renderYearContent = function()
       li.click(function() 
       {
         me.opts.currentDate.setFullYear(i);
-        if (me.eles.$monthContent) {
-          me.eles.$monthContent.show();
-        }
-        $yearContent.remove();
-        me.renderContent(me.opts.currentDate);
+        me.setValue(me.getYear( me.opts.currentDate));
+        me.hide();
       })
     })(li, i)
   }
@@ -2262,65 +2257,16 @@ xYear.prototype.renderYearContent = function()
   }
   me.setTitle();
 }
-xYear.prototype.renderMonthContent = function() {
-  this.removeAllEles();
-   var me = this;
-  var $monthContent = this.eles.$monthContent;
-  if ($monthContent) {
-    $monthContent.remove();
-  }
-  $monthContent = jQuery('<div class="monthContent"></div>');
-  var $ul = jQuery('<ul></ul>');
-  var currentDate = this.opts.currentDate;
 
-  var month = this.getMonth(currentDate);
-  for (var i = 0; i < 12; i++) {
-    var li = jQuery('<li></li>');
-    li.html(i+1);
-    $ul.append(li);
-    if (i == month) {
-      li.addClass('active');
-    }
-    (function(li, i) {
-      li.click(function() 
-      {
-        me.opts.currentDate.setMonth(i);
-        me.setTitle();
-        li.siblings().removeClass('active');
-        li.addClass('active');
-        var _value = me.opts.isOnly ? me.getMonth(me.opts.currentDate)+1 :me.formatDate(me.opts.currentDate);
-        me.setValue(_value);
-        me.hide();
-      })
-    })(li, i)
-  }
-  $monthContent.append($ul);
-  $monthContent.show();
-  this.eles.$monthContent = $monthContent;
-  this.eles.$date.append($monthContent);
-  if (this.eles.$content) {
-    this.eles.$content.hide();
-  };
-  if (this.eles.$yearContent) {
-    this.eles.$yearContent.hide();
-  }
-  //me.setTitle();
-}
 xYear.prototype.renderContent = function(value) {
   this.removeAllEles();
   this.opts.status = 'year';
   var me = this;
-
-
-   var value = (typeof value === 'string' &&  value) ? new Date(value) : (value || new Date());
-   this.opts.currentDate=value;
-    this.renderMonthContent();
+  var value = (typeof value === 'string' &&  value) ? new Date(value) : (value || new Date());
+  this.opts.currentDate=value;
+  this.renderYearContent();
   this.setTitle();
 };
-xYear.prototype.renderFooter = function() 
-{
-
-}
 
 xYear.prototype.formatDate = function(value) {
 
