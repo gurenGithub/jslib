@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script type="text/javascript" src='../selector/xSelector.js'></script>
+	<script type="text/javascript" src='index.js'></script>
+	<script type="text/javascript">
+		
+		function fn_test(argument) {
+			xValidation.isValid();
+		}
+	</script>
+</head>
+<body>
+  <select  validType='required'>
+  	<option value="1">1</option>
+  	<option value="3">3</option>
+  	<option value="2">4</option>
+  </select>
+
+  <input type="text" validType='required'></input>
+
+  <input type="button" onclick="fn_test()">验证</input>
+
+  <span class="validation-item">xxx</span>
+</body>
+</html>
