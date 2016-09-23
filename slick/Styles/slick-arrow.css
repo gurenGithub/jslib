@@ -1,0 +1,26 @@
+
+.slick-arrow{
+	height: 65px;
+	width: 32px;
+	background: #bbb;
+
+}
+.slick-arrow:hover{
+	background: #000;
+	opacity: 0.5 ;
+}
+.slick-prev,.slick-next{
+	z-index: 100;
+
+}
+.slick-prev{
+	left: 0px;
+}
+.slick-next{
+	right: 0px;
+}
+
+.slick-dots{
+	position: absolute;
+	bottom:0px !important;
+}
