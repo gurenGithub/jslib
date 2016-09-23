@@ -1,0 +1,30 @@
+.pager {
+  margin: 0 auto;
+  display: inline-block;
+  *display: inline;
+  padding: 0px;
+  list-style: none;
+  margin-bottom: 20px;
+}
+.pager:after {
+  content: ' ';
+  clear: both;
+  display: block;
+}
+.pager .active {
+  color: #d8184d;
+}
+.pager li {
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  line-height: 2;
+  text-align: left;
+  color: #666666;
+}
+.pager li:hover {
+  cursor: pointer;
+}

@@ -36,29 +36,7 @@ xSelector.prototype.die=function(type, handle){
 
 
 
- var elem = this.get();
- var func= document.removeEventListener ?
-	function( elem, type, handle ) {
-		if ( elem.removeEventListener ) {
-			elem.removeEventListener( type, handle, false );
-		}
-	} :
-	function( elem, type, handle ) {
-		var name = "on" + type;
-
-		if ( elem.detachEvent ) {
-
-			// #8545, #7054, preventing memory leaks for custom events in IE6-8 –
-			// detachEvent needed property on element, by name of that event, to properly expose it to GC
-			if ( typeof elem[ name ] === "undefined" ) {
-				elem[ name ] = null;
-			}
-
-			elem.detachEvent( name, handle );
-		}
-	};
-	func(elem,type,handle);
-	return this;
+ 
 };
 
 
