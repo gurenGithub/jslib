@@ -66,12 +66,20 @@
 
                 args[0] = $el;
 
-                r = form[functionName].apply(undefined, args);
-                if (r.isPassed) {
-                    return true;
+                if (form[functionName]) {
+                    r = form[functionName].apply(undefined, args);
+                    if (r.isPassed) {
+                        return true;
+                    } else {
+                        result = r;
+                        return false;
+                    }
                 } else {
-                    result = r;
-                    return false;
+                    r = isRegex($el, v);
+                    if (r.isPassed == false) {
+                        result = r;
+                        return false;
+                    }
                 }
 
             }
@@ -229,7 +237,7 @@
             };
         }
 
-        var data =eval(func+'.call($el,$el.val())') ;
+        var data = eval(func + '.call($el,$el.val())');
         return {
             isPassed: data.result,
             type: 'func',
