@@ -12,8 +12,15 @@
     <script type="text/javascript" src="../jquery/index.jquery.js"></script>
 	<script type="text/javascript">
 		
+jQuery.fn.extend({
+    tmpl: function (tmplId, data) {
+        //xUtils.tmpl.render(tmplId, data);
+    }
+});
 
 
+jQuery('#testDate').tmpl(1,2);
+jQuery('#testDate1').tmpl(3,4);
      
      var date=new Date('2016-09-0');
 

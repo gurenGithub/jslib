@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="dist/css/xajaxFrom.jquery.min.css">
+	 <script src="http://smallui.com/js/lib/xutils/jquery-1.8.2.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="dist/js/xajaxFrom.jquery.min.js"></script>
+	<script type="text/javascript">
+
+        jQuery(function ()
+        {
+            jQuery('form').ajaxForm(
+            {
+                onComplete: function () {
+                    jQuery('form').submit();
+                }
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <form>
+        <input type="text" data-valid="required" />
+        <span>
+            <input type="hidden" errorMessage="æ–‡å­—ä¸ºå¿…å¡" />
+        	<span>A</span>
+        </span>
+       
+        <input type="submit"  value="æäº¤"/>
+    </form>
+</body>
+</html>
