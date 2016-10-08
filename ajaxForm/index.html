@@ -4,18 +4,26 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="dist/css/xajaxFrom.jquery.min.css">
 	 <script src="http://smallui.com/js/lib/xutils/jquery-1.8.2.min.js" type="text/javascript"></script>
-  <script type="text/javascript" src="dist/js/xajaxFrom.jquery.min.js"></script>
+    <script type="text/javascript" src="src/js/tooltipster.js"></script>
+    <script type="text/javascript" src="src/js/valid.js"></script>
+    <script type="text/javascript" src="src/js/form.js"></script>
 	<script type="text/javascript">
 
         jQuery(function ()
         {
             jQuery('form').ajaxForm({});
         });
+
+        function testFunc(value){
+            return {result:value.length>0,msg:'测试错误'};
+        }
     </script>
 </head>
 <body>
     <form>
         <input type="text" data-valid="required" />
+
+        <input type="text" data-valid="func"  func="testFunc"/>
         <span>
             <input type="hidden" errorMessage="æ–‡å­—ä¸ºå¿…å¡" />
         	<span>A</span>

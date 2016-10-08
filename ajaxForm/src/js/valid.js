@@ -220,6 +220,23 @@
 
     };
 
+    var isFunc = function($el) {
+        var func = $el.attr('func');
+        if (!func) {
+            return {
+                isPassed: true,
+                type: 'func'
+            };
+        }
+
+        var data =eval(func+'.call($el,$el.val())') ;
+        return {
+            isPassed: data.result,
+            type: 'func',
+            msg: data.msg
+        };
+    }
+
     var form = {
         test: test,
         tests: tests,
@@ -229,6 +246,7 @@
         isMinLength: isMinLength,
         isMaxLength: isMaxLength,
         isNoChinese: isNoChinese,
+        isFunc: isFunc,
         msg: msg
     };
 
@@ -412,8 +430,7 @@ if (typeof jQuery !== 'undefined') {
             if (xUtils.valid && xUtils.valid.blurValid) {
                 xUtils.valid.blurValid($form);
                 var r = xUtils.valid.tests($form.find('[data-valid]'));
-                if (r.isPassed == false) 
-                {
+                if (r.isPassed == false) {
                     return false;
                 }
                 return true;
