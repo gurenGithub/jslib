@@ -21,9 +21,10 @@
 </head>
 <body>
     <form>
-        <input type="text" data-valid="required" />
-
-        <input type="text" data-valid="func"  func="testFunc"/>
+    <div> <label>必填 <input type="text" data-valid="required" /></label></div>
+       
+    <div><label>自定义函数 <input type="text" data-valid="func"  func="testFunc" /></label></div>
+     
         <span>
             <input type="hidden" errorMessage="æ–‡å­—ä¸ºå¿…å¡" />
         	<span>A</span>
