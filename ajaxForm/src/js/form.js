@@ -54,28 +54,14 @@ window.xUtils.form = (function () {
                 type: 'post',
                 error: function (result)
                 {
-                    H.alert(result.Msg);
+
                     if (onError) {
                         onError(result, result.Msg);
                     }
                 },
                 success: function (result)
                 {
-                    H.alert({
-                        content: result.Msg, onClose: function () {
-                            if (result.Result) {
-                                if (onSuccess) {
-                                    onSuccess(result);
-                                }
-                            }
-                            if (!result.Result) {
-                                if (onFail) {
-                                    onFail(result);
-                                }
-                            }
-                        }
-                    });
-
+                  onSuccess && onSuccess(result);
                 }
             });
         },
