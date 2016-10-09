@@ -28,7 +28,7 @@ gulp.task('build', function() {
 gulp.task('concatBuild', function () {
     
 
-     var miniPath='xajaxFrom.jquery.min';
+     var miniPath='xValidFrom.jquery.min';
      gulp.src('src/js/*.js')
         .pipe(concat(miniPath+'.js'))//合并后的文件名
         .pipe(gulp.dest('dist/js')).on('end',function(){

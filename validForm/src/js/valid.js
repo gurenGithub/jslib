@@ -1,4 +1,21 @@
-﻿(function(root, factory) {
+﻿
+if (typeof window.xUtils === 'undefined') {
+    window.xUtils = {};
+}
+
+if (typeof window.xUtils.errorMessages === 'undefined') 
+{
+window.xUtils.errorMessages={
+            noChinese: '* Chinese character is not allowed.',
+            required: '* This field is required.',
+            email: '* Invalid Email address.',
+            minLength: '* Minimum {{1}} characters required.',
+            maxLength: '* Maximum {{1}} characters allowed.',
+            invalid:'This field is invalid.'
+        }
+}
+
+(function(root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else {
@@ -27,13 +44,7 @@
             ipv4: /^((([01]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))[.]){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))$/,
             url: /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i
         },
-        msg = {
-            noChinese: '* Chinese character is not allowed.',
-            required: '* This field is required.',
-            email: '* Invalid Email address.',
-            minLength: '* Minimum {{1}} characters required.',
-            maxLength: '* Maximum {{1}} characters allowed.'
-        },
+        msg = window.xUtils.errorMessages,
         types = ['email', 'url'];
 
     var inArray = function(array, v) {
@@ -262,9 +273,6 @@
 }));
 
 
-if (typeof window.xUtils === 'undefined') {
-    window.xUtils = {};
-}
 
 
 if ($.fn.tooltipster !== undefined) {
@@ -285,7 +293,7 @@ if ($.fn.tooltipster !== undefined) {
                         theme: 'tooltipster-error',
                         maxWidth: 300,
                         contentAsHTML: true,
-                        content: msg || 'This field is invalid.',
+                        content: msg || window.xUtils.errorMessages.invalid,
                         hideOnClick: true,
                         trigger: 'custom',
                         autoClose: true,
@@ -433,15 +441,22 @@ if ($.fn.tooltipster !== undefined) {
 
 if (typeof jQuery !== 'undefined') {
     jQuery.fn.extend({
-        validForm: function() {
+        isValid: function() {
             var $form = $(this);
-            if (xUtils.valid && xUtils.valid.blurValid) {
-                xUtils.valid.blurValid($form);
                 var r = xUtils.valid.tests($form.find('[data-valid]'));
                 if (r.isPassed == false) {
                     return false;
                 }
                 return true;
+            
+        }
+    });
+    jQuery.fn.extend({
+        validForm: function() {
+            var $form = $(this);
+            if (xUtils.valid && xUtils.valid.blurValid) {
+                xUtils.valid.blurValid($form);
+               
             }
         }
     });
