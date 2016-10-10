@@ -107,8 +107,9 @@ var xDialog = (function(argument) {
 			$modalDialog.className = 'xmodal-dialog';
 			var $dialogBackup = document.createElement('div');
 			$dialogBackup.className = 'dialog-backup fade';
+			if(_isModal==true){
 			$modalDialog.appendChild($dialogBackup)
-
+}
 
 			var fn_removeModal=function() {
 				document.body.removeChild($modalDialog);
