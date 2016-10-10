@@ -1,3 +1,5 @@
+
+.xmodal-dialog *{box-sizing:content-box !important;}
 .fade {
 	opacity: 0;
 	-webkit-transition: opacity .15s linear;
@@ -54,9 +56,9 @@
 }
 .xmodal-dialog .title {
 	border-bottom: 1px solid #e5e5e5;
-	height: 30px;
+	
 	line-height: 30px;
-	padding: 5px 10px;
+	padding: 8px 10px;
 	font-weight: bold;
 	margin: 0px;
 	text-align: left
