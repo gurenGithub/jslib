@@ -439,9 +439,8 @@ if ($.fn.tooltipster !== undefined) {
 }
 
 
-if (typeof jQuery !== 'undefined') {
-    jQuery.fn.extend({
-        isValid: function() {
+if (typeof $ !== 'undefined') {
+    $.fn.isValid=function() {
             var $form = $(this);
                 var r = xUtils.valid.tests($form.find('[data-valid]'));
                 if (r.isPassed == false) {
@@ -449,16 +448,15 @@ if (typeof jQuery !== 'undefined') {
                 }
                 return true;
             
-        }
-    });
-    jQuery.fn.extend({
-        validForm: function() {
+        };
+    
+    $.fn.validForm= function() {
             var $form = $(this);
             if (xUtils.valid && xUtils.valid.blurValid) {
                 xUtils.valid.blurValid($form);
                
             }
-        }
-    });
+        };
+   
 
 }

@@ -74,15 +74,13 @@ window.xUtils.form = (function () {
     return members;
 })();
 
-if (typeof jQuery !== 'undefined') {
-    jQuery.fn.extend({
-        ajaxForm: function (opts) {
+if (typeof $ !== 'undefined') {
+    $.fn.ajaxForm=function function (opts) {
             xUtils.form.init($(this), opts.onBefore, opts.onSuccess, opts.onFail);
-        }
-    });
-    jQuery.fn.extend({
-        ajaxFormSubmit: function (opts) {
+        };
+   
+    $.fn.ajaxFormSubmit=function (opts) {
             xUtils.form.submit($(this), opts.onBefore, opts.onSuccess, opts.onFail);
-        }
-    });
+        };
+    
 }

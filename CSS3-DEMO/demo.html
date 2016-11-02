@@ -7,11 +7,31 @@
    p{padding: 8px 20px;}
    p.left{background: #ccc;}
    p.right{background: red;}
+   p.right:hover{
+   	transform: scale(1,2);
+   }
+   .tr-translate{
+   	transform: translate(50px,50px);
+   	display: inline-block;
+   	background: yellow;
+   	padding: 10px 20px;
+   }
+   .tr-45deg{
+   	width: 100px;
+   	height: 100px;
+   	background: yellow;
+   	transform: rotate(45deg);
+   	display: inline-block;
+   	transform-origin: left bottom;
+   }
 	</style>
 </head>
 <body>
   
 <p class="left">ccc</p>
 <p class="right">right</p>
+<span class="tr-translate">translate</span>
+
+<span class="tr-45deg">45deg</span>
 </body>
 </html>
