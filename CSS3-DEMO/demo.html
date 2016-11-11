@@ -24,7 +24,30 @@
    	display: inline-block;
    	transform-origin: left bottom;
    }
+
+@media screen and (min-width: 300) and (max-width: 750){
+   
+}
+   @keyframes mycolor{
+    0%{background: red;}
+    40%{background: blue;}
+    70%{background: yellow;}
+    100%{background: red;}
+   }
+
+   @keyframes fadeout{
+      0%{opacity: 1;}
+      100%{opacity: 0;}
+   }
+   div{
+      animation: fadeout 1s linear;
+      animation-iteration-count: infinite;
+   }
 	</style>
+   <script type="text/javascript">
+      
+      var ss=document.get
+   </script>
 </head>
 <body>
   
@@ -33,5 +56,7 @@
 <span class="tr-translate">translate</span>
 
 <span class="tr-45deg">45deg</span>
+
+<div>animation</div>
 </body>
 </html>

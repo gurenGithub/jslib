@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>指定起点与终点的驾车导航</title>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2&ak=GwEKxdRh5l0mha5QERXn70Y3"></script>
+<style>
+html,body{margin:0 auto;padding: 0px;overflow: hidden;}
+*{box-sizing: border-box;}
+body{font-size:14px;}
+h5{line-height:3em;padding:0;margin:0;}
+a{color:#EE3399;}
+a:hover{color:#99AA66;}
+.txt{border:1px solid #ccc;background:none;padding:1px;height: 40px;outline: none;padding: 5px 10px;width: 250px;border-radius: 3px;}
+.txt:focus{border-color: #d71d48;}
+.f-l{float:left;}
+.t-c{text-align:center;}
+.clear{clear:both;}
+.ttitle{text-align: right;padding-left: 30px;}
+.btn{height: 40px;padding: 10px 40px;border-radius: 3px;font-size: 14px;}
+.btn-red{background: #d71d48 ;color: white;border:0;}
+.btn-red:hover{background:#cd133e;}
+.hidden{display:none;}
+.searchbox{border:1px solid #e5e5e5;width:100%;height:150px;line-height:35px;padding:padding:0 0px;margin:0 0 0 0px;}
+.searchbox table{margin: 20px 40px;}
+.searchbox table td{padding-top: 10px;}
+.mainbox{margin:0px 0 0;}
+.boxmap{width:100%;min-height:500px;border:1px solid #e5e5e5;}
+.boxpanel{width:500px;float:left;margin:0 0 0 2px;border:1px solid gray;padding:0 0px 10px;}
+#startPanel,#endPanel{border:1px solid #FA8722;font-size:12px;}
+#startPanel div,#endPanel div{padding:5px;}
+#startPanel p,#endPanel p{margin:0 auto;paddin:0;line-height:1.2em;}
+#drivingPanel{border:1px solid #6688EE;}
+</style>
+</head>
+<body>
+<div>
+     <div class="searchbox" id='searchbox'>
+
+     <table>
+       <tr>
+       <td class="ttitle">起点：</td><td><input class="txt" type="text" id="startInput" /></td>
+       <td class="ttitle">终点：</td><td> <input class="txt" type="text" id="endInput" name="text" /></td>
+       <td></td><td  style="padding-left: 40px;"> <input type="button" id="button" class="btn btn-red" value="驾车" onClick="mDriving()" /></td>
+       </tr>
+       <tr>
+        <td class="ttitle">公里数：</td>
+         <td colspan="5">
+           <input class="txt" type="text" id="gls" />
+         </td>
+       </tr>
+     </table>
+   </div>
+      <div class="mainbox" id='mainbox'>
+        <div class="boxmap" id="container"></div>
+        <div class="boxpanel hidden" id="box">
+          <h5>起点选择&nbsp;<a href="#" onClick="document.getElementById('startPanel').style.display='block';">(展开)</a></h5>
+          <div id="startPanel"></div>
+          <h5>终点选择&nbsp;<a href="#" onClick="document.getElementById('endPanel').style.display='block';">(展开)</a></h5>
+          <div id="endPanel"></div>
+          <!--<h5>驾车导航</h5>
+        <div id="drivingPanel"></div>-->
+        </div>
+      </div>
+     </div>
+</div>
+<div class="clear"></div>
+</body>
+</html>
+<script type="text/javascript">
+var map = new BMap.Map("container");            // 创建Map实例
+var point = new BMap.Point(121.50, 31.30);    // 创建点坐标
+map.centerAndZoom(point,11);                     // 初始化地图,设置中心点坐标和地图级别。
+map.enableScrollWheelZoom();                  // 启用滚轮放大缩小。
+
+
+
+
+$(function(){
+   
+   $('#container').height($(window).height()-$('#searchbox').height());
+
+});
+
+var ac = new BMap.Autocomplete( //建立一个自动完成的对象
+    {
+      "input": "startInput",
+      "location": map
+    });
+var ac2 = new BMap.Autocomplete( //建立一个自动完成的对象
+    {
+      "input": "endInput",
+      "location": map
+    });
+var startInfowin = new BMap.InfoWindow("<p class='t-c'><input value='选为起点' type='button' onclick='startDeter();' /></p>");
+var endInfowin = new BMap.InfoWindow("<p class='t-c'><input value='选为终点' type='button' onclick='endDeter();' /></p>");
+
+var startResults = null;
+var endResults = null;
+
+var startPoint,starttitle;
+var endPoint,endtitle;
+
+var startOption = {
+  onSearchComplete: function(results){
+    // 判断状态是否正确
+    if (startSearch.getStatus() == BMAP_STATUS_SUCCESS){
+      startResults = results;
+      var s = [];
+      for (var i = 0; i < results.getCurrentNumPois(); i ++){
+        s.push("<div><p><a onclick = 'document.getElementById(\"startInput\").value=\""+results.getPoi(i).title+"\"' onmouseover='map.openInfoWindow(startInfowin,startResults.getPoi(" + i + ").point);' href='#'>");
+        s.push(results.getPoi(i).title);
+        s.push("</a></p><p>");
+        s.push(results.getPoi(i).address);
+        s.push("</p></div>");
+      }
+      document.getElementById("startPanel").innerHTML = s.join("");
+    }else{startResults = null;}
+  }
+};
+var endOption = {
+  onSearchComplete: function(results){
+    // 判断状态是否正确
+    if (endSearch.getStatus() == BMAP_STATUS_SUCCESS){
+      endResults = results;
+      var s = [];
+      for (var i = 0; i < results.getCurrentNumPois(); i ++){
+        s.push("<div><p><a href='#' onclick = 'document.getElementById(\"endInput\").value=\""+results.getPoi(i).title+"\"' onmouseover='map.openInfoWindow(endInfowin,endResults.getPoi(" + i + ").point);'>");
+        s.push(results.getPoi(i).title);
+        s.push("</a></p><p>");
+        s.push(results.getPoi(i).address);
+        s.push("</p></div>");
+      }
+      document.getElementById("endPanel").innerHTML = s.join("");
+    }else{endResults = null;}
+  }
+};
+//创建2个搜索实例
+var startSearch = new BMap.LocalSearch(map,startOption);
+var endSearch = new BMap.LocalSearch(map,endOption);
+
+function mDriving(){
+    var startPlace = document.getElementById("startInput").value;
+    var endPlace = document.getElementById("endInput").value;
+   transit.search(startPlace,endPlace);
+}
+
+function startDeter(){
+    map.clearOverlays();
+    startPoint = startInfowin.getPosition();
+    var marker = new BMap.Marker(startPoint);
+    map.addOverlay(marker);
+    document.getElementById("startPanel").style.display="none";
+    //document.getElementById("startInput").value=starttitle;
+}
+function endDeter(){    
+    if(startPoint==null){alert("请先选择起点！");}
+    else{
+        endPoint = endInfowin.getPosition();        
+        transit.search(startPoint,endPoint);
+        document.getElementById("endPanel").style.display="none";
+    }
+}
+
+        
+        
+        
+function searchComplete(results){
+    if (transit.getStatus() != BMAP_STATUS_SUCCESS){
+        return ;
+    }
+        var plan = results.getPlan(0);
+        var val = plan.getDistance(true);
+
+
+       var distince =plan.getDistance(true);
+
+        document.getElementById("gls").value=distince.replace('公里','');
+
+        //document.getElementById("drivingPanel").value=val;
+}
+var transit = new BMap.DrivingRoute(map, {renderOptions: {map: map}, onSearchComplete: function(results){searchComplete(results);}});
+</script>
