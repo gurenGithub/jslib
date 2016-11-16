@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var book={
+               _year:200
+		}
+
+		
+		Object.defineProperty(book,'year',
+		{
+			get:function(){
+				console.log('get year!');
+				return this._year;
+			}
+			,set:function(value){
+				this._year=value;
+			}
+		});
+
+var _year= book.year;
+	</script>
+</head>
+<body>
+
+</body>
+</html>

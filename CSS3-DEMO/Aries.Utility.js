@@ -18,6 +18,7 @@ window.AR = (function ($Core) {
                 }
                 delete this[key];
             }
+
         }
     };
     $Core.Global = {
