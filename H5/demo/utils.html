@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="../xUtils/dist/css/xUtils.css" rel="stylesheet" />
+    <script src="../zepto.js"></script>
+    <script src="../xUtils/dist/js/xUtils.js"></script>
+    <script src="../flexible-0.3.4.js"></script>
+    <script type="text/javascript">
+
+    var utils=xUtils;
+        $(function(){
+           $('.tips').click(function()
+           {
+        	utils.dialog.tips('ss')
+           
+           });
+
+            $('.wait').click(function()
+           {
+        	utils.dialog.wait('ss')
+           
+           });
+
+             $('.loadding').click(function()
+           {
+        	utils.dialog.loadding()
+           
+           });
+
+              $('.message').click(function()
+           {
+        	utils.dialog.message('message')
+           
+           });
+              $('.alert').click(function()
+           {
+        	utils.dialog.alert('message',
+        		function(){
+
+        	})
+           
+           });
+
+
+                  $('.confirm').click(function()
+           {
+        	utils.dialog.confirm('confirm',function(){},function(){})
+           
+           });
+        })
+    </script>
+</head>
+<body>
+
+    <table>
+        <tr>
+            
+            <td>
+                <span class="tips">tips</span> 
+                 <span class="wait">wait</span> 
+                  <span class="loadding">loadding</span> 
+                   <span class="message">message</span> 
+                    <span class="alert">alert</span> 
+                    <span class="confirm">confirm</span> 
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

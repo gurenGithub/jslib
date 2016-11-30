@@ -3,7 +3,7 @@ if (typeof window.xUtils == 'undefined') {
     window.xUtils = {};
 }
 
-window.xUtils.form = (function () {
+window.xUtils.dialog = (function () {
 
 
     var members = {

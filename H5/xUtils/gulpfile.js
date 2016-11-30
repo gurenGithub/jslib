@@ -21,7 +21,7 @@ buildLess2Src(function(){
       var miniPath=path+'.min';
      gulp.src('src/js/*.js')
         .pipe(concat(path+'.js'))//合并后的文件名
-        .pipe(gulp.dest('src/js')).on('end',function(){
+        .pipe(gulp.dest('dist/js')).on('end',function(){
              // minifyJsFile(miniPath);
         });
 
@@ -32,7 +32,7 @@ gulp.src('src/js/*.js')
         });
         gulp.src('src/css/*.css')
         .pipe(concat(path+'.css'))//合并后的文件名
-        .pipe(gulp.dest('src/css')).on('end',function()
+        .pipe(gulp.dest('dist/css')).on('end',function()
         {
             
         });
