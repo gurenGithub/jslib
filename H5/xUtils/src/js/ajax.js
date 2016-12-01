@@ -53,7 +53,7 @@ window.xUtils.ajax = (function() {
                         onCustomeOpts.onError(message);
                     }
                 },
-                before: function() {
+                beforeSend: function() {
                     if (onCustomeOpts && onCustomeOpts.onBefore) {
                         onCustomeOpts.onBefore();
                     }
