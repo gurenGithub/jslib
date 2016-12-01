@@ -6,6 +6,33 @@ window.xUtils.ajax = (function () {
 
 
     var members = {
+
+         defaultSaveOpts:function(opts){
+
+
+                var message = opts.message || '数据保存中...';
+                if (opts) {
+                    opts.beforeSend = function ()
+                    {
+                        utils.dialog.wait(message);
+                    }
+                    opts.complete = function () {
+                        utils.dialog.closeWait();
+                    }
+                }
+                return opts;
+            },
+            defaultListOpts:function(opts){
+
+                if (opts) {
+                    opts.beforeSend = function () {
+                        utils.dialog.loadding();
+                    }
+                    opts.complete = function () {
+                        utils.dialog.closeLoadding();
+                    }
+                }
+            },
         post: function (url, data, onCustomeOpts)
         {
             var opts = {
@@ -38,8 +65,9 @@ window.xUtils.ajax = (function () {
                     }
                 }
             };
-            if (onCustomeOpts) {
-                onCustomeOpts(opts);
+            
+            for(var key in onCustomeOpts){
+                opts[key]=onCustomeOpts[key];
             }
             $.ajax(opts);
         },
