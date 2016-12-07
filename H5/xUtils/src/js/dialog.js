@@ -78,6 +78,11 @@ window.xUtils.dialog = (function() {
         closeLoadding: function() {
             this.close('.cm-dialog-loadding');
         },
+
+        toast:function(content,timeout,onClose){
+
+            this.tips(content,timeout,onClose);
+        },
         tips: function(content, timeout, onClose) {
             var $dialog = $('<div class="cm-dialog-tips"  xdialog="xdialog"></div>');
             var $content = $('<div class="cm-dialog-tips-content"></div>');
