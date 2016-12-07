@@ -139,6 +139,9 @@ window.xUtils.dialog = (function() {
         },
         closeEmpty: function() {
             this.close('.cm-dialog-empty');
+        },
+        closeAll:function(){
+            $('[xdialog]').remove();
         }
     };
     return members;
