@@ -137,6 +137,19 @@ var xUtils = (function() {
         top: scrollY + offset.top
       };
     },
+
+    function getOffsetV1(element){
+  var left=element.offsetLeft;
+  var top=element.offsetTop;
+  var current= element.offsetParent;
+  while(current!=null){   
+        left+=current.offsetLeft;
+        top+=current.offsetTop;
+        current= current.offsetParent;
+
+  }
+  return {left:left,top:top};
+},
     getMousePos: function(event) {
       var e = event || window.event;
       var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+	.myClass{
+  height: 100px;
+  background: red;
+		}
+		</style>
+		
+</head>
+<body>
+
+
+<div class="myClass" id="myDiv"></div>
+
+<script type="text/javascript">
+  var myDiv=document.querySelector('#myDiv');
+
+  var attrs=myDiv.attributes;
+
+  var myStyles= document.defaultView.getComputedStyle(myDiv);			
+
+
+function getOffset(element){
+
+
+	var left=element.offsetLeft;
+	var top=element.offsetTop;
+	var current= element.offsetParent;
+	while(current!=null){
+        
+        left+=current.offsetLeft;
+        top+=current.offsetTop;
+        current= current.offsetParent;
+
+	}
+  return {left:left,top:top};
+}
+
+
+var _offset= getOffset(myDiv);
+
+  		</script>
+</body>
+</html>

@@ -2,66 +2,104 @@ if (typeof window.xUtils == 'undefined') {
     window.xUtils = {};
 }
 
-window.xUtils.ajax = (function () {
+window.xUtils.ajax = (function() {
 
 
     var members = {
-        post: function (url, data, onCustomeOpts)
-        {
+        defaultEmptyOpts: function(opts) {
+
+            if (opts) {
+                opts.beforeSend = function() {
+                    utils.dialog.empty();
+                }
+                opts.complete = function() {
+                    utils.dialog.closeEmpty();
+                }
+            }
+            return opts;
+        },
+        defaultSaveOpts: function(opts) {
+
+
+            var message = opts.message || '数据保存中...';
+            if (opts) {
+                opts.beforeSend = function() {
+                    utils.dialog.wait(message);
+                }
+                opts.complete = function() {
+                    utils.dialog.closeWait();
+                }
+            }
+            return opts;
+        },
+        defaultListOpts: function(opts) {
+
+            if (opts) {
+                opts.beforeSend = function() {
+                    utils.dialog.loadding();
+                }
+                opts.complete = function() {
+                    utils.dialog.closeLoadding();
+                }
+            }
+        },
+        post: function(url, data, onCustomeOpts) {
             var opts = {
                 url: url,
                 type: 'post',
                 data: data,
                 dataType: 'json',
                 timeout: 20e3,
-                success: function (data) {
+                success: function(data) {
 
                     if (onCustomeOpts && onCustomeOpts.onSuccess) {
                         onCustomeOpts.onSuccess(data);
                     }
                 },
-                error: function (e) {
-                 
+                error: function(e) {
+
 
                     var message = e.responseText;
                     if (onCustomeOpts && onCustomeOpts.onError) {
                         onCustomeOpts.onError(message);
                     }
                 },
-                before: function () {
+                beforeSend: function() {
                     if (onCustomeOpts && onCustomeOpts.onBefore) {
                         onCustomeOpts.onBefore();
                     }
-                }, complete: function () {
+                },
+                complete: function() {
                     if (onCustomeOpts && onCustomeOpts.onComplete) {
                         onCustomeOpts.onComplete();
                     }
                 }
             };
-            if (onCustomeOpts) {
-                onCustomeOpts(opts);
+
+            for (var key in onCustomeOpts) {
+                opts[key] = onCustomeOpts[key];
             }
             $.ajax(opts);
         },
-        save:function (url, data, opts) {
+        save: function(url, data, opts) {
 
-            if(!opts){
+            if (!opts) {
                 opts = {};
                 opts.onSuccess = onSuccess;
             }
             if (!opts.onBefore) {
 
-                opts.onBefore = function () {
+                opts.onBefore = function() {
 
                     if (xUtils && xUtils.dialog) {
                         xUtils.dialog.wait(opts.message || '请等待。。。');
-                        
+
                     }
                 };
 
             }
             if (!opts.onComplete) {
-                opts.onComplete = function () {
+                opts.onComplete = function() {
                     if (xUtils && xUtils.dialog) {
                         xUtils.dialog.closeWait();
                     }
@@ -69,24 +107,34 @@ window.xUtils.ajax = (function () {
             }
             if (!opts.onError) {
 
-                opts.onError = function (e) {
+                opts.onError = function(e) {
                     if (xUtils && xUtils.dialog) {
                         xUtils.dialog.alert();
                     }
                 };
             }
-           
+
             this.post(url, data, opts);
         },
-        list: function (url, data, opts)
-        {
+        saveObj: function(url, data, opts) {
+
+            if (!opts) {
+                opts = {};
+            }
+            opts.type = 'post';
+            opts.data = JSON.stringify(data);
+            opts.dataType = "json";
+            opts.contentType = 'application/json';
+            this.save(url, data, opts);
+        },
+        list: function(url, data, opts) {
             if (!opts) {
                 opts = {};
                 opts.onSuccess = onSuccess;
             }
             if (!opts.onBefore) {
 
-                opts.onBefore = function () {
+                opts.onBefore = function() {
 
                     if (xUtils && xUtils.dialog) {
                         xUtils.dialog.loadding();
@@ -96,7 +144,7 @@ window.xUtils.ajax = (function () {
 
             }
             if (!opts.onComplete) {
-                opts.onComplete = function () {
+                opts.onComplete = function() {
                     if (xUtils && xUtils.dialog) {
                         xUtils.dialog.closeLoadding();
                     }
@@ -104,7 +152,7 @@ window.xUtils.ajax = (function () {
             }
             if (!opts.onError) {
 
-                opts.onError = function (e) {
+                opts.onError = function(e) {
                     if (xUtils && xUtils.dialog) {
                         xUtils.dialog.alert();
                     }
@@ -116,16 +164,15 @@ window.xUtils.ajax = (function () {
     };
     return members;
 })();
-
 if (typeof window.xUtils == 'undefined') {
     window.xUtils = {};
 }
 
-window.xUtils.dialog = (function () {
+window.xUtils.dialog = (function() {
 
 
     var members = {
-        open: function (text, title, action) {
+        open: function(text, title, action) {
 
             var $dialog = $('<div class="cm-dialog" xdialog="xdialog"></div>');
             var $content = $('<div class="cm-dialog-content"></div>');
@@ -148,44 +195,44 @@ window.xUtils.dialog = (function () {
 
             return $dialog;
         },
-        alert: function (content, okFunc, title) {
+        alert: function(content, okFunc, title) {
             var $action = $('<span>确认</span>');
             var $dislog = this.open(content, title, $action);
-            $action.click(function () {
+            $action.click(function() {
                 if (okFunc) {
                     okFunc.call(this);
                 }
                 $dislog.remove();
             });
         },
-        confirm: function (content, okFunc, unOk, title) {
+        confirm: function(content, okFunc, unOk, title) {
             var $actionOk = $('<span class="cm-dialog-action-ok">确认</span>');
             var $actionUnOk = $('<span class="cm-dialog-action-unok">取消</span>');
             var $action = $('<span></span>');
             $action.append($actionOk);
             $action.append($actionUnOk);
             var $dislog = this.open(content, title, $action);
-            $actionOk.click(function () {
+            $actionOk.click(function() {
                 if (okFunc) {
                     okFunc.call(this);
                 }
                 $dislog.remove();
             });
-            $actionUnOk.click(function () {
+            $actionUnOk.click(function() {
                 if (unOk) {
                     unOk.call(this);
                 }
                 $dislog.remove();
             });
         },
-        close: function (selector) {
+        close: function(selector) {
 
             if (!selector) {
                 selector = 'cm-dialog';
             }
             $(selector).remove();
         },
-        loadding: function () {
+        loadding: function() {
 
 
             var $dialog = $(' <div class="cm-dialog-loadding"  xdialog="xdialog"></div>');
@@ -194,10 +241,10 @@ window.xUtils.dialog = (function () {
             $dialog.append($content);
             $(document.body).append($dialog);
         },
-        closeLoadding: function () {
+        closeLoadding: function() {
             this.close('.cm-dialog-loadding');
         },
-        tips: function (content, timeout, onClose) {
+        tips: function(content, timeout, onClose) {
             var $dialog = $('<div class="cm-dialog-tips"  xdialog="xdialog"></div>');
             var $content = $('<div class="cm-dialog-tips-content"></div>');
 
@@ -208,7 +255,7 @@ window.xUtils.dialog = (function () {
             $(document.body).append($dialog);
 
 
-            setTimeout(function () {
+            setTimeout(function() {
 
 
                 $dialog.remove();
@@ -219,7 +266,7 @@ window.xUtils.dialog = (function () {
 
             return $dialog;
         },
-        message: function (content) {
+        message: function(content) {
             var $dialog = $(' <div class="cm-dialog-message"  xdialog="xdialog"></div>');
             var $content = $('   <div class="cm-dialog-message-content"> </div>');
             var $text = $('<span></span>');
@@ -227,16 +274,15 @@ window.xUtils.dialog = (function () {
             $content.append($text);
             $dialog.append($content);
             $(document.body).append($dialog);
-            $dialog.click(function () {
+            $dialog.click(function() {
 
                 $(this).remove();
             });
-        }
-            , closeMessage: function (selector) {
-                this.close('.cm-dialog-message');
-            }
-            ,
-        wait: function (content) {
+        },
+        closeMessage: function(selector) {
+            this.close('.cm-dialog-message');
+        },
+        wait: function(content) {
             var $dialog = $(' <div class="cm-dialog-wait"  xdialog="xdialog"></div>');
             var $content = $('   <div class="cm-dialog-wait-content"> </div>');
             var $text = $('<span></span>');
@@ -245,8 +291,15 @@ window.xUtils.dialog = (function () {
             $dialog.append($content);
             $(document.body).append($dialog);
         },
-        closeWait: function () {
+        closeWait: function() {
             this.close('.cm-dialog-wait');
+        },
+        empty: function() {
+            var $dialog = $(' <div class="cm-dialog-empty"  xdialog="xdialog"></div>');
+            $(document.body).append($dialog);
+        },
+        closeEmpty: function() {
+            this.close('.cm-dialog-empty');
         }
     };
     return members;

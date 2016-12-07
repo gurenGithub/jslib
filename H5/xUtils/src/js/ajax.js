@@ -6,7 +6,18 @@ window.xUtils.ajax = (function() {
 
 
     var members = {
+        defaultEmptyOpts: function(opts) {
 
+            if (opts) {
+                opts.beforeSend = function() {
+                    utils.dialog.empty();
+                }
+                opts.complete = function() {
+                    utils.dialog.closeEmpty();
+                }
+            }
+            return opts;
+        },
         defaultSaveOpts: function(opts) {
 
 
@@ -115,8 +126,7 @@ window.xUtils.ajax = (function() {
             opts.dataType = "json";
             opts.contentType = 'application/json';
             this.save(url, data, opts);
-        }
-        ,
+        },
         list: function(url, data, opts) {
             if (!opts) {
                 opts = {};
