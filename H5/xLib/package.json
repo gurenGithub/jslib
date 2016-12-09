@@ -1,0 +1,30 @@
+{
+  "name": "haier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "beeper": "^1.1.0",
+    "async": "^2.0.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-jshint": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.3",
+    "gulp-watch": "^4.3.9"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp-file-copy": "0.0.1",
+    "jshint-stylish": "^2.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
