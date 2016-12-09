@@ -39,7 +39,6 @@ gulp.src(concatfilePath)
             
         });
 
-
    gulp.src('src/css/*.css')
         .pipe(concat(miniPath+'.css'))//合并后的文件名
         .pipe(gulp.dest('dist/css')).on('end',function()

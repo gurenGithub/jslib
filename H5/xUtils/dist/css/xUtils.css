@@ -571,6 +571,7 @@ body {
 	transform: translateZ(0);
 	z-index: 110;
 }
+
 .scrollListWrapper .scrollerLoadding{
 	position: absolute;
 	
@@ -656,9 +657,8 @@ body {
 
 .scrollListWrapper .scroller>ul>li {
 	padding: 0 10px;
-	height: 40px;
-	width: 100%;
-	line-height: 40px;
+	height: 1.333333rem;
+	min-width: 10rem;
 	border-bottom: 1px solid #ccc;
 	border-top: 1px solid #fff;
 	background-color: #fafafa;
@@ -673,6 +673,7 @@ body {
 	bottom: 0px;
 	left: 0;
 	width: 100%;
+	max-width: 10rem;
 	background: #ccc;
 	overflow: hidden;
 }
@@ -683,7 +684,7 @@ body {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	width: 5000px;
 	height: 100%;
-	background-color: #a00;
+	background-color: #ccc;
 	-webkit-transform: translateZ(0);
 	-moz-transform: translateZ(0);
 	-ms-transform: translateZ(0);
