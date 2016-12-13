@@ -183,15 +183,17 @@ if (typeof $ !== 'undefined') {
 		for (var item in org) {
 			opts[item] = org[item];
 		}
-		var totalWidth=0;
-		$me.children().each(function(){
-         totalWidth+=$(this).width();
+		var totalWidth = 0;
+		$me.children().each(function() {
+			totalWidth += $(this).width();
 		});
-		var widthOpts={width:totalWidth};
+		var widthOpts = {
+			width: totalWidth
+		};
 		$me.css(widthOpts);
 		$scroller.css(widthOpts);
-		myScroll = new IScroll($wrapper[0], opts);
-		scrollerEvents.initEvent(opts, $scroller);
+		iscroll = new IScroll($wrapper[0], opts);
+		scrollerEvents.initEvent(opts, iscroll);
 		return $scroller;
 	}
 	$.fn.scrollPage = function(opts) {
@@ -217,9 +219,75 @@ if (typeof $ !== 'undefined') {
 		for (var item in newOpts) {
 			opts[item] = newOpts[item];
 		}
-		myScroll = new IScroll($wrapper[0], opts);
-		scrollerEvents.initEvent(opts, $scroller);
+		iscroll = new IScroll($wrapper[0], opts);
+		scrollerEvents.initEvent(opts, iscroll);
 		return $scroller;
 	}
+
+	$.fn.slider = function(opts) {
+		var iscroll;
+		var $me = $(this);
+		var $wrapper = $('<div class="scrollerSliderWrapper"></div>');
+		var $scroller = $('<div class="scroller"></div>');
+		$me.wrap($wrapper).wrap($scroller);
+		$wrapper.parent().css({
+			position: 'relative'
+		});
+		if (!opts) {
+			opts = {};
+		}
+
+		if (opts.class) {
+			$wrapper.addClass(opts.class);
+		}
+		var newOpts = {
+			scrollX: true,
+			scrollY: false,
+			mouseWheel: true,
+			snap: true,
+			momentum: false,
+			pager: true
+		};
+		$scroller.css({
+			width: ($me.children().size() * 100) + '%'
+		});
+		$.extend(opts, newOpts);
+		iscroll = new IScroll($wrapper[0], opts);
+		scrollerEvents.initEvent(opts, iscroll);
+		if (opts.pager) {
+			var $pager = $('<div class="pager"></div>');
+			var $pagerUl = $('<ul></ul>');
+
+			var pagerCount = $me.children().size();
+			var activePagerClass = 'activePager';
+			for (var i = 0; i < pagerCount; i++) {
+				var $li = $('<li></li>');
+				$li.data('pagerIndex', i);
+				$li.tap(function() {
+					var pagerIndex = $(this).data('pagerIndex');
+					iscroll.goToPage(pagerIndex, 0);
+					$pagerUl.find('li').removeClass(activePagerClass);
+					$(this).addClass(activePagerClass);
+				});
+				$pagerUl.append($li);
+			}
+
+			$pagerUl.find('li').first().addClass(activePagerClass);
+			$pager.append($pagerUl);
+			$wrapper.append($pager);
+
+
+			iscroll.on('scrollEnd', function() {
+
+				var currentPage = this.currentPage;
+				var currentPageX = currentPage.pageX;
+				$pagerUl.find('li').removeClass(activePagerClass);
+				$pagerUl.find('li').eq(currentPageX).addClass(activePagerClass);
+			});
+		}
+		return $scroller;
+	}
+
+
 
 };
