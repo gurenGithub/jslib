@@ -142,12 +142,30 @@ if (typeof $ !== 'undefined') {
 		iscroll.on('scrollCancel', function(e, e1) {
 			console.log('scrollCancel');
 			opts.status = "cancel";
+			opts.upRefresh = false;
+			opts.Uploadding = false;
 		});
 		iscroll.on('refresh', function(e, e1) {
 			console.log('refresh');
 		});
 
 	}
+
+	var scrollerEvents = (function() {
+
+		var methods = {
+			initEvent: function(opts, element) {
+				var events = ['scrollEnd', 'beforeScrollStart', 'scrollStart', 'scrollCancel', 'refresh']
+				var _events = ['onScrollEnd', 'onBeforeScrollStart', 'onScrollStart', 'onScrollCancel', 'onRefresh'];
+				$.each(_events, function(index, item) {
+					if (typeof opts[item] === 'function') {
+						element.on(events[index], opts[item]);
+					}
+				});
+			}
+		};
+		return methods;
+	})();
 	$.fn.scrollItems = function(opts) {
 		var iscroll;
 		var $me = $(this);
@@ -165,10 +183,19 @@ if (typeof $ !== 'undefined') {
 		for (var item in org) {
 			opts[item] = org[item];
 		}
+		var totalWidth=0;
+		$me.children().each(function(){
+         totalWidth+=$(this).width();
+		});
+		var widthOpts={width:totalWidth};
+		$me.css(widthOpts);
+		$scroller.css(widthOpts);
 		myScroll = new IScroll($wrapper[0], opts);
+		scrollerEvents.initEvent(opts, $scroller);
+		return $scroller;
 	}
 	$.fn.scrollPage = function(opts) {
-	
+
 		var iscroll;
 		var $me = $(this);
 		var $wrapper = $('<div class="scrollerPagerWrapper" ></div>');
@@ -184,11 +211,15 @@ if (typeof $ !== 'undefined') {
 			snap: true,
 			momentum: false
 		}
-		$scroller.css({width:($me.children().size()*100)+'%'})
+		$scroller.css({
+			width: ($me.children().size() * 100) + '%'
+		})
 		for (var item in newOpts) {
 			opts[item] = newOpts[item];
 		}
 		myScroll = new IScroll($wrapper[0], opts);
+		scrollerEvents.initEvent(opts, $scroller);
+		return $scroller;
 	}
 
 };

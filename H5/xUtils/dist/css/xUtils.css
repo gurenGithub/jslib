@@ -643,9 +643,9 @@ body {
     position: absolute;
     content: ' ';
     left: 0;
-       top: 0;
-     animation: myScrollloadding 2s infinite;
-  -webkit-animation: myScrollloadding 2s infinite;
+    top: 0;
+    animation: myScrollloadding 2s infinite;
+    -webkit-animation: myScrollloadding 2s infinite;
 }
 .scrollListWrapper .scroller>ul{
 	list-style: none;
