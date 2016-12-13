@@ -1082,6 +1082,8 @@ if (typeof $ !== 'undefined') {
 			console.log('refresh');
 		});
 
+		return iscroll;
+
 	}
 
 	var scrollerEvents = (function() {
@@ -1127,7 +1129,7 @@ if (typeof $ !== 'undefined') {
 		$scroller.css(widthOpts);
 		iscroll = new IScroll($wrapper[0], opts);
 		scrollerEvents.initEvent(opts, iscroll);
-		return $scroller;
+		return iscroll;
 	}
 	$.fn.scrollPage = function(opts) {
 
@@ -1154,7 +1156,7 @@ if (typeof $ !== 'undefined') {
 		}
 		iscroll = new IScroll($wrapper[0], opts);
 		scrollerEvents.initEvent(opts, iscroll);
-		return $scroller;
+		return iscroll;
 	}
 
 	$.fn.slider = function(opts) {
@@ -1190,7 +1192,6 @@ if (typeof $ !== 'undefined') {
 		if (opts.pager) {
 			var $pager = $('<div class="pager"></div>');
 			var $pagerUl = $('<ul></ul>');
-
 			var pagerCount = $me.children().size();
 			var activePagerClass = 'activePager';
 			for (var i = 0; i < pagerCount; i++) {
@@ -1210,8 +1211,8 @@ if (typeof $ !== 'undefined') {
 			$wrapper.append($pager);
 
 
-			iscroll.on('scrollEnd', function() {
-
+			iscroll.on('scrollEnd', function() 
+			{
 				var currentPage = this.currentPage;
 				var currentPageX = currentPage.pageX;
 				$pagerUl.find('li').removeClass(activePagerClass);
@@ -1220,9 +1221,6 @@ if (typeof $ !== 'undefined') {
 		}
 		return $scroller;
 	}
-
-
-
 };
 if (typeof $ !== 'undefined') {
 	document.addEventListener('touchmove', function(e) {
