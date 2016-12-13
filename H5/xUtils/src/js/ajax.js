@@ -42,6 +42,15 @@ window.xUtils.ajax = (function() {
                     utils.dialog.closeLoadding();
                 }
             }
+            return opts;
+        },
+        get:function(url,data,onCustomeOpts){
+
+            if(!onCustomeOpts){
+                onCustomeOpts={};
+            }
+            onCustomeOpts.type='GET';
+            this.post(url, data, onCustomeOpts);
         },
         post: function(url, data, onCustomeOpts) {
             var opts = {
