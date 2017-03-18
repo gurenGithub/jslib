@@ -37,7 +37,16 @@ var configOpts = {
 		return this.concatPaths;
 	},
 	remPaths: [],
-	baseDir: 'static',
+	baseDir: 'resources',
+	staticDir: 'static',
+	viewsDir: 'views',
+	getStatic: function() {
+
+		return this.baseDir + '/' + this.staticDir;
+	},
+	getViews: function() {
+		return this.baseDir + '/' + this.viewsDir;
+	}
 
 }
 
@@ -66,19 +75,36 @@ var gulpUtils = (function() {
 				}
 			});
 		},
+		getStaticPublishPath: function(path) {
+
+			return (configOpts.publicDir + '/' + configOpts.staticDir) + '/' + path;
+		},
+		getViewPublishPath: function() {
+			var viewPath = (configOpts.publicDir + '/' + configOpts.viewsDir);
+
+			this.log(viewPath);
+			return viewPath;
+
+		},
 		getPath: function(path) {
 
-			return configOpts.baseDir ? (configOpts.baseDir + '/' + path) : path;
+			return configOpts.getStatic() + '/' + path;
+		},
+		getViewsPath: function(path) {
+			return configOpts.getViews() ? (configOpts.getViews() + '/' + path) : path;
 		},
 		ejs: function(next, isWatch) {
 			var me = this;
 
+
+			var _viewPath = [me.getViewsPath('**/*.html'), '!' + me.getViewsPath('component/**/*.html')];
+
 			function _ejs() {
 				me.log('ejs begin')
 
-				gulp.src([me.getPath('src/**/*.html'), '!' + me.getPath('src/views/component/**/*.html')])
+				gulp.src(_viewPath)
 					.pipe(ejs(ejshelper()))
-					.pipe(gulp.dest(configOpts.publicDir), function() {
+					.pipe(gulp.dest(me.getViewPublishPath())).on('end', function() {
 
 						if (next) {
 							next();
@@ -86,7 +112,7 @@ var gulpUtils = (function() {
 						me.log('ejs end');
 					});
 			}
-			this.watch(this.getPath('src/views/**/*.html'), _ejs);
+			this.watch(_viewPath, _ejs);
 		},
 		concatCss: function() {
 
@@ -101,7 +127,7 @@ var gulpUtils = (function() {
 		},
 		getPublicPath: function(path) {
 
-			return (configOpts.publicDir ? configOpts.publicDir + '/' : configOpts.publicDir) + path;
+			return this.getStaticPublishPath(path);
 
 		},
 		minifyCss: function(next) {
@@ -162,7 +188,7 @@ var gulpUtils = (function() {
 			for (var i = 0; i < configOpts.concatPaths.length; i++) {
 
 				var dir = configOpts.concatPaths[i];
-				var path = me.getPath('src/js/' + dir + '/*.js');
+				var path = me.getPath('js/' + dir + '/*.js');
 				file.push(path);
 				if (next) {
 					next(path);
@@ -177,7 +203,7 @@ var gulpUtils = (function() {
 			for (var i = 0; i < configOpts.concatCssPaths().length; i++) {
 
 				var dir = configOpts.concatCssPaths()[i];
-				var path = me.getPath('src/css/' + dir + '/*.css');
+				var path = me.getPath('css/' + dir + '/*.css');
 				file.push(path);
 				if (next) {
 					next(path);
@@ -198,7 +224,7 @@ var gulpUtils = (function() {
 
 			var me = this;
 
-			var copyJsFilePath = [me.getPath('src/js/**/*')];
+			var copyJsFilePath = [me.getPath('js/**/*')];
 			me.getUnCopyJsFiles(function(path) {
 				copyJsFilePath.push('!' + path);
 			});
@@ -232,7 +258,7 @@ var gulpUtils = (function() {
 		},
 		copyCssFiles: function() {
 			var me = this;
-			var copyCssFilePath = [me.getPath('src/css/**/*')];
+			var copyCssFilePath = [me.getPath('css/**/*')];
 			me.getUnCopyCssFiles(function(path) {
 				copyCssFilePath.push('!' + path);
 
@@ -268,7 +294,7 @@ var gulpUtils = (function() {
 		copyImgFiles: function() {
 
 			var me = this;
-			var copyImgFilePath = [me.getPath('src/img/**/*')];
+			var copyImgFilePath = [me.getPath('img/**/*')];
 
 
 			var __copyImg = function() {
@@ -286,7 +312,7 @@ var gulpUtils = (function() {
 		copyVendorFiles: function() {
 
 			var me = this;
-			var copyImgFilePath = [me.getPath('src/vendor/**/*')];
+			var copyImgFilePath = [me.getPath('vendor/**/*')];
 
 
 			var __copyImg = function() {
@@ -307,8 +333,8 @@ var gulpUtils = (function() {
 			var me = this;
 			for (var i = 0; i < configOpts.concatPaths.length; i++) {
 				(function(dir) {
-					var path = me.getPath('src/js/' + dir + '/*.js');
-					var publicPath = configOpts.publicDir + ('/js/' + dir);
+					var path = me.getPath('js/' + dir + '/*.js');
+					var publicPath = me.getPublicPath('js/' + dir);
 
 					console.log(publicPath);
 					console.log(path);
@@ -374,7 +400,7 @@ var gulpUtils = (function() {
 
 			var me = this;
 
-			var __lessPath = me.getPath('src/less/**/*.less');
+			var __lessPath = me.getPath('less/**/*.less');
 			var __less = function() {
 
 
@@ -385,7 +411,7 @@ var gulpUtils = (function() {
 						cascade: false
 					})).
 				pipe(postcss(me.getRemConfig()))
-					.pipe(gulp.dest(me.getPath('src/css')))
+					.pipe(gulp.dest(me.getPath('css')))
 					.on('end', function() {
 						if (next) {
 							next();
@@ -399,7 +425,7 @@ var gulpUtils = (function() {
 		sass: function() {
 			var me = this;
 
-			var __sassPath = me.getPath('src/scss/**/*.scss');
+			var __sassPath = me.getPath('scss/**/*.scss');
 			var __sass = function() {
 
 
@@ -409,7 +435,7 @@ var gulpUtils = (function() {
 						browsers: ['last 5 version'],
 						cascade: false
 					}))
-					.pipe(gulp.dest(me.getPath('src/css')))
+					.pipe(gulp.dest(me.getPath('css')))
 					.on('end', function() {
 						if (next) {
 							next();
@@ -433,12 +459,12 @@ var gulpUtils = (function() {
 
 gulp.task('rem', function() {
 
-	return gulp.src('static/src/**/*.css')
+	return gulp.src(this.getPath('/**/*.css'))
 		.pipe(postcss(processors))
 		.pipe(gulp.dest('static/dest'));
 });
 gulp.task('dev', function() {
-	//gulpUtils.less();
+	gulpUtils.less();
 	gulpUtils.ejs();
 	gulpUtils.concat();
 	gulpUtils.copyFiles();

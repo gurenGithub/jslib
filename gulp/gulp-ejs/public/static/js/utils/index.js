@@ -8,8 +8,6 @@ if(typeof xUtils ==='undefined'){
 
 
 
-
-
 xUtils.ajax=function(argument) {
 	
 	var members={
@@ -23,6 +21,8 @@ xUtils.ajax=function(argument) {
 	}
 	return members;
 }();
+
+
 xUtils.dialog=function(argument) {
 	
 	var members={
