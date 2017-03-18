@@ -1,12 +1,1 @@
-
-var test='2';
-
-
-
-
-
-var test2='';
-
-
-
-
+var test="2",test2="";

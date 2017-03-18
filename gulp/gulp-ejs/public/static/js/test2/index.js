@@ -1,11 +1,1 @@
-
-
-
-
-var sss=true;var isTest=false;
-
-
-
-
-
-
+var sss=!0,isTest=!1;

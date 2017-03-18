@@ -23,7 +23,7 @@ var px2rem = require('postcss-px2rem');
 var configOpts = {
 
 	isDev: true,
-	isMini: false,
+	isMini: true,
 	isRem: false,
 	publicDir: 'public',
 	concatPaths: ['utils', 'test'],
@@ -116,7 +116,7 @@ var gulpUtils = (function() {
 		},
 		concatCss: function(next) {
 
-			this.log('concatCSS' + configOpts.concatCssPaths().length);
+			//this.log(' concatCSS' + configOpts.concatCssPaths().length);
 			var me = this;
 			for (var i = 0; i < configOpts.concatCssPaths().length; i++) {
 				(function(dir) {
@@ -380,7 +380,7 @@ var gulpUtils = (function() {
 
 
 		concatJS: function(next) {
-			this.log('concatJS' + configOpts.concatPaths.length);
+			//this.log('concatJS' + configOpts.concatPaths.length);
 			var me = this;
 			for (var i = 0; i < configOpts.concatPaths.length; i++) {
 				(function(dir) {
@@ -399,20 +399,21 @@ var gulpUtils = (function() {
 							gulp.src([path])
 								.pipe(concat(fileNath)) //合并后的文件名
 								.pipe(uglify())
-								.pipe(gulp.dest(publicPath)).on('end', function() {
+								.pipe(gulp.dest(publicPath))
+								.on('end', function() {
 									me.log('concatJS end');
-
 									if (next) {
-
 										next();
 									}
+
 								});
 						} else {
 
 							gulp.src([path])
 								.pipe(concat(fileNath)) //合并后的文件名
 								//.pipe(uglify())
-								.pipe(gulp.dest(publicPath)).on('end', function() {
+								.pipe(gulp.dest(publicPath))
+								.on('end', function() {
 									me.log('concatJS end');
 
 									if (next) {
@@ -473,7 +474,7 @@ var gulpUtils = (function() {
 			me.watch(__lessPath, __less)
 
 		},
-		sass: function() {
+		sass: function(next) {
 			var me = this;
 
 			var __sassPath = me.getPath('scss/**/*.scss');
@@ -514,12 +515,23 @@ gulp.task('rem', function() {
 		.pipe(postcss(processors))
 		.pipe(gulp.dest('static/dest'));
 });
-gulp.task('dev', function() {
+
+var _cmdList=function(){
 	gulpUtils.less();
 	gulpUtils.sass();
 	gulpUtils.ejs();
 	gulpUtils.concat();
 	gulpUtils.copyFiles();
+}
+gulp.task('dev', function() {
+
+
+    configOpts.isMini = false;
+	configOpts.isDev = false;
+	_cmdList();
+	configOpts.isMini = false;
+	configOpts.isDev = true;
+	_cmdList();
 
 });
 
@@ -527,11 +539,7 @@ gulp.task('publish', function() {
 
 	configOpts.isMini = true;
 	configOpts.isDev = false;
-	gulpUtils.less();
-	gulpUtils.sass();
-	gulpUtils.ejs();
-	gulpUtils.concat();
-	gulpUtils.copyFiles();
+	_cmdList();
 });
 
 
