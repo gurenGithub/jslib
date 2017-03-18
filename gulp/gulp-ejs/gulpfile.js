@@ -114,7 +114,57 @@ var gulpUtils = (function() {
 			}
 			this.watch(_viewPath, _ejs);
 		},
-		concatCss: function() {
+		concatCss: function(next) {
+
+			this.log('concatCSS' + configOpts.concatCssPaths().length);
+			var me = this;
+			for (var i = 0; i < configOpts.concatCssPaths().length; i++) {
+				(function(dir) {
+					var path = me.getPath('css/' + dir + '/*.css');
+					var publicPath = me.getPublicPath('css/' + dir);
+
+					console.log(publicPath);
+					console.log(path);
+
+					function __concatCSS() {
+						me.log('concatCss begin');
+						var fileNath = 'index.css';
+
+
+						if (configOpts.isMini) {
+							gulp.src([path])
+								.pipe(concat(fileNath)) //合并后的文件名
+								.pipe(cssmin())
+								.pipe(gulp.dest(publicPath)).on('end', function() {
+									me.log('concatCss end');
+
+									if (next) {
+
+										next();
+									}
+								});
+						} else {
+
+							gulp.src([path])
+								.pipe(concat(fileNath)) //合并后的文件名
+								//.pipe(uglify())
+								.pipe(gulp.dest(publicPath)).on('end', function() {
+									me.log('concatCss end');
+
+									if (next) {
+
+										next();
+									}
+								});
+						}
+
+					}
+
+					me.watch(path, __concatCSS);
+
+				})(configOpts.concatCssPaths()[i])
+
+			}
 
 		},
 		concat: function() {
@@ -327,6 +377,7 @@ var gulpUtils = (function() {
 			return me.watch(copyImgFilePath, __copyImg);
 
 		},
+
 
 		concatJS: function(next) {
 			this.log('concatJS' + configOpts.concatPaths.length);
