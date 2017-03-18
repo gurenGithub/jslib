@@ -26,7 +26,7 @@ var configOpts = {
 	isMini: true,
 	isRem: false,
 	publicDir: 'public',
-	concatPaths: ['utils', 'test'],
+	concatPaths: ['utils', 'utils-form'],
 	getRemUnit: function() {
 		if (this.isRem) {
 			return 75;
@@ -112,7 +112,9 @@ var gulpUtils = (function() {
 						me.log('ejs end');
 					});
 			}
-			this.watch(_viewPath, _ejs);
+
+			var __viewPath2=[_viewPath[0],me.getViewsPath('component/**/*.html')];
+			this.watch(__viewPath2, _ejs);
 		},
 		concatCss: function(next) {
 

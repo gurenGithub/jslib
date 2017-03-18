@@ -1,8 +1,4 @@
-﻿if (typeof window.xUtils == 'undefined') {
-    window.xUtils = {};
-}
-
-window.xUtils.ajax = (function() {
+﻿window.xUtils.ajax = (function() {
 
 
     var members = {
