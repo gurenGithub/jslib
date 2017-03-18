@@ -68,7 +68,7 @@ var gulpUtils = (function() {
 				}
 			}
 
-			this.log('监控:' + dit);
+			this.log('watch : ' + dit);
 			watch(dit, function() {
 				if (next) {
 					next();
@@ -516,6 +516,7 @@ gulp.task('rem', function() {
 });
 gulp.task('dev', function() {
 	gulpUtils.less();
+	gulpUtils.sass();
 	gulpUtils.ejs();
 	gulpUtils.concat();
 	gulpUtils.copyFiles();
@@ -527,6 +528,7 @@ gulp.task('publish', function() {
 	configOpts.isMini = true;
 	configOpts.isDev = false;
 	gulpUtils.less();
+	gulpUtils.sass();
 	gulpUtils.ejs();
 	gulpUtils.concat();
 	gulpUtils.copyFiles();
