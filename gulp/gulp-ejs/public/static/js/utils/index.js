@@ -1,1 +1,37 @@
-if(void 0===xUtils)var xUtils={};xUtils.ajax=function(t){return{get:function(t,i,n,l){}}}(),xUtils.dialog=function(t){return{alert:function(t){}}}();
+if(typeof xUtils ==='undefined'){
+
+	var xUtils={};
+}
+
+
+
+
+
+xUtils.ajax=function(argument) {
+	
+	var members={
+
+		get:function(url,data,onsuccess,ajaxOpts)
+		{
+
+
+
+		}
+	}
+	return members;
+}();
+
+
+xUtils.dialog=function(argument) {
+	
+	var members={
+
+		alert:function(opts)
+		{
+
+			
+		}
+	}
+
+	return members;
+}();
