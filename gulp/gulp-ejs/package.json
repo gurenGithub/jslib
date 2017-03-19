@@ -2,7 +2,7 @@
   "name": "haier",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "gulp.js",
   "dependencies": {
     "beeper": "^1.1.0",
     "async": "^2.0.1",
