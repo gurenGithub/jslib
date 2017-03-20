@@ -321,7 +321,7 @@ var gulpUtils = (function() {
 			
 			 me.watch(copyJsFilePath, copyFiles);
 		},
-		copyJsDirOtherFile:function(nex){
+		copyJsDirOtherFile:function(next){
 
             
 			var me = this;
