@@ -1,3 +1,4 @@
+
 var gulp = require('gulp');
 var ejs = require('gulp-ejs');
 var ejshelper = require('tmt-ejs-helper');
@@ -26,7 +27,7 @@ var configOpts = {
 	isMini: true,
 	isRem: false,
 	publicDir: 'public',
-	concatPaths: ['utils', 'utils-form'],
+	concatPaths: ['comment-flash', 'dataMonitor'],
 	getRemUnit: function() {
 		if (this.isRem) {
 			return 75;
@@ -95,7 +96,7 @@ var gulpUtils = (function() {
 		},
 		ejs: function(next, isWatch) {
 			var me = this;
-
+            
 
 			var _viewPath = [me.getViewsPath('**/*.html'), '!' + me.getViewsPath('component/**/*.html')];
 
@@ -266,25 +267,32 @@ var gulpUtils = (function() {
 
 		},
 		copyFiles: function(next) {
-			this.copyJsFiles();
+			this.copyJsFiles(next);
 			this.copyCssFiles();
 			this.copyImgFiles();
 			this.copyVendorFiles();
+			this.copyJsDirOtherFile();
 		},
 
-		copyJsFiles: function() {
+		copyJsFiles: function(next){
 
 			var me = this;
 
-			var copyJsFilePath = [me.getPath('js/**/*')];
+			var copyJsFilePath = [me.getPath('js/**/*.js')];
 			me.getUnCopyJsFiles(function(path) {
 				copyJsFilePath.push('!' + path);
 			});
 
 
+			function _next(){
+
+				if(next){
+				     next();
+				 }
+			}
+       me.log(copyJsFilePath);
 			var copyFiles = function(next) {
 				console.log("begin copyFiles");
-
 
 				me.log('copyJs begin');
 				if (configOpts.isMini) {
@@ -293,6 +301,8 @@ var gulpUtils = (function() {
 						.pipe(gulp.dest(me.getPublicPath('js')))
 						.on('end', function() {
 							me.log('copyJs mini end');
+
+							_next();
 						});
 				} else {
 
@@ -300,13 +310,46 @@ var gulpUtils = (function() {
 						.pipe(gulp.dest(me.getPublicPath('js')))
 						.on('end', function() {
 							me.log('copyJs end');
-
+                       
+                       _next();
 						});
 				}
 				return;
 			};
+         //var copyJsIOtherFilePath = [me.getPath('js/**/*'),'!'+me.getPath('js/**/*')];
 
-			return me.watch(copyJsFilePath, copyFiles);
+			
+			 me.watch(copyJsFilePath, copyFiles);
+		},
+		copyJsDirOtherFile:function(nex){
+
+            
+			var me = this;
+
+			var copyJsFilePath = [me.getPath('js/**/*'),'!'+me.getPath('js/**/*.js')];
+			function _next(){
+
+				if(next){
+				     next();
+				 }
+			}
+       me.log(copyJsFilePath);
+			var copyFiles = function(next) {
+				console.log("begin copyJs Dir Other Files");
+					gulp.src(copyJsFilePath)
+						.pipe(gulp.dest(me.getPublicPath('js')))
+						.on('end', function() {
+							me.log('copyJs Dir Other Files');
+                       
+                          _next();
+						});
+				
+				
+			};
+         //var copyJsIOtherFilePath = [me.getPath('js/**/*'),'!'+me.getPath('js/**/*')];
+
+			
+			 me.watch(copyJsFilePath, copyFiles);
 		},
 		copyCssFiles: function() {
 			var me = this;
@@ -522,15 +565,15 @@ var _cmdList=function(){
 	gulpUtils.less();
 	gulpUtils.sass();
 	gulpUtils.ejs();
+	gulpUtils.copyFiles(function(){
+		
+	});
 	gulpUtils.concat();
-	gulpUtils.copyFiles();
 }
 gulp.task('dev', function() {
 
 
-    configOpts.isMini = false;
-	configOpts.isDev = false;
-	_cmdList();
+   
 	configOpts.isMini = false;
 	configOpts.isDev = true;
 	_cmdList();
