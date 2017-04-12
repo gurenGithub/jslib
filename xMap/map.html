@@ -1,0 +1,830 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <title>百度地图API自定义地图</title>
+    <!--引用百度地图API-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5IYsIYg2GxMoLwgVBOa5VOnN"></script>
+	<script type="text/javascript" src="js/GeoUtils.js"></script>
+	<script type="text/javascript" src="js/xOverlay.js"></script>
+	<script type="text/javascript" src="js/myClass.js"></script>
+
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<style type="text/css">  
+ 
+#shuiya {
+	font-size: 24px;
+	
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px;   
+}
+</style>
+  </head>
+  
+  <body>
+
+
+
+    <!--百度地图容器-->
+    
+	 <div id="map" style="width: 100%; height: 100%;"></div>
+<div style="display:none;">
+<input type="text" id="jingdu" value="" />
+<input type="text" id="weidu" value="" />
+<input type="text" id="leixing" value="" />
+<input tyle="input" id="set_center" value="" />
+<input type="text" id="wj6667x" value="" />
+<input type="text" id="wj6668x" value="" />
+<input type="text" id="wj6665x" value="" />
+<input type="text" id="wj6651x" value="" />
+<input type="text" id="wj7528x" value="" />
+<input type="text" id="bs6l02" value="" />
+<input type="text" id="wj6667x_gps" value="" />
+<input type="text" id="wj6668x_gps" value="" />
+<input type="text" id="wj6665x_gps" value="" />
+<input type="text" id="wj6651x_gps" value="" />
+<input type="text" id="wj7528x_gps" value="" />
+<input type="text" id="bs6l02_gps" value="" />
+<input type="text" id="wj6668x_now" value="" />
+<input type="text" id="wj6667x_now" value="" />
+<input type="text" id="wj6665x_now" value="" />
+<input type="text" id="wj6651x_now" value="" />
+<input type="text" id="wj7528x_now" value="" />
+<input type="text" id="bs6l02_now" value="" />
+<input type="text" id="wj6668x_daohang" value="" />
+<input type="text" id="wj6667x_daohang" value="" />
+<input type="text" id="wj6665x_daohang" value="" />
+<input type="text" id="wj6651x_daohang" value="" />
+<input type="text" id="wj7528x_daohang" value="" />
+<input type="text" id="bs6l02_daohang" value="" />
+<input type="text" id="shanshuo" value="" />
+<input type="text" id="wendang" value="" />
+<input type="text" id="zoom_value" value="15" />
+<input type="text" id="map_finish" value="" />
+<input type="text" id="wj6668x_yes" value="" />
+<input type="text" id="wj6667x_yes" value="" />
+<input type="text" id="wj6665x_yes" value="" />
+<input type="text" id="wj6651x_yes" value="" />
+<input type="text" id="wj7528x_yes" value="" />
+<input type="text" id="bs6l02_yes" value="" />
+
+<img id="xiaofangshuanzhen" src="images/xiaofangshuanzhen-15.png" />
+<img id="cr15" src="images/xiaofangshuanjia-15.png" />
+<img id="cr16" src="images/shuiyuan-15.png" />
+<img id="cr17" src="images/danwei-15.png" />
+<img id="cr18" src="images/danweijia-15.png" />
+<img id="cr19" src="images/xiaofangdui-15.png" />
+<img id="cr20" src="images/danwei-15.png" />
+
+
+
+
+ <img id="cr13" src="CR1-3.png" />
+</div>
+    
+  
+  <script type="text/javascript">
+//创建和初始化地图函数：
+
+var map;
+map = new BMap.Map("map");
+map.centerAndZoom(new BMap.Point(120.279487,30.866256), 15);
+
+
+function initMap() {
+    createMap(); //创建地图
+    setMapEvent(); //设置地图事件
+    addMapControl();//向地图添加控件
+    addMapOverlay(); //向地图添加覆盖物
+	//init_lujing();
+	
+
+}
+
+function createMap() {
+    
+
+}
+
+function setMapEvent() {
+    map.enableScrollWheelZoom();
+    map.enableKeyboard();
+    map.enableDragging();
+    map.enableDoubleClickZoom();
+}
+
+function addClickHandler(target, window) {
+    target.addEventListener("click", function() {
+        target.openInfoWindow(window);
+    });
+}
+
+
+
+function addMapOverlay() {}
+//向地图添加控件
+function addMapControl() {
+    var scaleControl = new BMap.ScaleControl({
+        anchor: BMAP_ANCHOR_BOTTOM_LEFT
+    });
+  //  scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+    map.addControl(scaleControl);
+    var navControl = new BMap.NavigationControl({
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        type: BMAP_NAVIGATION_CONTROL_LARGE
+    });
+    map.addControl(navControl);
+    var overviewControl = new BMap.OverviewMapControl({
+        anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+        isOpen: true
+    });
+    map.addControl(overviewControl)
+    ;
+}
+
+initMap();
+//map.addEventListener("zoomend",function(){
+//		var chicun=map.getZoom();
+//		document.title=chicun.toString();
+//		//alert(document.title);
+//	}
+//);
+
+////map.addEventListener("azoomend",function(){
+////	var allOverlay = map.getOverlays();
+////	var zoom_value_gs=parseInt(document.getElementById("zoom_value").value);
+////	var zoom_value=map.getZoom();
+////	if(zoom_value>zoom_value_gs){
+////		zoom_value=zoom_value_gs;
+////	}
+////	zoom_value=zoom_value - zoom_value_gs + 5;
+////	if(zoom_value<0){
+////		zoom_value=0;
+////	}
+////	
+//////		alert(zoom_value.toString());
+////	//alert(Math.round(39 / 5 * zoom_value).toString());
+////	for(var i=0; i < allOverlay.length ; i++) {
+////		if (allOverlay[i] instanceof BMap.Marker)//判断是是否属于marker，区别折线与圆圈
+////		{
+////			
+////			var str1=allOverlay[i].getTitle();
+////			
+////			//alert(allOverlay[i].toString());
+//////			if (str1.indexOf('xiaofangshuan')>=0 || str1.indexOf('shuiyuan')>=0 || str1.indexOf('danwei')>=0 ) {
+////			if (str1.indexOf('shuiyuan')>=0 ) {
+////				allOverlay[i].enableMassClear();
+////				map.removeOverlay(allOverlay[i]);
+////				//var label = new BMap.Label(str1,{offset:new BMap.Size(20,-10)});
+////				//label.setStyle({display:"none"});
+////				allOverlay[i].getIcon().setImageSize(new BMap.Size(Math.round(39 / 5 * zoom_value),Math.round(25 / 5 * zoom_value)));
+////				//allOverlay[i].setLabel(label);
+////				allOverlay[i].disableMassClear();
+////				map.addOverlay(allOverlay[i]);http://9191show.com/xiaofang/shui0.png
+////					//alert(str1);
+////			}
+////			if (str1.indexOf('xiaofangshuan')>=0 ) {
+////				allOverlay[i].enableMassClear();
+////				map.removeOverlay(allOverlay[i]);
+////				//var label = new BMap.Label(str1,{offset:new BMap.Size(20,-10)});
+////				//label.setStyle({display:"none"});
+////				
+////				allOverlay[i].getIcon().setImageSize(new BMap.Size(Math.round(28 / 5 * zoom_value),Math.round(37 / 5 * zoom_value)));
+////				allOverlay[i].disableMassClear();
+////			
+////				map.addOverlay(allOverlay[i]);
+////					//alert(str1);
+////			}
+////			if (str1.indexOf('danwei')>=0 ) {
+////				
+////				allOverlay[i].enableMassClear();
+////				map.removeOverlay(allOverlay[i]);
+////				
+////				allOverlay[i].getIcon().setImageSize(new BMap.Size((50 / 5 * zoom_value),(55 / 5 * zoom_value)));
+////				
+////				//allOverlay[i].getIcon().setImageSize(new BMap.Size(0,0));
+////				//var label = new BMap.Label(str1,{offset:new BMap.Size(20,-10)});
+////				//label.setStyle({display:"none"});
+////    			//label.setStyle({display:"none"});
+////				
+////			//	allOverlay[i].setLabel(label);
+////				allOverlay[i].disableMassClear();
+////				map.addOverlay(allOverlay[i]);
+////				
+////				
+////				
+////			}
+////		}
+////	}						
+////});
+////	
+
+
+			
+
+//设置版权
+var cr = new BMap.CopyrightControl({
+    anchor: BMAP_ANCHOR_TOP_RIGHT
+}); //设置版权控件位置
+map.addControl(cr); //添加版权控件
+
+var bs = map.getBounds(); //返回地图可视区域
+cr.addCopyright({
+    id: 1,
+    content: "<a href='#' style='font-size:12px;background:yellow;font-family:cursive;'>正合科技网络有限公司</a>",
+    bounds: bs
+});
+
+
+
+//创建轨迹
+function init_lujing() {
+
+	
+	var polyline_wj6668x =new BMap.Polyline(new BMap.Point(120.279487,30.866256), {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5}); 
+	polyline_wj6668x.disableMassClear(); 
+	map.addOverlay(polyline_wj6668x);
+	
+	//polyline_6668x.hide();
+	var polyline_wj6667x = new BMap.Polyline(new BMap.Point(120.279487,30.866256), {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  
+	polyline_wj6667x.disableMassClear();
+	map.addOverlay(polyline_wj6667x);
+	//polyline_6667x.hide();
+	var polyline_wj6665x = new BMap.Polyline(new BMap.Point(120.279487,30.866256), {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  
+	polyline_wj6665x.disableMassClear();
+	map.addOverlay(polyline_wj6665x);
+	//polyline_6665x.hide();
+	var polyline_wj6651x = new BMap.Polyline(new BMap.Point(120.279487,30.866256), {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  
+	polyline_wj6651x.disableMassClear();
+	map.addOverlay(polyline_wj6651x);
+	//polyline_6651x.hide();
+	var polyline_wj7528x = new BMap.Polyline(new BMap.Point(120.279487,30.866256), {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  
+	polyline_wj7528x.disableMassClear();
+	map.addOverlay(polyline_wj7528x);
+	//polyline_6651x.hide();
+	var polyline_bs6l02 = new BMap.Polyline(new BMap.Point(120.279487,30.866256), {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  
+	polyline_bs6l02.disableMassClear();
+	map.addOverlay(polyline_bs6l02);
+	//polyline_6651x.hide();
+
+}
+
+var point_polyline=new BMap.Point(120.279487,30.866256);
+var polyline_wj6665x = new BMap.Polyline(point_polyline, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+polyline_wj6665x.disableMassClear();
+map.addOverlay(polyline_wj6665x);
+var polyline_wj6667x = new BMap.Polyline(point_polyline, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+polyline_wj6667x.disableMassClear();
+map.addOverlay(polyline_wj6667x);
+var polyline_wj6668x = new BMap.Polyline(point_polyline, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+polyline_wj6668x.disableMassClear();
+map.addOverlay(polyline_wj6668x);
+var polyline_wj6651x = new BMap.Polyline(point_polyline, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+polyline_wj6651x.disableMassClear();
+map.addOverlay(polyline_wj6651x);
+var polyline_wj7528x = new BMap.Polyline(point_polyline, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+polyline_wj7528x.disableMassClear();
+map.addOverlay(polyline_wj7528x);
+var polyline_bs6l02 = new BMap.Polyline(point_polyline, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+polyline_bs6l02.disableMassClear();
+map.addOverlay(polyline_bs6l02);
+polyline_wj6651x.setPath();
+polyline_wj6667x.setPath();
+polyline_wj6668x.setPath();
+polyline_wj6665x.setPath();
+polyline_wj7528x.setPath();
+polyline_bs6l02.setPath();
+
+
+//var points=[new BMap.Point(120.279487, 30.866256),new BMap.Point(116.405, 39.920)];
+//polyline_wj6668x.setPath(points);
+
+
+
+var xcanvas = xOverlay.createCanvas(map); //创建画布对象，单一对象
+var module = {};
+module.name = "Martin.Naer";
+module.tmpls = [];
+var arr_xinxidian="xiaofangshuanzhen001:1,xiaofangshuanjia001:1,xiaofangshuanzhen002:1,xiaofangshuanjia002:1,xiaofangshuanzhen003:1,xiaofangshuanjia003:1,xiaofangshuanzhen004:1,xiaofangshuanjia004:1,xiaofangshuanzhen005:1,xiaofangshuanjia005:1,xiaofangshuanzhen006:1,xiaofangshuanjia006:1,xiaofangshuanzhen007:1,xiaofangshuanjia007:1,xiaofangshuanzhen008:1,xiaofangshuanjia008:1,xiaofangshuanzhen009:1,xiaofangshuanjia009:1,xiaofangshuanzhen011:1,xiaofangshuanjia011:1,xiaofangshuanzhen012:1,xiaofangshuanjia012:1,xiaofangshuanzhen013:1,xiaofangshuanjia013:1,xiaofangshuanzhen014:1,xiaofangshuanjia014:1,xiaofangshuanzhen015:1,xiaofangshuanjia015:1,xiaofangshuanzhen016:1,xiaofangshuanjia016:1,xiaofangshuanzhen017:1,xiaofangshuanjia017:1,xiaofangshuanzhen018:1,xiaofangshuanjia018:1,xiaofangshuanzhen019:1,xiaofangshuanjia019:1,xiaofangshuanzhen020:1,xiaofangshuanjia020:1,xiaofangshuanzhen021:1,xiaofangshuanjia021:1,xiaofangshuanzhen022:1,xiaofangshuanjia022:1,xiaofangshuanzhen025:1,xiaofangshuanjia025:1,xiaofangshuanzhen026:1,xiaofangshuanjia026:1,xiaofangshuanzhen027:1,xiaofangshuanjia027:1,xiaofangshuanzhen028:1,xiaofangshuanjia028:1,xiaofangshuanzhen031:1,xiaofangshuanjia031:1,xiaofangshuanzhen032:1,xiaofangshuanjia032:1,xiaofangshuanzhen033:1,xiaofangshuanjia033:1,xiaofangshuanzhen034:1,xiaofangshuanjia034:1,xiaofangshuanzhen035:1,xiaofangshuanjia035:1,xiaofangshuanzhen036:1,xiaofangshuanjia036:1,xiaofangshuanzhen037:1,xiaofangshuanjia037:1,xiaofangshuanzhen038:1,xiaofangshuanjia038:1,xiaofangshuanzhen039:1,xiaofangshuanjia039:1,xiaofangshuanzhen040:1,xiaofangshuanjia040:1,xiaofangshuanzhen041:1,xiaofangshuanjia041:1,xiaofangshuanzhen042:1,xiaofangshuanjia042:1,xiaofangshuanzhen043:1,xiaofangshuanjia043:1,xiaofangshuanzhen044:1,xiaofangshuanjia044:1,xiaofangshuanzhen045:1,xiaofangshuanjia045:1,xiaofangshuanzhen046:1,xiaofangshuanjia046:1,xiaofangshuanzhen047:1,xiaofangshuanjia047:1,xiaofangshuanzhen048:1,xiaofangshuanjia048:1,xiaofangshuanzhen049:1,xiaofangshuanjia049:1,xiaofangshuanzhen050:1,xiaofangshuanjia050:1,xiaofangshuanzhen051:1,xiaofangshuanjia051:1,xiaofangshuanzhen052:1,xiaofangshuanjia052:1,xiaofangshuanzhen053:1,xiaofangshuanjia053:1,xiaofangshuanzhen054:1,xiaofangshuanjia054:1,xiaofangshuanzhen055:1,xiaofangshuanjia055:1,xiaofangshuanzhen056:1,xiaofangshuanjia056:1,xiaofangshuanzhen062:1,xiaofangshuanjia062:1,xiaofangshuanzhen063:1,xiaofangshuanjia063:1,xiaofangshuanzhen064:1,xiaofangshuanjia064:1,xiaofangshuanzhen065:1,xiaofangshuanjia065:1,xiaofangshuanzhen066:1,xiaofangshuanjia066:1,xiaofangshuanzhen067:1,xiaofangshuanjia067:1,xiaofangshuanzhen068:1,xiaofangshuanjia068:1,xiaofangshuanzhen069:1,xiaofangshuanjia069:1,xiaofangshuanzhen070:1,xiaofangshuanjia070:1,xiaofangshuanzhen071:1,xiaofangshuanjia071:1,xiaofangshuanzhen072:1,xiaofangshuanjia072:1,xiaofangshuanzhen073:1,xiaofangshuanjia073:1,xiaofangshuanzhen074:1,xiaofangshuanjia074:1,xiaofangshuanzhen076:1,xiaofangshuanjia076:1,xiaofangshuanzhen081:1,xiaofangshuanjia081:1,xiaofangshuanzhen085:1,xiaofangshuanjia085:1,xiaofangshuanzhen086:1,xiaofangshuanjia086:1,xiaofangshuanzhen087:1,xiaofangshuanjia087:1,xiaofangshuanzhen089:1,xiaofangshuanjia089:1,xiaofangshuanzhen057:1,xiaofangshuanjia057:1,xiaofangshuanzhen058:1,xiaofangshuanjia058:1,xiaofangshuanzhen059:1,xiaofangshuanjia059:1,xiaofangshuanzhen060:1,xiaofangshuanjia060:1,xiaofangshuanzhen061:1,xiaofangshuanjia061:1,xiaofangshuanzhen075:1,xiaofangshuanjia075:1,xiaofangshuanzhen077:1,xiaofangshuanjia077:1,xiaofangshuanzhen078:1,xiaofangshuanjia078:1,xiaofangshuanzhen079:1,xiaofangshuanjia079:1,xiaofangshuanzhen080:1,xiaofangshuanjia080:1,xiaofangshuanzhen082:1,xiaofangshuanjia082:1,xiaofangshuanzhen083:1,xiaofangshuanjia083:1,xiaofangshuanzhen084:1,xiaofangshuanjia084:1,xiaofangshuanzhen088:1,xiaofangshuanjia088:1,xiaofangshuanzhen090:1,xiaofangshuanjia090:1,xiaofangshuanzhen091:1,xiaofangshuanjia091:1,xiaofangshuanzhen092:1,xiaofangshuanjia092:1,xiaofangshuanzhen093:1,xiaofangshuanjia093:1,xiaofangshuanzhen094:1,xiaofangshuanjia094:1,xiaofangshuanzhen095:1,xiaofangshuanjia095:1,xiaofangshuanzhen096:1,xiaofangshuanjia096:1,xiaofangshuanzhen097:1,xiaofangshuanjia097:1,xiaofangshuanzhen098:1,xiaofangshuanjia098:1,xiaofangshuanzhen099:1,xiaofangshuanjia099:1,xiaofangshuanzhen100:1,xiaofangshuanjia100:1,xiaofangshuanzhen101:1,xiaofangshuanjia101:1,xiaofangshuanzhen102:1,xiaofangshuanjia102:1,xiaofangshuanzhen103:1,xiaofangshuanjia103:1,xiaofangshuanzhen104:1,xiaofangshuanjia104:1,xiaofangshuanzhen105:1,xiaofangshuanjia105:1,xiaofangshuanzhen106:1,xiaofangshuanjia106:1,xiaofangshuanzhen107:1,xiaofangshuanjia107:1,xiaofangshuanzhen110:1,xiaofangshuanjia110:1,xiaofangshuanzhen111:1,xiaofangshuanjia111:1,xiaofangshuanzhen112:1,xiaofangshuanjia112:1,xiaofangshuanzhen113:1,xiaofangshuanjia113:1,xiaofangshuanzhen114:1,xiaofangshuanjia114:1,xiaofangshuanzhen115:1,xiaofangshuanjia115:1,xiaofangshuanzhen116:1,xiaofangshuanjia116:1,xiaofangshuanzhen117:1,xiaofangshuanjia117:1,xiaofangshuanzhen118:1,xiaofangshuanjia118:1,xiaofangshuanzhen119:1,xiaofangshuanjia119:1,xiaofangshuanzhen120:1,xiaofangshuanjia120:1,xiaofangshuanzhen121:1,xiaofangshuanjia121:1,xiaofangshuanzhen122:1,xiaofangshuanjia122:1,xiaofangshuanzhen123:1,xiaofangshuanjia123:1,xiaofangshuanzhen124:1,xiaofangshuanjia124:1,xiaofangshuanzhen125:1,xiaofangshuanjia125:1,xiaofangshuanzhen126:1,xiaofangshuanjia126:1,xiaofangshuanzhen127:1,xiaofangshuanjia127:1,xiaofangshuanzhen128:1,xiaofangshuanjia128:1,xiaofangshuanzhen129:1,xiaofangshuanjia129:1,xiaofangshuanzhen130:1,xiaofangshuanjia130:1,xiaofangshuanzhen131:1,xiaofangshuanjia131:1,xiaofangshuanzhen132:1,xiaofangshuanjia132:1,xiaofangshuanzhen133:1,xiaofangshuanjia133:1,xiaofangshuanzhen134:1,xiaofangshuanjia134:1,xiaofangshuanzhen135:1,xiaofangshuanjia135:1,xiaofangshuanzhen136:1,xiaofangshuanjia136:1,xiaofangshuanzhen137:1,xiaofangshuanjia137:1,xiaofangshuanzhen138:1,xiaofangshuanjia138:1,xiaofangshuanzhen139:1,xiaofangshuanjia139:1,xiaofangshuanzhen140:1,xiaofangshuanjia140:1,xiaofangshuanzhen141:1,xiaofangshuanjia141:1,xiaofangshuanzhen142:1,xiaofangshuanjia142:1,xiaofangshuanzhen143:1,xiaofangshuanjia143:1,xiaofangshuanzhen144:1,xiaofangshuanjia144:1,xiaofangshuanzhen145:1,xiaofangshuanjia145:1,xiaofangshuanzhen146:1,xiaofangshuanjia146:1,xiaofangshuanzhen147:1,xiaofangshuanjia147:1,xiaofangshuanzhen148:1,xiaofangshuanjia148:1,xiaofangshuanzhen149:1,xiaofangshuanjia149:1,xiaofangshuanzhen150:1,xiaofangshuanjia150:1,xiaofangshuanzhen151:1,xiaofangshuanjia151:1,xiaofangshuanzhen152:1,xiaofangshuanjia152:1,xiaofangshuanzhen153:1,xiaofangshuanjia153:1,xiaofangshuanzhen154:1,xiaofangshuanjia154:1,xiaofangshuanzhen155:1,xiaofangshuanjia155:1,xiaofangshuanzhen156:1,xiaofangshuanjia156:1,xiaofangshuanzhen157:1,xiaofangshuanjia157:1,xiaofangshuanzhen158:1,xiaofangshuanjia158:1,xiaofangshuanzhen159:1,xiaofangshuanjia159:1,xiaofangshuanzhen160:1,xiaofangshuanjia160:1,xiaofangshuanzhen161:1,xiaofangshuanjia161:1,xiaofangshuanzhen162:1,xiaofangshuanjia162:1,xiaofangshuanzhen163:1,xiaofangshuanjia163:1,xiaofangshuanzhen164:1,xiaofangshuanjia164:1,xiaofangshuanzhen165:1,xiaofangshuanjia165:1,xiaofangshuanzhen166:1,xiaofangshuanjia166:1,xiaofangshuanzhen167:1,xiaofangshuanjia167:1,xiaofangshuanzhen168:1,xiaofangshuanjia168:1,xiaofangshuanzhen169:1,xiaofangshuanjia169:1,xiaofangshuanzhen170:1,xiaofangshuanjia170:1,xiaofangshuanzhen171:1,xiaofangshuanjia171:1,xiaofangshuanzhen172:1,xiaofangshuanjia172:1,xiaofangshuanzhen173:1,xiaofangshuanjia173:1,xiaofangshuanzhen174:1,xiaofangshuanjia174:1,xiaofangshuanzhen175:1,xiaofangshuanjia175:1,xiaofangshuanzhen176:1,xiaofangshuanjia176:1,xiaofangshuanzhen177:1,xiaofangshuanjia177:1,xiaofangshuanzhen178:1,xiaofangshuanjia178:1,xiaofangshuanzhen179:1,xiaofangshuanjia179:1,xiaofangshuanzhen180:1,xiaofangshuanjia180:1,xiaofangshuanzhen181:1,xiaofangshuanjia181:1,xiaofangshuanzhen182:1,xiaofangshuanjia182:1,xiaofangshuanzhen183:1,xiaofangshuanjia183:1,xiaofangshuanzhen184:1,xiaofangshuanjia184:1,xiaofangshuanzhen185:1,xiaofangshuanjia185:1,xiaofangshuanzhen186:1,xiaofangshuanjia186:1,xiaofangshuanzhen187:1,xiaofangshuanjia187:1,xiaofangshuanzhen188:1,xiaofangshuanjia188:1,xiaofangshuanzhen189:1,xiaofangshuanjia189:1,xiaofangshuanzhen190:1,xiaofangshuanjia190:1,xiaofangshuanzhen191:1,xiaofangshuanjia191:1,xiaofangshuanzhen192:1,xiaofangshuanjia192:1,xiaofangshuanzhen193:1,xiaofangshuanjia193:1,xiaofangshuanzhen194:1,xiaofangshuanjia194:1,xiaofangshuanzhen195:1,xiaofangshuanjia195:1,xiaofangshuanzhen196:1,xiaofangshuanjia196:1,xiaofangshuanzhen197:1,xiaofangshuanjia197:1,xiaofangshuanzhen198:1,xiaofangshuanjia198:1,xiaofangshuanzhen199:1,xiaofangshuanjia199:1,xiaofangshuanzhen200:1,xiaofangshuanjia200:1,xiaofangshuanzhen201:1,xiaofangshuanjia201:1,xiaofangshuanzhen202:1,xiaofangshuanjia202:1,xiaofangshuanzhen203:1,xiaofangshuanjia203:1,xiaofangshuanzhen204:1,xiaofangshuanjia204:1,xiaofangshuanzhen205:1,xiaofangshuanjia205:1,xiaofangshuanzhen206:1,xiaofangshuanjia206:1,xiaofangshuanzhen207:1,xiaofangshuanjia207:1,xiaofangshuanzhen208:1,xiaofangshuanjia208:1,xiaofangshuanzhen209:1,xiaofangshuanjia209:1,xiaofangshuanzhen210:1,xiaofangshuanjia210:1,xiaofangshuanzhen211:1,xiaofangshuanjia211:1,xiaofangshuanzhen212:1,xiaofangshuanjia212:1,xiaofangshuanzhen213:1,xiaofangshuanjia213:1,xiaofangshuanzhen214:1,xiaofangshuanjia214:1,xiaofangshuanzhen215:1,xiaofangshuanjia215:1,xiaofangshuanzhen216:1,xiaofangshuanjia216:1,xiaofangshuanzhen217:1,xiaofangshuanjia217:1,xiaofangshuanzhen218:1,xiaofangshuanjia218:1,xiaofangshuanzhen219:1,xiaofangshuanjia219:1,xiaofangshuanzhen220:1,xiaofangshuanjia220:1,xiaofangshuanzhen221:1,xiaofangshuanjia221:1,xiaofangshuanzhen222:1,xiaofangshuanjia222:1,xiaofangshuanzhen223:1,xiaofangshuanjia223:1,xiaofangshuanzhen224:1,xiaofangshuanjia224:1,xiaofangshuanzhen225:1,xiaofangshuanjia225:1,xiaofangshuanzhen226:1,xiaofangshuanjia226:1,xiaofangshuanzhen227:1,xiaofangshuanjia227:1,xiaofangshuanzhen228:1,xiaofangshuanjia228:1,xiaofangshuanzhen229:1,xiaofangshuanjia229:1,xiaofangshuanzhen230:1,xiaofangshuanjia230:1,xiaofangshuanzhen231:1,xiaofangshuanjia231:1,xiaofangshuanzhen232:1,xiaofangshuanjia232:1,xiaofangshuanzhen233:1,xiaofangshuanjia233:1,xiaofangshuanzhen234:1,xiaofangshuanjia234:1,xiaofangshuanzhen235:1,xiaofangshuanjia235:1,xiaofangshuanzhen236:1,xiaofangshuanjia236:1,xiaofangshuanzhen237:1,xiaofangshuanjia237:1,xiaofangshuanzhen238:1,xiaofangshuanjia238:1,xiaofangshuanzhen239:1,xiaofangshuanjia239:1,xiaofangshuanzhen240:1,xiaofangshuanjia240:1,xiaofangshuanzhen241:1,xiaofangshuanjia241:1,xiaofangshuanzhen242:1,xiaofangshuanjia242:1,xiaofangshuanzhen243:1,xiaofangshuanjia243:1,xiaofangshuanzhen244:1,xiaofangshuanjia244:1,xiaofangshuanzhen245:1,xiaofangshuanjia245:1,xiaofangshuanzhen246:1,xiaofangshuanjia246:1,xiaofangshuanzhen247:1,xiaofangshuanjia247:1,xiaofangshuanzhen248:1,xiaofangshuanjia248:1,xiaofangshuanzhen249:1,xiaofangshuanjia249:1,xiaofangshuanzhen250:1,xiaofangshuanjia250:1,xiaofangshuanzhen251:1,xiaofangshuanjia251:1,xiaofangshuanzhen252:1,xiaofangshuanjia252:1,xiaofangshuanzhen253:1,xiaofangshuanjia253:1,xiaofangshuanzhen254:1,xiaofangshuanjia254:1,xiaofangshuanzhen255:1,xiaofangshuanjia255:1,xiaofangshuanzhen256:1,xiaofangshuanjia256:1,xiaofangshuanzhen257:1,xiaofangshuanjia257:1,xiaofangshuanzhen258:1,xiaofangshuanjia258:1,xiaofangshuanzhen259:1,xiaofangshuanjia259:1,xiaofangshuanzhen260:1,xiaofangshuanjia260:1,xiaofangshuanzhen261:1,xiaofangshuanjia261:1,xiaofangshuanzhen262:1,xiaofangshuanjia262:1,xiaofangshuanzhen263:1,xiaofangshuanjia263:1,xiaofangshuanzhen264:1,xiaofangshuanjia264:1,xiaofangshuanzhen265:1,xiaofangshuanjia265:1,xiaofangshuanzhen266:1,xiaofangshuanjia266:1,xiaofangshuanzhen267:1,xiaofangshuanjia267:1,xiaofangshuanzhen268:1,xiaofangshuanjia268:1,xiaofangshuanzhen269:1,xiaofangshuanjia269:1,xiaofangshuanzhen270:1,xiaofangshuanjia270:1,xiaofangshuanzhen271:1,xiaofangshuanjia271:1,xiaofangshuanzhen272:1,xiaofangshuanjia272:1,xiaofangshuanzhen273:1,xiaofangshuanjia273:1,xiaofangshuanzhen274:1,xiaofangshuanjia274:1,xiaofangshuanzhen275:1,xiaofangshuanjia275:1,xiaofangshuanzhen276:1,xiaofangshuanjia276:1,xiaofangshuanzhen277:1,xiaofangshuanjia277:1,xiaofangshuanzhen278:1,xiaofangshuanjia278:1,xiaofangshuanzhen279:1,xiaofangshuanjia279:1,xiaofangshuanzhen280:1,xiaofangshuanjia280:1,xiaofangshuanzhen281:1,xiaofangshuanjia281:1,xiaofangshuanzhen282:1,xiaofangshuanjia282:1,xiaofangshuanzhen283:1,xiaofangshuanjia283:1,xiaofangshuanzhen284:1,xiaofangshuanjia284:1,xiaofangshuanzhen285:1,xiaofangshuanjia285:1,xiaofangshuanzhen286:1,xiaofangshuanjia286:1,xiaofangshuanzhen287:1,xiaofangshuanjia287:1,xiaofangshuanzhen288:1,xiaofangshuanjia288:1,xiaofangshuanzhen289:1,xiaofangshuanjia289:1,xiaofangshuanzhen290:1,xiaofangshuanjia290:1,xiaofangshuanzhen291:1,xiaofangshuanjia291:1,xiaofangshuanzhen292:1,xiaofangshuanjia292:1,xiaofangshuanzhen293:1,xiaofangshuanjia293:1,xiaofangshuanzhen294:1,xiaofangshuanjia294:1,xiaofangshuanzhen295:1,xiaofangshuanjia295:1,xiaofangshuanzhen296:1,xiaofangshuanjia296:1,xiaofangshuanzhen297:1,xiaofangshuanjia297:1,xiaofangshuanzhen298:1,xiaofangshuanjia298:1,xiaofangshuanzhen299:1,xiaofangshuanjia299:1,xiaofangshuanzhen300:1,xiaofangshuanjia300:1,xiaofangshuanzhen301:1,xiaofangshuanjia301:1,xiaofangshuanzhen302:1,xiaofangshuanjia302:1,xiaofangshuanzhen303:1,xiaofangshuanjia303:1,xiaofangshuanzhen304:1,xiaofangshuanjia304:1,xiaofangshuanzhen305:1,xiaofangshuanjia305:1,xiaofangshuanzhen306:1,xiaofangshuanjia306:1,xiaofangshuanzhen307:1,xiaofangshuanjia307:1,xiaofangshuanzhen308:1,xiaofangshuanjia308:1,xiaofangshuanzhen309:1,xiaofangshuanjia309:1,xiaofangshuanzhen310:1,xiaofangshuanjia310:1,xiaofangshuanzhen311:1,xiaofangshuanjia311:1,xiaofangshuanzhen312:1,xiaofangshuanjia312:1,xiaofangshuanzhen313:1,xiaofangshuanjia313:1,xiaofangshuanzhen314:1,xiaofangshuanjia314:1,xiaofangshuanzhen315:1,xiaofangshuanjia315:1,xiaofangshuanzhen316:1,xiaofangshuanjia316:1,xiaofangshuanzhen317:1,xiaofangshuanjia317:1,xiaofangshuanzhen318:1,xiaofangshuanjia318:1,xiaofangshuanzhen319:1,xiaofangshuanjia319:1,xiaofangshuanzhen320:1,xiaofangshuanjia320:1,xiaofangshuanzhen321:1,xiaofangshuanjia321:1,xiaofangshuanzhen322:1,xiaofangshuanjia322:1,xiaofangshuanzhen323:1,xiaofangshuanjia323:1,xiaofangshuanzhen324:1,xiaofangshuanjia324:1,xiaofangshuanzhen325:1,xiaofangshuanjia325:1,xiaofangshuanzhen326:1,xiaofangshuanjia326:1,xiaofangshuanzhen327:1,xiaofangshuanjia327:1,xiaofangshuanzhen328:1,xiaofangshuanjia328:1,xiaofangshuanzhen329:1,xiaofangshuanjia329:1,xiaofangshuanzhen330:1,xiaofangshuanjia330:1,xiaofangshuanzhen331:1,xiaofangshuanjia331:1,xiaofangshuanzhen332:1,xiaofangshuanjia332:1,xiaofangshuanzhen333:1,xiaofangshuanjia333:1,xiaofangshuanzhen334:1,xiaofangshuanjia334:1,xiaofangshuanzhen335:1,xiaofangshuanjia335:1,xiaofangshuanzhen336:1,xiaofangshuanjia336:1,xiaofangshuanzhen337:1,xiaofangshuanjia337:1,xiaofangshuanzhen338:1,xiaofangshuanjia338:1,xiaofangshuanzhen339:1,xiaofangshuanjia339:1,xiaofangshuanzhen340:1,xiaofangshuanjia340:1,xiaofangshuanzhen341:1,xiaofangshuanjia341:1,xiaofangshuanzhen342:1,xiaofangshuanjia342:1,xiaofangshuanzhen343:1,xiaofangshuanjia343:1,xiaofangshuanzhen344:1,xiaofangshuanjia344:1,xiaofangshuanzhen345:1,xiaofangshuanjia345:1,xiaofangshuanzhen346:1,xiaofangshuanjia346:1,xiaofangshuanzhen347:1,xiaofangshuanjia347:1,xiaofangshuanzhen348:1,xiaofangshuanjia348:1,xiaofangshuanzhen349:1,xiaofangshuanjia349:1,xiaofangshuanzhen350:1,xiaofangshuanjia350:1,xiaofangshuanzhen351:1,xiaofangshuanjia351:1,xiaofangshuanzhen352:1,xiaofangshuanjia352:1,xiaofangshuanzhen353:1,xiaofangshuanjia353:1,xiaofangshuanzhen354:1,xiaofangshuanjia354:1,xiaofangshuanzhen355:1,xiaofangshuanjia355:1,xiaofangshuanzhen356:1,xiaofangshuanjia356:1,xiaofangshuanzhen357:1,xiaofangshuanjia357:1,xiaofangshuanzhen358:1,xiaofangshuanjia358:1,xiaofangshuanzhen359:1,xiaofangshuanjia359:1,xiaofangshuanzhen360:1,xiaofangshuanjia360:1,xiaofangshuanzhen361:1,xiaofangshuanjia361:1,xiaofangshuanzhen362:1,xiaofangshuanjia362:1,xiaofangshuanzhen363:1,xiaofangshuanjia363:1,xiaofangshuanzhen364:1,xiaofangshuanjia364:1,xiaofangshuanzhen365:1,xiaofangshuanjia365:1,xiaofangshuanzhen366:1,xiaofangshuanjia366:1,xiaofangshuanzhen367:1,xiaofangshuanjia367:1,xiaofangshuanzhen368:1,xiaofangshuanjia368:1,xiaofangshuanzhen369:1,xiaofangshuanjia369:1,xiaofangshuanzhen370:1,xiaofangshuanjia370:1,xiaofangshuanzhen371:1,xiaofangshuanjia371:1,xiaofangshuanzhen372:1,xiaofangshuanjia372:1,xiaofangshuanzhen373:1,xiaofangshuanjia373:1,xiaofangshuanzhen374:1,xiaofangshuanjia374:1,xiaofangshuanzhen375:1,xiaofangshuanjia375:1,xiaofangshuanzhen376:1,xiaofangshuanjia376:1,xiaofangshuanzhen377:1,xiaofangshuanjia377:1,xiaofangshuanzhen378:1,xiaofangshuanjia378:1,xiaofangshuanzhen379:1,xiaofangshuanjia379:1,xiaofangshuanzhen380:1,xiaofangshuanjia380:1,xiaofangshuanzhen381:1,xiaofangshuanjia381:1,xiaofangshuanzhen382:1,xiaofangshuanjia382:1,xiaofangshuanzhen383:1,xiaofangshuanjia383:1,xiaofangshuanzhen384:1,xiaofangshuanjia384:1,xiaofangshuanzhen385:1,xiaofangshuanjia385:1,xiaofangshuanzhen386:1,xiaofangshuanjia386:1,xiaofangshuanzhen387:1,xiaofangshuanjia387:1,xiaofangshuanzhen388:1,xiaofangshuanjia388:1,xiaofangshuanzhen389:1,xiaofangshuanjia389:1,xiaofangshuanzhen390:1,xiaofangshuanjia390:1,xiaofangshuanzhen391:1,xiaofangshuanjia391:1,xiaofangshuanzhen392:1,xiaofangshuanjia392:1,xiaofangshuanzhen393:1,xiaofangshuanjia393:1,xiaofangshuanzhen394:1,xiaofangshuanjia394:1,xiaofangshuanzhen395:1,xiaofangshuanjia395:1,xiaofangshuanzhen396:1,xiaofangshuanjia396:1,xiaofangshuanzhen397:1,xiaofangshuanjia397:1,xiaofangshuanzhen398:1,xiaofangshuanjia398:1,xiaofangshuanzhen399:1,xiaofangshuanjia399:1,xiaofangshuanzhen400:1,xiaofangshuanjia400:1,xiaofangshuanzhen401:1,xiaofangshuanjia401:1,xiaofangshuanzhen402:1,xiaofangshuanjia402:1,xiaofangshuanzhen403:1,xiaofangshuanjia403:1,xiaofangshuanzhen404:1,xiaofangshuanjia404:1,xiaofangshuanzhen405:1,xiaofangshuanjia405:1,xiaofangshuanzhen406:1,xiaofangshuanjia406:1,xiaofangshuanzhen407:1,xiaofangshuanjia407:1,xiaofangshuanzhen408:1,xiaofangshuanjia408:1,xiaofangshuanzhen409:1,xiaofangshuanjia409:1,xiaofangshuanzhen410:1,xiaofangshuanjia410:1,xiaofangshuanzhen411:1,xiaofangshuanjia411:1,xiaofangshuanzhen412:1,xiaofangshuanjia412:1,xiaofangshuanzhen413:1,xiaofangshuanjia413:1,xiaofangshuanzhen414:1,xiaofangshuanjia414:1,xiaofangshuanzhen415:1,xiaofangshuanjia415:1,xiaofangshuanzhen416:1,xiaofangshuanjia416:1,xiaofangshuanzhen417:1,xiaofangshuanjia417:1,xiaofangshuanzhen418:1,xiaofangshuanjia418:1,xiaofangshuanzhen419:1,xiaofangshuanjia419:1,xiaofangshuanzhen420:1,xiaofangshuanjia420:1,xiaofangshuanzhen421:1,xiaofangshuanjia421:1,xiaofangshuanzhen422:1,xiaofangshuanjia422:1,xiaofangshuanzhen423:1,xiaofangshuanjia423:1,xiaofangshuanzhen424:1,xiaofangshuanjia424:1,xiaofangshuanzhen425:1,xiaofangshuanjia425:1,xiaofangshuanzhen426:1,xiaofangshuanjia426:1,xiaofangshuanzhen427:1,xiaofangshuanjia427:1,xiaofangshuanzhen428:1,xiaofangshuanjia428:1,xiaofangshuanzhen429:1,xiaofangshuanjia429:1,xiaofangshuanzhen430:1,xiaofangshuanjia430:1,xiaofangshuanzhen431:1,xiaofangshuanjia431:1,xiaofangshuanzhen432:1,xiaofangshuanjia432:1,xiaofangshuanzhen433:1,xiaofangshuanjia433:1,xiaofangshuanzhen434:1,xiaofangshuanjia434:1,xiaofangshuanzhen435:1,xiaofangshuanjia435:1,xiaofangshuanzhen436:1,xiaofangshuanjia436:1,xiaofangshuanzhen437:1,xiaofangshuanjia437:1,xiaofangshuanzhen438:1,xiaofangshuanjia438:1,xiaofangshuanzhen439:1,xiaofangshuanjia439:1,xiaofangshuanzhen440:1,xiaofangshuanjia440:1,xiaofangshuanzhen441:1,xiaofangshuanjia441:1,xiaofangshuanzhen442:1,xiaofangshuanjia442:1,xiaofangshuanzhen443:1,xiaofangshuanjia443:1,xiaofangshuanzhen444:1,xiaofangshuanjia444:1,xiaofangshuanzhen445:1,xiaofangshuanjia445:1,xiaofangshuanzhen446:1,xiaofangshuanjia446:1,xiaofangshuanzhen447:1,xiaofangshuanjia447:1,xiaofangshuanzhen448:1,xiaofangshuanjia448:1,xiaofangshuanzhen449:1,xiaofangshuanjia449:1,xiaofangshuanzhen450:1,xiaofangshuanjia450:1,xiaofangshuanzhen451:1,xiaofangshuanjia451:1,xiaofangshuanzhen452:1,xiaofangshuanjia452:1,xiaofangshuanzhen453:1,xiaofangshuanjia453:1,xiaofangshuanzhen454:1,xiaofangshuanjia454:1,xiaofangshuanzhen455:1,xiaofangshuanjia455:1,xiaofangshuanzhen456:1,xiaofangshuanjia456:1,xiaofangshuanzhen457:1,xiaofangshuanjia457:1,xiaofangshuanzhen458:1,xiaofangshuanjia458:1,xiaofangshuanzhen459:1,xiaofangshuanjia459:1,xiaofangshuanzhen460:1,xiaofangshuanjia460:1,xiaofangshuanzhen461:1,xiaofangshuanjia461:1,xiaofangshuanzhen462:1,xiaofangshuanjia462:1,xiaofangshuanzhen463:1,xiaofangshuanjia463:1,xiaofangshuanzhen464:1,xiaofangshuanjia464:1,xiaofangshuanzhen465:1,xiaofangshuanjia465:1,xiaofangshuanzhen466:1,xiaofangshuanjia466:1,xiaofangshuanzhen467:1,xiaofangshuanjia467:1,xiaofangshuanzhen468:1,xiaofangshuanjia468:1,xiaofangshuanzhen469:1,xiaofangshuanjia469:1,xiaofangshuanzhen470:1,xiaofangshuanjia470:1,xiaofangshuanzhen471:1,xiaofangshuanjia471:1,xiaofangshuanzhen472:1,xiaofangshuanjia472:1,xiaofangshuanzhen473:1,xiaofangshuanjia473:1,xiaofangshuanzhen474:1,xiaofangshuanjia474:1,xiaofangshuanzhen475:1,xiaofangshuanjia475:1,xiaofangshuanzhen476:1,xiaofangshuanjia476:1,xiaofangshuanzhen477:1,xiaofangshuanjia477:1,xiaofangshuanzhen478:1,xiaofangshuanjia478:1,xiaofangshuanzhen479:1,xiaofangshuanjia479:1,xiaofangshuanzhen480:1,xiaofangshuanjia480:1,xiaofangshuanzhen481:1,xiaofangshuanjia481:1,xiaofangshuanzhen482:1,xiaofangshuanjia482:1,xiaofangshuanzhen483:1,xiaofangshuanjia483:1,xiaofangshuanzhen484:1,xiaofangshuanjia484:1,xiaofangshuanzhen485:1,xiaofangshuanjia485:1,xiaofangshuanzhen486:1,xiaofangshuanjia486:1,xiaofangshuanzhen487:1,xiaofangshuanjia487:1,xiaofangshuanzhen488:1,xiaofangshuanjia488:1,xiaofangshuanzhen489:1,xiaofangshuanjia489:1,xiaofangshuanzhen490:1,xiaofangshuanjia490:1,xiaofangshuanzhen491:1,xiaofangshuanjia491:1,xiaofangshuanzhen492:1,xiaofangshuanjia492:1,xiaofangshuanzhen493:1,xiaofangshuanjia493:1,xiaofangshuanzhen494:1,xiaofangshuanjia494:1,xiaofangshuanzhen495:1,xiaofangshuanjia495:1,xiaofangshuanzhen496:1,xiaofangshuanjia496:1,xiaofangshuanzhen497:1,xiaofangshuanjia497:1,xiaofangshuanzhen498:1,xiaofangshuanjia498:1,xiaofangshuanzhen499:1,xiaofangshuanjia499:1,xiaofangshuanzhen500:1,xiaofangshuanjia500:1,xiaofangshuanzhen501:1,xiaofangshuanjia501:1,xiaofangshuanzhen502:1,xiaofangshuanjia502:1,xiaofangshuanzhen503:1,xiaofangshuanjia503:1,xiaofangshuanzhen504:1,xiaofangshuanjia504:1,xiaofangshuanzhen505:1,xiaofangshuanjia505:1,xiaofangshuanzhen506:1,xiaofangshuanjia506:1,xiaofangshuanzhen507:1,xiaofangshuanjia507:1,xiaofangshuanzhen508:1,xiaofangshuanjia508:1,xiaofangshuanzhen509:1,xiaofangshuanjia509:1,xiaofangshuanzhen510:1,xiaofangshuanjia510:1,xiaofangshuanzhen511:1,xiaofangshuanjia511:1,xiaofangshuanzhen512:1,xiaofangshuanjia512:1,xiaofangshuanzhen513:1,xiaofangshuanjia513:1,xiaofangshuanzhen514:1,xiaofangshuanjia514:1,xiaofangshuanzhen515:1,xiaofangshuanjia515:1,xiaofangshuanzhen516:1,xiaofangshuanjia516:1,xiaofangshuanzhen517:1,xiaofangshuanjia517:1,xiaofangshuanzhen518:1,xiaofangshuanjia518:1,xiaofangshuanzhen519:1,xiaofangshuanjia519:1,xiaofangshuanzhen520:1,xiaofangshuanjia520:1,xiaofangshuanzhen521:1,xiaofangshuanjia521:1,xiaofangshuanzhen522:1,xiaofangshuanjia522:1,xiaofangshuanzhen523:1,xiaofangshuanjia523:1,xiaofangshuanzhen524:1,xiaofangshuanjia524:1,xiaofangshuanzhen525:1,xiaofangshuanjia525:1,xiaofangshuanzhen526:1,xiaofangshuanjia526:1,xiaofangshuanzhen527:1,xiaofangshuanjia527:1,xiaofangshuanzhen528:1,xiaofangshuanjia528:1,xiaofangshuanzhen529:1,xiaofangshuanjia529:1,xiaofangshuanzhen530:1,xiaofangshuanjia530:1,xiaofangshuanzhen531:1,xiaofangshuanjia531:1,xiaofangshuanzhen532:1,xiaofangshuanjia532:1,xiaofangshuanzhen533:1,xiaofangshuanjia533:1,xiaofangshuanzhen534:1,xiaofangshuanjia534:1,xiaofangshuanzhen535:1,xiaofangshuanjia535:1,xiaofangshuanzhen536:1,xiaofangshuanjia536:1,xiaofangshuanzhen537:1,xiaofangshuanjia537:1,xiaofangshuanzhen538:1,xiaofangshuanjia538:1,xiaofangshuanzhen539:1,xiaofangshuanjia539:1,xiaofangshuanzhen540:1,xiaofangshuanjia540:1,xiaofangshuanzhen541:1,xiaofangshuanjia541:1,xiaofangshuanzhen542:1,xiaofangshuanjia542:1,xiaofangshuanzhen543:1,xiaofangshuanjia543:1,xiaofangshuanzhen544:1,xiaofangshuanjia544:1,xiaofangshuanzhen545:1,xiaofangshuanjia545:1,xiaofangshuanzhen030:1,xiaofangshuanjia030:1,shuiyuan002:1,shuiyuan003:1,shuiyuan004:1,shuiyuan001:1,shuiyuan005:1,shuiyuan006:1,shuiyuan007:1,shuiyuan009:1,shuiyuan010:1,shuiyuan011:1,shuiyuan029:1,danwei001:1,danwei002:1,danwei003:1,danwei004:1,danwei005:1,danwei006:1,danwei007:1,danwei008:1,danwei009:1,danwei010:1,danwei011:1,danwei012:1,danwei013:1,danwei014:1,danwei015:1,danwei016:1,danwei017:1,danwei018:1,danwei019:1,danwei020:1,danwei021:1,danwei022:1,danwei023:1,danwei024:1,danwei025:1,danwei026:1,danwei027:1,danwei028:1,danwei029:1,danwei032:1,danwei033:1,danwei034:1,danwei035:1,danwei036:1,danwei037:1,danwei038:1,danwei039:1,danwei040:1,danwei041:1,danwei043:1,danweijia044:1,danweijia045:1,danwei046:1,danwei049:1,danwei050:1,danwei051:1,danwei052:1,danwei053:1,danwei054:1,danwei056:1,danwei057:1,danwei058:1,danwei060:1,danwei067:1,danwei068:1,danwei069:1,danwei071:1,danwei072:1,danwei075:1,danwei077:1,danwei078:1,danwei079:1,danwei081:1,danwei082:1,danwei084:1,danwei091:1,danwei092:1,danwei093:1,danwei094:1,danwei095:1,danwei096:1,danwei097:1,danwei098:1,danwei099:1,danwei100:1,danwei101:1,danwei102:1,danwei103:1,danwei104:1,danwei105:1,danwei106:1,danwei107:1,danwei108:1,xiaofangdui343:1";
+var pt = null;
+var ll_count;
+function alert_2(){
+
+
+var arr_object=[[120.275740,30.876767,"地址：湖州市织里镇爱家路1号，爱家皇家花园东大门内","xiaofangshuanzhen001"],[120.275040,30.880673,"地址：湖州市织里镇中华路262号向东50米","xiaofangshuanzhen002"],[120.269120,30.879951,"地址：湖州市织里镇中华路111号干洗店门口","xiaofangshuanzhen003"],[120.249163,30.877794,"地址：湖州市织里镇中华西路与栋梁路岔口","xiaofangshuanzhen004"],[120.250427,30.868879,"地址：湖州市织里镇康泰西路与栋梁路岔口","xiaofangshuanzhen005"],[120.279487,30.866256,"地址：湖州市织里镇吴兴大道行政服务中心门口","xiaofangshuanzhen006"],[120.280398,30.867011,"地址：湖州市织里镇大港路与吴兴大道岔口","xiaofangshuanzhen007"],[120.279608,30.875907,"地址：湖州市织里镇大港路与长安路岔口","xiaofangshuanzhen008"],[120.279523,30.880432,"地址：湖州市织里镇大港路与长安路北侧240米","xiaofangshuanzhen009"],[120.278234,30.875790,"地址：湖州市织里镇长安东路织里中学北门口","xiaofangshuanzhen011"],[120.276177,30.878227,"地址：织里镇爱家路爱家。皇家花园北门口东20米","xiaofangshuanzhen012"],[120.273801,30.880555,"地址：中华路实验小学门口232号门口","xiaofangshuanzhen013"],[120.276334,30.880904,"地址：中华路东尼电子门口向西100米","xiaofangshuanzhen014"],[120.277758,30.880954,"地址：中华路东尼电子公司正门口","xiaofangshuanzhen015"],[120.279069,30.880993,"地址：中华路与大港路交叉口","xiaofangshuanzhen016"],[120.279159,30.884813,"地址：大港路世纪加油站门口","xiaofangshuanzhen017"],[120.279599,30.874752,"地址：大港路织里中学对面","xiaofangshuanzhen018"],[120.279734,30.871962,"地址：大港路与康泰路岔口东侧","xiaofangshuanzhen019"],[120.277838,30.870947,"地址：康泰路与府顺路岔口","xiaofangshuanzhen020"],[120.277124,30.870982,"地址：康泰路460号对面，好又多超市","xiaofangshuanzhen021"],[120.273621,30.86541,"地址：织里镇政府门口桥上西侧","xiaofangshuanzhen022"],[120.271672,30.875077,"地址：长安路与凯旋路岔口","xiaofangshuanzhen025"],[120.278526,30.871718,"地址：晓康路109号门口","xiaofangshuanzhen026"],[120.275790,30.873340,"地址：新康路122号门口","xiaofangshuanzhen027"],[120.277237,30.87233,"地址：新康路615号门口","xiaofangshuanzhen028"],[120.275359,30.872659,"地址：学前路55号门口","xiaofangshuanzhen031"],[120.274825,30.872555,"地址：学前路西岔口","xiaofangshuanzhen032"],[120.275485,30.87543,"地址：织里人家西门口","xiaofangshuanzhen033"],[120.271963,30.876589,"地址：兴旺路121号门口","xiaofangshuanzhen034"],[120.270246,30.880090,"地址：中华路与凯旋路交叉口","xiaofangshuanzhen035"],[120.267784,30.880629,"地址：公园路与富民路岔口","xiaofangshuanzhen036"],[120.259785,30.876767,"地址：商城路与珍贝路岔口","xiaofangshuanzhen037"],[120.257180,30.876790,"地址：商城路与姚家田路交叉口","xiaofangshuanzhen038"],[120.264515,30.876755,"地址：商城西路19-18A","xiaofangshuanzhen039"],[120.270142,30.877158,"地址：商城路与国泰路交叉口","xiaofangshuanzhen040"],[120.263221,30.876871,"地址：商城路30号门口","xiaofangshuanzhen041"],[120.263988,30.869971,"地址：幸福路与永安路交叉口","xiaofangshuanzhen042"],[120.265003,30.871180,"地址：幸福路与织里北路交叉口","xiaofangshuanzhen043"],[120.263390,30.873420,"地址：民安路78号门口","xiaofangshuanzhen044"],[120.264432,30.873458,"地址：民安路148号门口","xiaofangshuanzhen045"],[120.261458,30.869641,"地址：康泰西路与为民路交叉口","xiaofangshuanzhen046"],[120.252857,30.868890,"地址：康泰西路263号克拉斯对面","xiaofangshuanzhen047"],[120.254398,30.868808,"地址：康泰西路688号门口","xiaofangshuanzhen048"],[120.267937,30.868518,"地址：吉昌路89号门口","xiaofangshuanzhen049"],[120.270088,30.868712,"地址：吉昌路100号门口","xiaofangshuanzhen050"],[120.259086,30.879561,"地址：中华路富地布艺门口","xiaofangshuanzhen051"],[120.259643,30.864125,"地址：大将路与珍贝路交叉口","xiaofangshuanzhen052"],[120.262837,30.864834,"地址：大将路122号门口","xiaofangshuanzhen053"],[120.261601,30.864574,"地址：大将路依美佳门口","xiaofangshuanzhen054"],[120.273028,30.868185,"地址：东安路与凯旋路岔口","xiaofangshuanzhen055"],[120.268269,30.876046,"地址：兴旺路52号门口","xiaofangshuanzhen056"],[120.259374,30.863873,"地址：吴兴大道财富广场门口","xiaofangshuanzhen062"],[120.259542,30.862659,"地址：吴兴大道皇廷轨迹对面","xiaofangshuanzhen063"],[120.254385,30.858544,"地址：阿祥路帊罗公司对面","xiaofangshuanzhen064"],[120.271842,30.850008,"地址：晟金新街317号广盛童装城","xiaofangshuanzhen065"],[120.267380,30.847382,"地址：顺昌路与永锋路岔口","xiaofangshuanzhen066"],[120.240660,30.857570,"地址：阿祥路弗兰尼尔门口","xiaofangshuanzhen067"],[120.240986,30.857410,"地址：阿祥路跳跳龙服饰对面","xiaofangshuanzhen068"],[120.241620,30.855828,"地址：阿祥路镭宝机械公司门口","xiaofangshuanzhen069"],[120.251552,30.846076,"地址：栋梁路与万谦漾路交叉口","xiaofangshuanzhen070"],[120.251520,30.848178,"地址：栋梁路河西新村南侧30米","xiaofangshuanzhen071"],[120.251336,30.856138,"地址：栋梁路秦家港43幢边上","xiaofangshuanzhen072"],[120.251570,30.858413,"地址：栋梁路与安康路岔口","xiaofangshuanzhen073"],[120.281070,30.857320,"地址：大港路东兜村","xiaofangshuanzhen074"],[120.282400,30.845093,"地址：大港路与318国道岔口加油站对面","xiaofangshuanzhen076"],[120.269927,30.851325,"地址：洪湖路与佛仙路岔口","xiaofangshuanzhen081"],[120.253722,30.854441,"地址：利济路288号先锋大厦","xiaofangshuanzhen085"],[120.248724,30.854479,"地址：利济路秦家港社区45幢对面","xiaofangshuanzhen086"],[120.246801,30.854425,"地址：利济路秦家港22-1对面","xiaofangshuanzhen087"],[120.266824,30.843380,"地址：珍贝路童装城对面","xiaofangshuanzhen089"],[120.268295,30.874520,"地址：富民路与长安东路向东300米67号门口","xiaofangshuanzhen057"],[120.265865,30.872494,"地址：织里路与东盛路向东500米78号门口","xiaofangshuanzhen058"],[120.271439,30.868065,"地址：凯旋路与东安路向西400米198号门口","xiaofangshuanzhen059"],[120.270244,30.871553,"地址：安泰路90号门口","xiaofangshuanzhen060"],[120.263889,30.869236,"地址：织里路与益民路向西68号门口","xiaofangshuanzhen061"],[120.281370,30.852496,"地址：仁舍新街东路与大港路向北300米","xiaofangshuanzhen075"],[120.265878,30.850938,"地址：织里路与洪湖路6号门口","xiaofangshuanzhen077"],[120.272952,30.852182,"地址：富民路与月湖路向东20米2号门口","xiaofangshuanzhen078"],[120.275225,30.853782,"地址：富民路与月湖向东800米37号门口","xiaofangshuanzhen079"],[120.273119,30.853310,"地址：富民路与月湖东路向东100米","xiaofangshuanzhen080"],[120.263969,30.855863,"地址：织里路与利济路向东100米","xiaofangshuanzhen082"],[120.268039,30.856046,"地址：佛仙路与利济路向东150米119号门口","xiaofangshuanzhen083"],[120.271924,30.856449,"地址：富民路与利济路3号门口","xiaofangshuanzhen084"],[120.264840,30.854387,"地址：阿祥路与利济西路向东1000米德利针织门口","xiaofangshuanzhen088"],[120.266206,30.847163,"地址：顺昌路13-8号门口","xiaofangshuanzhen090"],[120.260196,30.850655,"地址：珍贝路与富裕路岔口","xiaofangshuanzhen091"],[120.259783,30.852821,"地址：珍贝路与利强路岔口","xiaofangshuanzhen092"],[120.260533,30.848152,"地址：珍贝路与仁舍路岔口","xiaofangshuanzhen093"],[120.257102,30.857014,"地址：珍贝路与利安路向西300米","xiaofangshuanzhen094"],[120.261126,30.844462,"地址：珍贝路999号和丰物流门口","xiaofangshuanzhen095"],[120.252377,30.856669,"地址：栋梁路利安路向东100左右","xiaofangshuanzhen096"],[120.255018,30.856925,"地址：利安路衣贝尔门口99号","xiaofangshuanzhen097"],[120.267476,30.860795,"地址：富康路与富民路岔口向西500米","xiaofangshuanzhen098"],[120.266300,30.860800,"地址：富康路28号门口","xiaofangshuanzhen099"],[120.268596,30.854174,"地址：佛仙路268号门口","xiaofangshuanzhen100"],[120.268209,30.85498,"地址：佛仙路与利济路口","xiaofangshuanzhen101"],[120.239931,30.854131,"地址：利济西路秦家港农贸市场门口","xiaofangshuanzhen102"],[120.246214,30.851930,"地址：佩林路与梦华蕾路岔口","xiaofangshuanzhen103"],[120.245815,30.5857607,"地址：金海岸南路","xiaofangshuanzhen104"],[120.241404,30.848853,"地址：阿祥路555号","xiaofangshuanzhen105"],[120.241526,30.841356,"地址：阿祥路777号门口","xiaofangshuanzhen106"],[120.263732,30.860578,"地址：织里中路与富康路岔口","xiaofangshuanzhen107"],[120.321654,30.887502,"地址：轧村振兴路织里第二中学门口","xiaofangshuanzhen110"],[120.276554,30.876814,"地址：爱家花园爱家路","xiaofangshuanzhen111"],[120.257263,30.870513,"地址：长安路迪迈大酒店对面","xiaofangshuanzhen112"],[120.255573,30.874039,"地址：振兴路11号对面","xiaofangshuanzhen113"],[120.259735,30.864818,"地址：吉昌路162号门口","xiaofangshuanzhen114"],[120.267759,30.862568,"地址：吴兴大道行政中心门口西面","xiaofangshuanzhen115"],[120.261444,30.862294,"地址：凯旋路与新光路岔口","xiaofangshuanzhen116"],[120.264280,30.867190,"地址：康泰路370门口","xiaofangshuanzhen117"],[120.244513,30.869798,"地址：长安西路287号","xiaofangshuanzhen118"],[120.236217,30.868842,"地址：长安西路918号门口","xiaofangshuanzhen119"],[120.250311,30.863423,"地址：南海路50号门口","xiaofangshuanzhen120"],[120.250873,30.851468,"地址：利济西路46号","xiaofangshuanzhen121"],[120.253235,30.851655,"地址：利济中路与织里路岔口","xiaofangshuanzhen122"],[120.248780,30.853261,"地址：南海路与珍贝路岔口","xiaofangshuanzhen123"],[120.257923,30.864075,"地址：东安路与富民路岔口","xiaofangshuanzhen124"],[120.261774,30.854108,"地址：平湖路38号门口","xiaofangshuanzhen125"],[120.252399,30.864584,"地址：栖盛路50号门口","xiaofangshuanzhen126"],[120.256400,30.861826,"地址：富民路与步行街35号门口","xiaofangshuanzhen127"],[120.259538,30.855587,"地址：富民桥头","xiaofangshuanzhen128"],[120.258671,30.867597,"地址：富民路与安泰路48号门口","xiaofangshuanzhen129"],[120.252416,30.872958,"地址：前程路与商城西路51号门口","xiaofangshuanzhen130"],[120.263143,30.876863,"地址：中华路252号对面","xiaofangshuanzhen131"],[120.259058,30.876349,"地址：中华路与凯旋路岔口","xiaofangshuanzhen132"],[120.257057,30.875664,"地址：中华路时代联华门口","xiaofangshuanzhen133"],[120.255933,30.875547,"地址：中华路69号门口","xiaofangshuanzhen134"],[120.254249,30.875483,"地址：中华路与织里北路岔口","xiaofangshuanzhen135"],[120.238279,30.873521,"地址：中华西路与栋梁路岔口","xiaofangshuanzhen136"],[120.232724,30.872998,"地址：中华西路与剑强路岔口","xiaofangshuanzhen137"],[120.255810,30.877887,"地址：人民路31号对面","xiaofangshuanzhen138"],[120.256463,30.878100,"地址：人民路61号对面","xiaofangshuanzhen139"],[120.258050,30.878513,"地址：人民路120号门口","xiaofangshuanzhen140"],[120.259471,30.878900,"地址：人民路184号门口","xiaofangshuanzhen141"],[120.258984,30.880015,"地址：人民东路与织东路岔口","xiaofangshuanzhen142"],[120.258048,30.879909,"地址：织东路23号门口","xiaofangshuanzhen143"],[120.257914,30.877076,"地址：公园路58号对面","xiaofangshuanzhen144"],[120.255299,30.876654,"地址：公园路43号门口","xiaofangshuanzhen145"],[120.255566,30.874326,"地址：振兴路C134号门口","xiaofangshuanzhen146"],[120.256941,30.874451,"地址：振兴路与富民路岔口","xiaofangshuanzhen147"],[120.258499,30.874500,"地址：振兴路与国泰路岔口","xiaofangshuanzhen148"],[120.259407,30.874569,"地址：振兴路与凯旋路岔口","xiaofangshuanzhen149"],[120.260628,30.874617,"地址：振兴路148号门口","xiaofangshuanzhen150"],[120.259903,30.873546,"地址：商城路与凯旋路岔口","xiaofangshuanzhen151"],[120.258175,30.873149,"地址：商城路98号","xiaofangshuanzhen152"],[120.257175,30.872920,"地址：商城路与富民路岔口","xiaofangshuanzhen153"],[120.255265,30.873149,"地址：商城路20-2号对面20米","xiaofangshuanzhen154"],[120.254380,30.872765,"地址：商城路与织里北路岔口","xiaofangshuanzhen155"],[120.253463,30.872771,"地址：商城西路23号对面","xiaofangshuanzhen156"],[120.250066,30.872766,"地址：商城西路19-18A门口","xiaofangshuanzhen157"],[120.247734,30.872755,"地址：商城西路178号门口","xiaofangshuanzhen158"],[120.246879,30.872665,"地址：商城西路268号以东","xiaofangshuanzhen159"],[120.259355,30.872304,"地址：兴旺路与国泰路岔口","xiaofangshuanzhen160"],[120.260189,30.872464,"地址：兴旺路与凯旋路岔口","xiaofangshuanzhen161"],[120.261321,30.872042,"地址：凯东三路19号","xiaofangshuanzhen162"],[120.266866,30.872032,"地址：织里中学北门门口","xiaofangshuanzhen163"],[120.264822,30.871560,"地址：长安路长安超市门口","xiaofangshuanzhen164"],[120.263539,30.871723,"地址：长安路爱家门口","xiaofangshuanzhen165"],[120.261477,30.871395,"地址：长安路169号","xiaofangshuanzhen166"],[120.259746,30.870985,"地址：长安路与国泰路路口","xiaofangshuanzhen167"],[120.256070,30.870783,"地址：长安路40号","xiaofangshuanzhen168"],[120.254520,30.870620,"地址：长安路1号门口","xiaofangshuanzhen169"],[120.250810,30.870386,"地址：长安西路129-A号","xiaofangshuanzhen170"],[120.248731,30.870134,"地址：长安西路与珍贝路岔口","xiaofangshuanzhen171"],[120.247533,30.870100,"地址：长安西路288号对面","xiaofangshuanzhen172"],[120.245835,30.869916,"地址：长安西路汇泰地板厂门口","xiaofangshuanzhen173"],[120.243412,30.869538,"地址：长安西路588号门口","xiaofangshuanzhen174"],[120.240523,30.869282,"地址：长安西路700号","xiaofangshuanzhen175"],[120.237605,30.868980,"地址：长安西路与栋梁路岔口往西120米","xiaofangshuanzhen176"],[120.234876,30.868751,"地址：长安西路918号西侧20米","xiaofangshuanzhen177"],[120.232934,30.868584,"地址：大河新村82幢7号","xiaofangshuanzhen178"],[120.232072,30.868520,"地址：大河新村84幢1号","xiaofangshuanzhen179"],[120.231119,30.868421,"地址：大河新村85幢7号","xiaofangshuanzhen180"],[120.251558,30.869393,"地址：民安路148号门口","xiaofangshuanzhen181"],[120.252536,30.869399,"地址：民安路78号门口","xiaofangshuanzhen182"],[120.254069,30.869402,"地址：民安路与织里北路岔口","xiaofangshuanzhen183"],[120.252804,30.868104,"地址：利民路与永安路岔口","xiaofangshuanzhen184"],[120.250428,30.868027,"地址：利民路与为民路岔口","xiaofangshuanzhen185"],[120.251805,30.867013,"地址：幸福路86号门口","xiaofangshuanzhen186"],[120.250632,30.867027,"地址：幸福路132号门口","xiaofangshuanzhen187"],[120.249499,30.866264,"地址：幸福南路11号","xiaofangshuanzhen188"],[120.232608,30.864064,"地址：康泰西路与阿祥路东侧250米","xiaofangshuanzhen189"],[120.235105,30.864258,"地址：康泰西路大河浴室边上","xiaofangshuanzhen190"],[120.236791,30.864437,"地址：康泰西路688号边上","xiaofangshuanzhen191"],[120.241222,30.864807,"地址：康泰西路298号西侧30米","xiaofangshuanzhen192"],[120.243124,30.864839,"地址：康泰西路339号门口","xiaofangshuanzhen193"],[120.245223,30.864924,"地址：康泰西路189号门口","xiaofangshuanzhen194"],[120.249015,30.865289,"地址：康泰西路与珍贝路岔口","xiaofangshuanzhen195"],[120.253865,30.866137,"地址：康泰西路与织里北路岔口","xiaofangshuanzhen196"],[120.256274,30.866500,"地址：康泰西路与鹏程路岔口","xiaofangshuanzhen197"],[120.255780,30.868046,"地址：鹏程路A-11号对面","xiaofangshuanzhen198"],[120.260046,30.870359,"地址：繁荣路与国泰路岔口","xiaofangshuanzhen199"],[120.259014,30.870195,"地址：繁荣路52号门口","xiaofangshuanzhen200"],[120.260380,30.869149,"地址：兴盛路与国泰路岔口","xiaofangshuanzhen201"],[120.259085,30.869007,"地址：兴盛路162号门口","xiaofangshuanzhen202"],[120.257247,30.868651,"地址：兴盛路与织里北路岔口","xiaofangshuanzhen203"],[120.257669,30.868651,"地址：迎春路2号门口","xiaofangshuanzhen204"],[120.259082,30.868229,"地址：迎春路61号门口","xiaofangshuanzhen205"],[120.259818,30.868285,"地址：迎春路87号门口","xiaofangshuanzhen206"],[120.260644,30.868328,"地址：迎春路与国泰路岔口","xiaofangshuanzhen207"],[120.261260,30.867941,"地址：安泰路176号门口","xiaofangshuanzhen208"],[120.261550,30.866140,"地址：益民路205号门口","xiaofangshuanzhen209"],[120.260080,30.866151,"地址：益民路226号门口","xiaofangshuanzhen210"],[120.258250,30.866070,"地址：益民路107号门口","xiaofangshuanzhen211"],[120.254440,30.865571,"地址：益民路A-1号门口","xiaofangshuanzhen212"],[120.252500,30.865267,"地址：益民西路33号门口","xiaofangshuanzhen213"],[120.250660,30.865040,"地址：益民西路85号门口","xiaofangshuanzhen214"],[120.249527,30.864914,"地址：益民西路111号门口","xiaofangshuanzhen215"],[120.250543,30.864346,"地址：栖盛路122号门口","xiaofangshuanzhen216"],[120.251500,30.864477,"地址：栖盛路86号门口","xiaofangshuanzhen217"],[120.254500,30.864850,"地址：湖滨路2号","xiaofangshuanzhen218"],[120.255689,30.864787,"地址：湖滨路68号东南侧","xiaofangshuanzhen219"],[120.258130,30.865360,"地址：东盛路12号门口","xiaofangshuanzhen220"],[120.259350,30.865527,"地址：东盛路78-9号门口","xiaofangshuanzhen221"],[120.261875,30.865740,"地址：东盛路与凯旋路岔口","xiaofangshuanzhen222"],[120.259694,30.864954,"地址：吉昌路198号门口","xiaofangshuanzhen223"],[120.255760,30.864403,"地址：吉昌路37号门口","xiaofangshuanzhen224"],[120.261030,30.863799,"地址：民盛路180号门口","xiaofangshuanzhen225"],[120.258275,30.863463,"地址：民盛路88号门口","xiaofangshuanzhen226"],[120.255072,30.862895,"地址：民盛路10号河边","xiaofangshuanzhen227"],[120.251734,30.861992,"地址：民盛西路78号门口","xiaofangshuanzhen228"],[120.251920,30.861447,"地址：湘江路76号门口","xiaofangshuanzhen229"],[120.252967,30.861735,"地址：湘江路31号门口","xiaofangshuanzhen230"],[120.254547,30.862506,"地址：富盛路与织里北路岔口","xiaofangshuanzhen231"],[120.258375,30.862894,"地址：富盛路86号门口","xiaofangshuanzhen232"],[120.261191,30.862907,"地址：步行街192号对面","xiaofangshuanzhen233"],[120.260160,30.862854,"地址：步行街113号东面","xiaofangshuanzhen234"],[120.259336,30.862440,"地址：步行街95号门口","xiaofangshuanzhen235"],[120.258435,30.862292,"地址：步行街71号门口","xiaofangshuanzhen236"],[120.256444,30.861802,"地址：步行街33号门口","xiaofangshuanzhen237"],[120.251512,30.860798,"地址：大将路23号门口","xiaofangshuanzhen238"],[120.248520,30.859910,"地址：珍贝路与大将路岔口","xiaofangshuanzhen239"],[120.253237,30.860605,"地址：南京路3号门口","xiaofangshuanzhen240"],[120.252267,30.860333,"地址：南京路78-3号门口","xiaofangshuanzhen241"],[120.254653,30.860835,"地址：新光路1号门口","xiaofangshuanzhen242"],[120.259497,30.861803,"地址：新光路142号门口","xiaofangshuanzhen243"],[120.260462,30.862037,"地址：新光路178号门口","xiaofangshuanzhen244"],[120.262110,30.862482,"地址：新光路与凯旋路岔口","xiaofangshuanzhen245"],[120.261629,30.861779,"地址：永盛路83号东侧","xiaofangshuanzhen246"],[120.258844,30.861056,"地址：永盛路38号西侧","xiaofangshuanzhen247"],[120.253763,30.863761,"地址：彩虹路138号门口","xiaofangshuanzhen248"],[120.252586,30.863681,"地址：彩虹路90号门口","xiaofangshuanzhen249"],[120.251518,30.863513,"地址：彩虹路62号门口","xiaofangshuanzhen250"],[120.250606,30.863120,"地址：彩虹路32号对面","xiaofangshuanzhen251"],[120.249542,30.863042,"地址：彩虹路1号对面","xiaofangshuanzhen252"],[120.250062,30.863244,"地址：彩虹路18号北侧30米","xiaofangshuanzhen253"],[120.249449,30.863775,"地址：缤纷路1号门口","xiaofangshuanzhen254"],[120.250533,30.863864,"地址：缤纷路29号门口","xiaofangshuanzhen255"],[120.251386,30.863925,"地址：缤纷路62号对面","xiaofangshuanzhen256"],[120.253148,30.863902,"地址：缤纷路91西南侧","xiaofangshuanzhen257"],[120.243875,30.859372,"地址：南京中路91号西南侧","xiaofangshuanzhen258"],[120.245550,30.859169,"地址：南京中路61号东侧","xiaofangshuanzhen259"],[120.244060,30.860100,"地址：上海路111号西侧","xiaofangshuanzhen260"],[120.246201,30.859982,"地址：北京路65号东侧","xiaofangshuanzhen261"],[120.244079,30.861113,"地址：香港路113号西侧","xiaofangshuanzhen262"],[120.245519,30.861531,"地址：广州路65号东侧","xiaofangshuanzhen263"],[120.244098,30.862407,"地址：天津路59号西侧","xiaofangshuanzhen264"],[120.245493,30.862296,"地址：天津路32号东侧","xiaofangshuanzhen265"],[120.241263,30.858159,"地址：吴兴大道与栋梁路岔口东侧","xiaofangshuanzhen266"],[120.248824,30.858915,"地址：吴兴大道与珍贝路岔口","xiaofangshuanzhen267"],[120.249776,30.859066,"地址：吴兴大道中57号门口","xiaofangshuanzhen268"],[120.251384,30.858940,"地址：吴兴大道中50号门口","xiaofangshuanzhen269"],[120.251640,30.859391,"地址：吴兴大道中4287号门口","xiaofangshuanzhen270"],[120.253530,30.859728,"地址：吴兴大道与织里中路岔口","xiaofangshuanzhen271"],[120.254960,30.859941,"地址：吴兴大道9号门口","xiaofangshuanzhen272"],[120.257915,30.859735,"地址：吴兴大道与富民路岔口南侧","xiaofangshuanzhen273"],[120.257649,30.862121,"地址：富民路与步行街路口","xiaofangshuanzhen274"],[120.258841,30.860325,"地址：吴兴大道缤纷年代门口","xiaofangshuanzhen275"],[120.258484,30.860670,"地址：吴兴大道鼎福宾馆门口","xiaofangshuanzhen276"],[120.259704,30.860951,"地址：吴兴大道移动营业厅门口","xiaofangshuanzhen277"],[120.260841,30.861233,"地址：吴兴大道115号门口","xiaofangshuanzhen278"],[120.261450,30.861011,"地址：吴兴大道168号门口","xiaofangshuanzhen279"],[120.268409,30.862527,"地址：行政服务中心靠大港路","xiaofangshuanzhen280"],[120.262200,30.860527,"地址：渤海路71号门口","xiaofangshuanzhen281"],[120.261143,30.860325,"地址：渤海路82号对面","xiaofangshuanzhen282"],[120.260715,30.860249,"地址：渤海路35号门口","xiaofangshuanzhen283"],[120.259636,30.859997,"地址：渤海路9号门口","xiaofangshuanzhen284"],[120.258930,30.859831,"地址：渤海路16号对面","xiaofangshuanzhen285"],[120.258771,30.859234,"地址：景富路61号门口","xiaofangshuanzhen286"],[120.259829,30.859466,"地址：景富路81号门口","xiaofangshuanzhen287"],[120.260507,30.859549,"地址：景富路115号门口","xiaofangshuanzhen288"],[120.260477,30.858910,"地址：景江路87号门口","xiaofangshuanzhen289"],[120.260370,30.858360,"地址：珠江路59号门口","xiaofangshuanzhen290"],[120.259087,30.857926,"地址：珠江路15号门口","xiaofangshuanzhen291"],[120.255120,30.857645,"地址：珠江中路38号门口","xiaofangshuanzhen292"],[120.254082,30.857805,"地址：珠江中路69号门口","xiaofangshuanzhen293"],[120.251888,30.857973,"地址：珠江西路17号门口","xiaofangshuanzhen294"],[120.249891,30.858264,"地址：朱湾村村部对面","xiaofangshuanzhen295"],[120.259322,30.857485,"地址：新安路1号门口","xiaofangshuanzhen296"],[120.260647,30.857720,"地址：新安路33号门口","xiaofangshuanzhen297"],[120.253979,30.857133,"地址：永佳路13号门口","xiaofangshuanzhen298"],[120.252222,30.857173,"地址：永佳西路2号门口","xiaofangshuanzhen299"],[120.250512,30.856999,"地址：永佳西路66号门口","xiaofangshuanzhen300"],[120.249990,30.856674,"地址：永佳西路95号门口","xiaofangshuanzhen301"],[120.249440,30.856962,"地址：永佳西路101号门口","xiaofangshuanzhen302"],[120.248162,30.856949,"地址：永佳西路与珍贝路岔口","xiaofangshuanzhen303"],[120.247074,30.856773,"地址：永佳西路178号门口","xiaofangshuanzhen304"],[120.254770,30.856662,"地址：永佳西路222号门口","xiaofangshuanzhen305"],[120.247019,30.857017,"地址：中成路8号对面","xiaofangshuanzhen306"],[120.247765,30.857098,"地址：中成路与珍贝路岔口往西20米","xiaofangshuanzhen307"],[120.241984,30.856407,"地址：红门馆路137号旁边","xiaofangshuanzhen308"],[120.241076,30.856738,"地址：红门馆路187号门口","xiaofangshuanzhen309"],[120.241040,30.855530,"地址：富康西路523号旁边","xiaofangshuanzhen310"],[120.242001,30.855592,"地址：富康西路381号旁边","xiaofangshuanzhen311"],[120.243116,30.855711,"地址：富康西路325号门口","xiaofangshuanzhen312"],[120.244155,30.855781,"地址：富康西路277号门口","xiaofangshuanzhen313"],[120.245143,30.855899,"地址：富康西路225号门口","xiaofangshuanzhen314"],[120.247980,30.856046,"地址：富康西路与珍贝路岔口","xiaofangshuanzhen315"],[120.294477,30.856314,"地址：富康西路105号门口","xiaofangshuanzhen316"],[120.256377,30.856787,"地址：富康路126号","xiaofangshuanzhen317"],[120.268685,30.856973,"地址：富康路与富民路岔口","xiaofangshuanzhen318"],[120.256441,30.856250,"地址：永康路109号","xiaofangshuanzhen319"],[120.252032,30.855825,"地址：永康西路1-A号","xiaofangshuanzhen320"],[120.251390,30.855816,"地址：永康西路13号","xiaofangshuanzhen321"],[120.250214,30.855714,"地址：永康西路51号","xiaofangshuanzhen322"],[120.247076,30.855402,"地址：永康西路159号","xiaofangshuanzhen323"],[120.241703,30.854481,"地址：安康西路188号东面20米","xiaofangshuanzhen324"],[120.244501,30.854725,"地址：安康西路金童王厂门口西侧20米","xiaofangshuanzhen325"],[120.246068,30.854864,"地址：安康西路155号","xiaofangshuanzhen326"],[120.247961,30.854877,"地址：安康西路与珍贝路岔口","xiaofangshuanzhen327"],[120.250295,30.855123,"地址：安康西路50号","xiaofangshuanzhen328"],[120.252184,30.855410,"地址：安康西路与织里中路岔口北侧","xiaofangshuanzhen329"],[120.253035,30.855370,"地址：安康路5号","xiaofangshuanzhen330"],[120.254133,30.855518,"地址：安康路35-2号","xiaofangshuanzhen331"],[120.255318,30.855532,"地址：安康路122号","xiaofangshuanzhen332"],[120.256471,30.855631,"地址：安康路166号","xiaofangshuanzhen333"],[120.257488,30.855735,"地址：安康路196号","xiaofangshuanzhen334"],[120.256716,30.855218,"地址：庆丰路210号","xiaofangshuanzhen335"],[120.254227,30.854852,"地址：庆丰路79号","xiaofangshuanzhen336"],[120.252837,30.854716,"地址：庆丰路1号西侧20米","xiaofangshuanzhen337"],[120.250370,30.854370,"地址：庆丰西路50号","xiaofangshuanzhen338"],[120.248769,30.854381,"地址：庆丰西路118号","xiaofangshuanzhen339"],[120.248166,30.853305,"地址：利安路与珍贝路岔口","xiaofangshuanzhen340"],[120.244795,30.852846,"地址：利安路52号东侧20米","xiaofangshuanzhen341"],[120.242446,30.852737,"地址：利安路101号西侧20米","xiaofangshuanzhen342"],[120.256626,30.854560,"地址：环湖路205号","xiaofangshuanzhen343"],[120.255371,30.854390,"地址：环湖路165号","xiaofangshuanzhen344"],[120.254329,30.854328,"地址：环湖路123号","xiaofangshuanzhen345"],[120.252836,30.854211,"地址：环湖路1号","xiaofangshuanzhen346"],[120.250270,30.854040,"地址：环湖西路1号岔口","xiaofangshuanzhen347"],[120.250485,30.853789,"地址：南海路41号北侧15米","xiaofangshuanzhen348"],[120.249735,30.853418,"地址：南海路66号","xiaofangshuanzhen349"],[120.251872,30.853682,"地址：南海路2号-A","xiaofangshuanzhen350"],[120.256644,30.853747,"地址：南湖路115号","xiaofangshuanzhen351"],[120.254184,30.853805,"地址：南海东路29号","xiaofangshuanzhen352"],[120.250464,30.852750,"地址：南湖西路56号","xiaofangshuanzhen353"],[120.250021,30.852334,"地址：钱塘江西路78号","xiaofangshuanzhen354"],[120.250568,30.852347,"地址：钱塘江西路39号","xiaofangshuanzhen355"],[120.252239,30.852409,"地址：钱塘江西路2号","xiaofangshuanzhen356"],[120.253740,30.852275,"地址：钱江二路11号","xiaofangshuanzhen357"],[120.254066,30.853178,"地址：钱塘江路27号后面","xiaofangshuanzhen358"],[120.255255,30.852925,"地址：钱塘江路50号后面","xiaofangshuanzhen359"],[120.256650,30.853105,"地址：钱塘江路112-A号东侧","xiaofangshuanzhen360"],[120.257947,30.853063,"地址：钱塘江中路112-1号","xiaofangshuanzhen361"],[120.258967,30.853195,"地址：钱塘江中路142号","xiaofangshuanzhen362"],[120.258896,30.853318,"地址：钱塘江中路137号","xiaofangshuanzhen363"],[120.259447,30.853006,"地址：钱塘江路156号后面","xiaofangshuanzhen364"],[120.259956,30.853346,"地址：钱塘江路与富民路岔口","xiaofangshuanzhen365"],[120.260778,30.853374,"地址：钱塘江路168号","xiaofangshuanzhen366"],[120.261845,30.853521,"地址：钱塘江路198号","xiaofangshuanzhen367"],[120.260607,30.854003,"地址：平湖路3号","xiaofangshuanzhen368"],[120.258970,30.853527,"地址：平湖西路20号后面","xiaofangshuanzhen369"],[120.258711,30.854008,"地址：平湖西路21号后面","xiaofangshuanzhen370"],[120.257875,30.853469,"地址：平湖西路58号东侧","xiaofangshuanzhen371"],[120.259644,30.852652,"地址：利济中路157号","xiaofangshuanzhen372"],[120.261958,30.852898,"地址：利济路35号","xiaofangshuanzhen373"],[120.258080,30.852471,"地址：利济中路119-1号","xiaofangshuanzhen374"],[120.256869,30.851882,"地址：利济中路与佛仙路岔口","xiaofangshuanzhen375"],[120.256382,30.852277,"地址：利济中路129-A号","xiaofangshuanzhen376"],[120.255063,30.852164,"地址：利济中路65号","xiaofangshuanzhen377"],[120.254281,30.851430,"地址：利济中路58号南侧50米","xiaofangshuanzhen378"],[120.252382,30.851561,"地址：利济西路2号东侧20米","xiaofangshuanzhen379"],[120.249684,30.851306,"地址：利济西路70号","xiaofangshuanzhen380"],[120.247176,30.850940,"地址：利济西路160号","xiaofangshuanzhen381"],[120.246049,30.850850,"地址：利济西路170号","xiaofangshuanzhen382"],[120.244544,30.850663,"地址：利济西路178号东侧20米","xiaofangshuanzhen383"],[120.241430,30.850356,"地址：利济西路298号","xiaofangshuanzhen384"],[120.238004,30.850171,"地址：利济西路与栋梁路岔口西侧350米","xiaofangshuanzhen385"],[120.235392,30.850106,"地址：利济西路秦家港32幢5号对面","xiaofangshuanzhen386"],[120.232774,30.850043,"地址：利济西路358号","xiaofangshuanzhen387"],[120.231710,30.847819,"地址：佩琳路6号","xiaofangshuanzhen388"],[120.232906,30.847016,"地址：小象路15号","xiaofangshuanzhen389"],[120.232979,30.848158,"地址：小象路9号","xiaofangshuanzhen390"],[120.234251,30.847842,"地址：佩琳路33号","xiaofangshuanzhen391"],[120.235389,30.846811,"地址：梦华蕾路332号北侧30米","xiaofangshuanzhen392"],[120.235595,30.844722,"地址：梦华蕾路368号","xiaofangshuanzhen393"],[120.235801,30.842320,"地址：梦华蕾路最南侧","xiaofangshuanzhen394"],[120.237161,30.842183,"地址：栋梁路2008号西侧30米","xiaofangshuanzhen395"],[120.238189,30.842131,"地址：栋梁路2008号东侧100米","xiaofangshuanzhen396"],[120.239282,30.842032,"地址：栋梁路2008号东侧150米","xiaofangshuanzhen397"],[120.241254,30.843770,"地址：河西新村118幢1号","xiaofangshuanzhen398"],[120.241634,30.847924,"地址：利强路199号","xiaofangshuanjia399"],[120.244857,30.848283,"地址：利强路168号","xiaofangshuanjia400"],[120.246190,30.848435,"地址：利强路162号","xiaofangshuanjia401"],[120.247320,30.848561,"地址：利强路160号","xiaofangshuanjia402"],[120.245320,30.289529,"地址：利达路123号对面","xiaofangshuanjia403"],[120.246222,30.849681,"地址：利达路88号","xiaofangshuanjia404"],[120.247262,30.849863,"地址：利达路66号","xiaofangshuanjia405"],[120.248505,30.850026,"地址：利达路与栋梁路岔口","xiaofangshuanjia406"],[120.249846,30.850214,"地址：利达路25号","xiaofangshuanjia407"],[120.250903,30.850330,"地址：利达路13-A号西侧20米","xiaofangshuanjia408"],[120.252570,30.850555,"地址：利达路与织里中路岔口","xiaofangshuanjia409"],[120.252536,30.849183,"地址：利强路1号","xiaofangshuanjia410"],[120.251225,30.849039,"地址：利强路35号","xiaofangshuanjia411"],[120.249981,30.848948,"地址：利强路57号","xiaofangshuanjia412"],[120.249961,30.848212,"地址：富强路69号对面","xiaofangshuanjia413"],[120.251349,30.848361,"地址：富强路50号","xiaofangshuanjia414"],[120.252657,30.848568,"地址：富强路2号","xiaofangshuanjia415"],[120.252926,30.848021,"地址：富达路2号","xiaofangshuanjia416"],[120.251354,30.847849,"地址：富达路38号","xiaofangshuanjia417"],[120.250005,30.847669,"地址：富达路82号","xiaofangshuanjia418"],[120.250077,30.847149,"地址：富兴路92号","xiaofangshuanjia419"],[120.251440,30.847320,"地址：富兴路58号","xiaofangshuanjia420"],[120.253040,30.847544,"地址：富兴路2号","xiaofangshuanjia421"],[120.254064,30.846093,"地址：彩云路与织里南路岔口","xiaofangshuanjia422"],[120.260141,30.851721,"地址：利达中路255号东侧","xiaofangshuanjia423"],[120.259040,30.851468,"地址：利达中路201号","xiaofangshuanjia424"],[120.258301,30.851289,"地址：利达中路165号","xiaofangshuanjia425"],[120.257341,30.850931,"地址：利达中路与佛仙路岔口","xiaofangshuanjia426"],[120.258657,30.850502,"地址：江南路161号","xiaofangshuanjia427"],[120.259367,30.850676,"地址：江南路199号","xiaofangshuanjia428"],[120.260429,30.850908,"地址：江南路256号东侧","xiaofangshuanjia429"],[120.260630,30.850046,"地址：利强中路318号东侧","xiaofangshuanjia430"],[120.258923,30.849622,"地址：利强中路155号","xiaofangshuanjia431"],[120.258480,30.848339,"地址：市场南路与佛仙路岔口","xiaofangshuanjia432"],[120.259187,30.848846,"地址：市场南路76号","xiaofangshuanjia433"],[120.260764,30.849163,"地址：市场南路6号","xiaofangshuanjia434"],[120.261586,30.849224,"地址：东湖路花样年代门口","xiaofangshuanjia435"],[120.262363,30.848431,"地址：月湖路2号","xiaofangshuanjia436"],[120.260447,30.848392,"地址：月湖西路31号","xiaofangshuanjia437"],[120.259361,30.848071,"地址：月湖西路70号","xiaofangshuanjia438"],[120.261436,30.848617,"地址：月湖西路与富民路岔口","xiaofangshuanjia439"],[120.260607,30.847031,"地址：广盛路36号","xiaofangshuanjia440"],[120.259940,30.846899,"地址：广盛路61号","xiaofangshuanjia441"],[120.259320,30.846515,"地址：广盛路与佛仙路岔口","xiaofangshuanjia442"],[120.264490,30.846992,"地址：仁舍新街东路51号","xiaofangshuanjia443"],[120.262948,30.846612,"地址：仁舍新街东路5号","xiaofangshuanjia444"],[120.262096,30.846391,"地址：仁舍新街东路与富民南路岔口","xiaofangshuanjia445"],[120.259696,30.845731,"地址：仁舍新街东路与佛仙路岔口","xiaofangshuanjia446"],[120.256513,30.844798,"地址：仁舍新街东路与新昌路岔口","xiaofangshuanjia447"],[120.252678,30.844249,"地址：仁舍新街东路30号西侧","xiaofangshuanjia448"],[120.255137,30.842413,"地址：永昌路与织里南路岔口","xiaofangshuanjia449"],[120.254249,30.842200,"地址：永昌路15号","xiaofangshuanjia450"],[120.253464,30.841973,"地址：永昌路13-8-9号","xiaofangshuanjia451"],[120.253717,30.841054,"地址：永兴路61号","xiaofangshuanjia452"],[120.254502,30.841160,"地址：永兴路79号","xiaofangshuanjia453"],[120.253849,30.840567,"地址：彩纷路39号","xiaofangshuanjia454"],[120.262110,30.842389,"地址：彩纷路221号","xiaofangshuanjia455"],[120.258392,30.843975,"地址：顺昌路56号对面","xiaofangshuanjia456"],[120.257548,30.843853,"地址：顺昌路荣融宾馆门口","xiaofangshuanjia457"],[120.256491,30.843515,"地址：顺昌路与永锋路岔口","xiaofangshuanjia458"],[120.255708,30.841320,"地址：永兴路与织里南路岔口","xiaofangshuanjia459"],[120.257184,30.841752,"地址：永锋路82号对面","xiaofangshuanjia460"],[120.257862,30.841884,"地址：永兴路129号对面","xiaofangshuanjia461"],[120.267736,30.888043,"地址：大港路三友印染厂北侧50米","xiaofangshuanjia462"],[120.267884,30.885212,"地址：大港路大港集团南门对面","xiaofangshuanjia463"],[120.268025,30.883880,"地址：大港路与湖织大道岔口北侧60米","xiaofangshuanjia464"],[120.268166,30.882910,"地址：大港路与湖织大道岔口","xiaofangshuanjia465"],[120.268197,30.881222,"地址：大港路世纪加油站北侧20米","xiaofangshuanjia466"],[120.268533,30.874937,"地址：大港路与长安路北侧240米","xiaofangshuanjia467"],[120.268747,30.871278,"地址：大港路织里中学对面（北侧）","xiaofangshuanjia468"],[120.268738,30.870753,"地址：大港路织里中学对面（南侧）","xiaofangshuanjia469"],[120.268870,30.868333,"地址：大港路与康泰路北侧120米","xiaofangshuanjia470"],[120.268966,30.866347,"地址：大港路法庭北侧110米","xiaofangshuanjia471"],[120.269029,30.865333,"地址：大港路与法庭岔口","xiaofangshuanjia472"],[120.269124,30.863169,"地址：大港路与吴兴大道岔口","xiaofangshuanjia473"],[120.269350,30.860357,"地址：大港路与吴兴大道岔口南侧150米","xiaofangshuanjia474"],[120.269631,30.857934,"地址：大港路与富康路岔口","xiaofangshuanjia475"],[120.270056,30.853862,"地址：大港路与富康路南侧250米","xiaofangshuanjia476"],[120.270414,30.850805,"地址：大港路与富康路南侧400米","xiaofangshuanjia477"],[120.270754,30.847438,"地址：大港路与仁舍新街东路北侧100米","xiaofangshuanjia478"],[120.270881,30.846420,"地址：大港路900号","xiaofangshuanjia479"],[120.271000,30.845324,"地址：大港路900号南侧20米","xiaofangshuanjia480"],[120.271144,30.844300,"地址：大港路与新南路北侧50米","xiaofangshuanjia481"],[120.271336,30.842414,"地址：大港路与新南路南侧20米","xiaofangshuanjia482"],[120.263658,30.841497,"地址：富民南路15号门口","xiaofangshuanjia483"],[120.262710,30.844495,"地址：富民南路217号门口","xiaofangshuanjia484"],[120.261773,30.847567,"地址：富民南路167号门口","xiaofangshuanjia485"],[120.259675,30.854245,"地址：富民中路97号门口","xiaofangshuanjia486"],[120.259940,30.854345,"地址：富民中路132号门口","xiaofangshuanjia487"],[120.261739,30.867332,"地址：凯旋路与康泰路岔口","xiaofangshuanjia488"],[120.260891,30.870419,"地址：凯旋路328号门口","xiaofangshuanjia489"],[120.254447,30.871234,"地址：织里北路清华苑门口","xiaofangshuanjia490"],[120.255466,30.839645,"地址：织里南路织里童装城B区门口","xiaofangshuanjia491"],[120.250577,30.838622,"地址：珍贝路与318国道北侧150米","xiaofangshuanjia492"],[120.250356,30.839807,"地址：珍贝路宝宇汽车","xiaofangshuanjia493"],[120.249844,30.842260,"地址：珍贝路百姓公寓对面","xiaofangshuanjia494"],[120.248794,30.847597,"地址：珍贝路与富达路岔口","xiaofangshuanjia495"],[120.248248,30.857210,"地址：珍贝路与利济西路北侧200米","xiaofangshuanjia496"],[120.248596,30.861084,"地址：珍贝路367号对面","xiaofangshuanjia497"],[120.248953,30.862618,"地址：珍贝路263号","xiaofangshuanjia498"],[120.248917,30.863833,"地址：珍贝路268-2号","xiaofangshuanjia499"],[120.249082,30.869360,"地址：珍贝路与民安路岔口","xiaofangshuanjia500"],[120.248650,30.874215,"地址：珍贝路50号","xiaofangshuanjia501"],[120.238185,30.876098,"地址：栋梁路与湖织大道南侧200米","xiaofangshuanjia502"],[120.239385,30.872189,"地址：栋梁路1118号北门","xiaofangshuanjia503"],[120.238501,30.871333,"地址：栋梁路1118号永羲科技城门口","xiaofangshuanjia504"],[120.239135,30.867156,"地址：栋梁路333号新纺集团对面","xiaofangshuanjia505"],[120.239312,30.865988,"地址：栋梁路688号门口","xiaofangshuanjia506"],[120.239501,30.864840,"地址：栋梁路与康泰西路岔口","xiaofangshuanjia507"],[120.239631,30.863625,"地址：栋梁路387号对面","xiaofangshuanjia508"],[120.239999,30.860958,"地址：栋梁路557号利利驾校对面","xiaofangshuanjia509"],[120.240302,30.858652,"地址：栋梁路与吴兴大道北侧","xiaofangshuanjia510"],[120.240416,30.856460,"地址：栋梁路与红门馆路岔口","xiaofangshuanjia511"],[120.240381,30.850990,"地址：栋梁路与利济西路岔口北侧20米","xiaofangshuanjia512"],[120.240368,30.848957,"地址：栋梁路梁新材门口","xiaofangshuanjia513"],[120.240371,30.847632,"地址：栋梁路栋梁新材门口往南100米","xiaofangshuanjia514"],[120.240360,30.844713,"地址：栋梁路河西新村对面","xiaofangshuanjia515"],[120.240360,30.843695,"地址：栋梁路河西新村牌子处对面","xiaofangshuanjia516"],[120.230777,30.845423,"地址：阿祥路与汇金路岔口","xiaofangshuanjia517"],[120.230550,30.852693,"地址：阿祥路1177号门口","xiaofangshuanjia518"],[120.230675,30.865553,"地址：阿祥路大河新村42幢2号对面","xiaofangshuanjia519"],[120.263806,30.865533,"地址：镇政府门口桥上西侧","xiaofangshuanjia520"],[120.264369,30.864616,"地址：镇政府西侧","xiaofangshuanjia521"],[120.263814,30.866543,"地址：中心花园门口西侧","xiaofangshuanjia522"],[120.265987,30.866618,"地址：中心花园门口东侧","xiaofangshuanjia523"],[120.265697,30.864798,"地址：镇政府门口桥上东侧","xiaofangshuanjia524"],[120.268195,30.864993,"地址：大港路与东盛酒店岔口","xiaofangshuanjia525"],[120.309889,30.879827,"地址：轧村振兴路101号对面","xiaofangshuanjia526"],[120.310222,30.880974,"地址：轧村振兴路86号对面","xiaofangshuanjia527"],[120.310867,30.887588,"地址：轧村金牛印染公司对面","xiaofangshuanjia528"],[120.339719,30.920759,"地址：漾西栋梁路与九江北路岔口","xiaofangshuanjia529"],[120.341149,30.920909,"地址：漾西栋梁路与漾西路岔口","xiaofangshuanjia530"],[120.340879,30.923040,"地址：漾西市民路与洪泽湖路岔口","xiaofangshuanjia531"],[120.258995,30.877368,"地址：公园路与凯旋路岔口","xiaofangshuanjia532"],[120.244750,30.865646,"地址：红旗路1号","xiaofangshuanjia533"],[120.243024,30.866048,"地址：红星路60号","xiaofangshuanjia534"],[120.244612,30.866713,"地址：红丰路1号","xiaofangshuanjia535"],[120.244482,30.867536,"地址：康泰小区大门边上","xiaofangshuanjia536"],[120.249221,30.864238,"地址：栖盛路182号","xiaofangshuanjia537"],[120.261199,30.869428,"地址：凯旋路与兴盛路岔口","xiaofangshuanjia538"],[120.234640,30.867271,"地址：大河新村50幢1号","xiaofangshuanjia539"],[120.234666,30.868340,"地址：大河新村74幢1号","xiaofangshuanjia540"],[120.232153,30.866939,"地址：大河新村53幢5号","xiaofangshuanjia541"],[120.234691,30.864972,"地址：大河新村13幢1号","xiaofangshuanjia542"],[120.234660,30.865989,"地址：大河新村37幢1号","xiaofangshuanjia543"],[120.229610,30.864600,"地址：大河新村二区14幢1号","xiaofangshuanjia544"],[120.229659,30.863824,"地址：大河新村二区1幢9号","xiaofangshuanjia545"],[120.264371,30.867885,"地址：晓康路12号门口","xiaofangshuanjia030"],[120.278106,30.867608,"地址：东盛国际大酒店后侧","shuiyuan002"],[120.270865,30.858626,"地址：织里镇富民中路金都花园14幢3单元后面","shuiyuan003"],[120.267708,30.858982,"地址：庆丰路与环湖路中间东面","shuiyuan004"],[120.270556,30.884217,"地址：织里老街织东大桥下（北面）","shuiyuan001"],[120.269318,30.859161,"地址：安康路天使家园小区1幢后面台阶","shuiyuan005"],[120.254498,30.829603,"地址：织里镇河西村委35幢后面","shuiyuan006"],[120.248607,30.855836,"地址：织里镇秦家港村委会6幢北面","shuiyuan007"],[120.26626,30.858062,"地址：织里镇钱塘江路北面30米台阶（棒棒狗和QQ童馨中间）","shuiyuan009"],[120.265609,30.855655,"地址：利济路66号布尔曼酒店后面凉亭","shuiyuan010"],[120.279801,30.871936,"地址：大港路晓河村36号旁边","shuiyuan011"],[120.327333,30.917517,"地址：陆家湾村野柴湾1号西面","shuiyuan029"],[120.265725,30.847402,"地址：湖州市织里镇织里南路87号","danwei001"],[120.268415,30.87147,"地址：湖州市织里镇富民路268号","danwei002"],[120.265622,30.877859,"地址：湖州市织里镇织里北路62-68号","danwei003"],[120.26502,30.873105,"地址：湖州市织里北路129号","danwei004"],[120.267652,30.872818,"地址：湖州市织里镇织里北路78号","danwei005"],[120.278211,30.848127,"地址：湖州市织里镇318国道北侧","danwei006"],[120.267126,30.861321,"地址：湖州市织里镇金海岸地下综合市场","danwei007"],[120.266497,30.87285,"地址：湖州市织里镇兴盛路39号","danwei008"],[120.2390095,30.863043,"地址：湖州市织里镇吴兴大道2699号","danwei009"],[120.266825,30.843388,"地址：湖州市织里镇织里南路1号","danwei010"],[120.268941,30.847857,"地址：湖州织里顺昌路55号新世纪广场1号楼A166号","danwei011"],[120.269436,30.879789,"地址：湖州市织里镇中华路148号","danwei012"],[120.268188,30.874485,"地址：湖州市织里镇长安路62-98号","danwei013"],[120.266071,30.855685,"地址：湖州市织里镇利济中路66号","danwei014"],[120.268425,30.843128,"地址：湖州市织里镇织里南路2号","danwei015"],[120.265418,30.879146,"地址：湖州市织里镇织里北路56-58号","danwei016"],[120.268052,30.876825,"地址：湖州市织里镇商城路49号","danwei017"],[120.268538,30.864655,"地址：湖州市织里镇富民路463号","danwei018"],[120.269965,30.864221,"地址：湖州市织里镇富民中路2-8号","danwei019"],[120.273564,30.846419,"地址：湖州市织里镇彩纷路227号","danwei020"],[120.263544,30.859153,"地址：湖州市织里镇治理中路96号","danwei021"],[120.266975,30.844907,"地址：湖州市织里镇织里南路8号","danwei022"],[120.264311,30.863787,"地址：湖州市织里镇吴兴大道4377号","danwei023"],[120.272227,30.852767,"地址：湖州市织里镇富民南路555号","danwei024"],[120.265264,30.855603,"地址：湖州市织里镇利济中路58号","danwei025"],[120.269302,30.864725,"地址：株洲市织里镇富民路468号","danwei026"],[120.278204,30.868129,"地址：湖州市织里镇吴兴大道5999号","danwei027"],[120.259518,30.856867,"地址：湖州市织里镇珍贝路529号","danwei028"],[120.259745,30.874302,"地址：湖州市织里镇珍贝路188号","danwei029"],[120.27508,30.843799,"地址：湖州市织里镇富民南路1号","danwei032"],[120.260008,30.863896,"地址：湖州市织里镇大将路2号","danwei033"],[120.269741,30.848078,"地址：湖州市织里镇顺昌路55号新世界广场1号楼","danwei034"],[120.280219,30.867701,"地址：湖州市织里镇大港路1388号","danwei035"],[120.277483,30.868281,"地址：湖州市织里镇吴兴大道5995号","danwei036"],[120.270843,30.856185,"地址：湖州织里镇富民路151号","danwei037"],[120.265107,30.879076,"地址：湖州市织里镇织里北路49号","danwei038"],[120.26841,30.871459,"地址：湖州织里富民路268号","danwei039"],[120.264445,30.876504,"地址：湖州织里棉布城1幢17号A","danwei040"],[120.265017,30.880161,"地址：湖州市织里北路35号","danwei041"],[120.270172,30.864229,"地址：湖州市织里镇富民中路2-8号","danwei043"],[120.269476,30.877418,"地址：湖州市织里镇龙光弄25号","danweijia044"],[120.265453,30.872281,"地址：湖州市织里镇兴盛路2号","danweijia045"],[120.267648,30.864229,"地址：湖州市吴兴区织里镇利济中路128号","danwei046"],[120.277352,30.855735,"地址：湖州市吴兴区织里镇康泰路480号","danwei049"],[120.277232,30.870816,"地址：湖州市吴兴区织里镇康泰路476号","danwei050"],[120.260439,30.869336,"地址：湖州市织里镇康泰西路162号","danwei051"],[120.269907,30.848016,"地址：湖州市吴兴区织里镇顺昌路55号二楼","danwei052"],[120.264454,30.87614,"地址：湖州市织里镇棉布城1-3号二楼","danwei053"],[120.263214,30.860037,"地址：湖州市织里镇织里中路91号","danwei054"],[120.269442,30.863756,"地址：湖州市织里镇富民中路2-8号","danwei056"],[120.264843,30.864934,"地址：湖州市织里镇织里北路329号2楼","danwei057"],[120.271385,30.855487,"地址：湖州市吴兴区织里镇富民中路165号","danwei058"],[120.265145,30.86619,"地址：湖州市织里镇织里北路311号","danwei060"],[120.270933,30.856944,"地址：湖州市吴兴区织里镇富民中路123号","danwei067"],[120.271304,30.865074,"地址：湖州市织里镇吴兴大道3656号","danwei068"],[120.272546,30.851651,"地址：织里镇富民南路395-397","danwei069"],[120.271906,30.849899,"地址：湖州吴兴区织里镇佛仙路551-553晟舍新街265.275号二楼","danwei071"],[120.270247,30.880293,"地址：织里镇凯旋路123号","danwei072"],[120.269822,30.848047,"地址：湖州市织里镇晟舍顺昌路55号新世界广场2号楼2层","danwei075"],[120.271797,30.875256,"地址：湖州市织里镇长安路147号","danwei077"],[120.260109,30.873482,"地址：湖州市织里镇民安路177号","danwei078"],[120.259587,30.876651,"地址：湖州市织里镇甄珍贝路118号","danwei079"],[120.260546,30.862679,"地址：湖州市织里镇朱湾村综合楼","danwei081"],[120.270619,30.852837,"地址：湖州市织里镇市场南路北侧","danwei082"],[120.266241,30.870281,"地址：湖州市织里镇康泰路11号","danwei084"],[120.264826,30.884531,"地址：湖州市织里镇织里北路131号","danwei091"],[120.281889,30.845256,"地址：织里大港路西侧，318国道北侧","danwei092"],[120.240976,30.851844,"地址：湖州市织里镇阿祥路868号","danwei093"],[120.240986,30.85141,"地址：湖州市织里镇阿祥路828号","danwei094"],[120.258765,30.855448,"地址：湖州市织里镇织里北路131号","danwei095"],[120.255866,30.85341,"地址：织里镇利达路108号","danwei096"],[120.246014,30.852999,"地址：湖州市织里镇梦华蕾路68号","danwei097"],[120.242091,30.872924,"地址：湖州市织里镇织里南路33号","danwei098"],[120.289274,30.862656,"地址：湖州市织里镇康泰路西工业园","danwei099"],[120.252684,30.858657,"地址：湖州市织里镇金海岸南路北侧栋梁路东侧","danwei100"],[120.252882,30.87834,"地址：湖州市织里镇中华西路368号","danwei101"],[120.28487,30.846675,"地址：湖州市织里镇大港路888号","danwei102"],[120.260858,30.841466,"地址：湖州市织里镇工业园区318国道北侧","danwei103"],[120.253953,30.854921,"地址：湖州市织里镇利济路西137号","danwei104"],[120.257121,30.855255,"地址：湖州市织里镇利济西路111号","danwei105"],[120.245379,30.858518,"地址：湖州市吴兴区织里镇帕罗路288号","danwei106"],[120.240303,30.857665,"地址：湖州织里镇西环二路","danwei107"],[120.257768,30.840962,"地址：湖州市织里镇318织里段888号","danwei108"],[120.257270,30.870742,"地址：567","xiaofangdui343"]];
+var i = 0;
+for (; i < arr_object.length; i++) {
+	var llng =arr_object[i][0];
+	var llat =arr_object[i][1];
+	var ls_name=arr_object[i][3];
+	var tmpl = { overlayType: xOverlay.Types.Image, lat: llat, lng: llng, name: ls_name,title:ls_name };
+	module.tmpls.push(tmpl);
+}
+
+
+
+//选中图层点击事件
+xcanvas.onSelectedClick = function (tmpl, overlay, moduleName) {
+	//
+	document.getElementById('jingdu').value=tmpl.lng.toString();
+	document.getElementById('weidu').value=tmpl.lat.toString();
+	document.getElementById('leixing').value=tmpl.name;
+        my_get_myinfo(tmpl.name,tmpl.lng,tmpl.lat);
+	//alert(tmpl.name);
+}
+//选中事件
+//xcanvas.onSelected = function (tmpl,overlay, moduleName) {
+	//可以对overlay设置任何的属性
+//alert(tmpl.name);
+//return ;
+
+//}
+//添加模块信息
+xcanvas.addModule(module.name, module.tmpls,
+function (ctx, param) {
+	//绘制之前事件，可用给param.offsetLeft,param.offsetTop设置偏移量，也可以返回{image:null,offsetLeft:0,offsetTop:10} 设置偏移量（有默认值的，可不设置）
+
+// var point_name;
+   
+
+//    var zoom= xcanvas.map.getZoom();
+
+
+//    	point_name=param.name;
+// 		var image=document.getElementById("xiaofangshuanzhen");
+//         if(zoom>10){
+//             image.src='images/ICON32x32-d71d48/fabu.png';
+//         }else{
+//             image.src='images/ICON32x32-d71d48/bianji.png';
+//         }
+// 	  	return image; //必须返回页面中一个指定的DOM对
+	
+
+
+
+	var point_name;
+	var zoom= xcanvas.map.getZoom();
+	var image_zhen=document.getElementById("xiaofangshuanzhen");
+	var image_jia=document.getElementById("cr15");
+	var image_danwei=document.getElementById("cr17");
+	var image_shuiyuan=document.getElementById("cr16");
+	var image_danweijia=document.getElementById("cr18");
+	var image_xiaofangdui=document.getElementById("cr20");
+	if(zoom>=15){
+		image_zhen.src='images/xiaofangshuanzhen-15.png';
+		image_jia.src='images/xiaofangshuanjia-15.png';
+		image_danwei.src='images/danwei-15.png';
+		image_shuiyuan.src='images/shuiyuan-15.png';
+		image_danweijia.src='images/danweijia-15.png';
+		image_xiaofangdui.src='images/xiaofangdui-15.png';
+	}
+	else if(zoom==14){
+		image_zhen.src='images/xiaofangshuanzhen-14.png';
+		image_jia.src='images/xiaofangshuanjia-14.png';
+		image_danwei.src='images/danwei-14.png';
+		image_shuiyuan.src='images/shuiyuan-14.png';	
+		image_danweijia.src='images/danweijia-14.png';
+		image_xiaofangdui.src='images/xiaofangdui-14.png';
+	}
+	else if(zoom==13){
+		image_zhen.src='images/xiaofangshuanzhen-13.png';
+		image_jia.src='images/xiaofangshuanjia-13.png';
+		image_danwei.src='images/danwei-13.png';
+		image_shuiyuan.src='images/shuiyuan-13.png';
+		image_danweijia.src='images/danweijia-13.png';
+		image_xiaofangdui.src='images/xiaofangdui-13.png';
+	}
+	else if(zoom==12){
+		image_zhen.src='images/xiaofangshuanzhen-12.png';
+		image_jia.src='images/xiaofangshuanjia-12.png';
+		image_danwei.src='images/danwei-12.png';
+		image_shuiyuan.src='images/shuiyuan-12.png';
+		image_danweijia.src='images/danweijia-12.png';
+		image_xiaofangdui.src='images/xiaofangdui-12.png';
+	}
+	else if(zoom==11){
+		image_zhen.src='images/xiaofangshuanzhen-11.png';
+		image_jia.src='images/xiaofangshuanjia-11.png';
+		image_danwei.src='images/danwei-11.png';
+		image_shuiyuan.src='images/shuiyuan-11.png';
+		image_danweijia.src='images/danweijia-11.png';
+		image_xiaofangdui.src='images/xiaofangdui-11.png';
+	}
+	else if(zoom<=10){
+		image_zhen.src='images/xiaofangshuanzhen-10.png';
+		image_jia.src='images/xiaofangshuanjia-10.png';
+		image_danwei.src='images/danwei-10.png';
+		image_shuiyuan.src='images/shuiyuan-10.png';
+		image_danweijia.src='images/danweijia-10.png';
+		image_xiaofangdui.src='images/xiaofangdui-10.png';
+	}
+	point_name=ctx.name;
+	if(point_name.indexOf("xiaofangshuanzhen")>=0){
+		//document.getElementById("cr13").src="xiaofangshuanzhen.jpg";
+		var image=document.getElementById("xiaofangshuanzhen");
+	  	return image; //必须返回页面中一个指定的DOM对
+	}
+	if(point_name.indexOf("xiaofangshuanjia")>=0){
+		//document.getElementById("cr13").src="xiaofangshuanjia.jpg";
+		var image=document.getElementById("cr15");
+	  	return image; //必须返回页面中一个指定的DOM对
+	}
+	if(point_name.indexOf("danwei")>=0){
+		//document.getElementById("cr13").src="danwei.jpg";
+		if(point_name.indexOf("danweijia")>=0){
+			var image=document.getElementById("cr18");
+	  		return image; //必须返回页面中一个指定的DOM对
+		}
+		else{
+			var image=document.getElementById("cr17");
+	  		return image; //必须返回页面中一个指定的DOM对
+		}
+		
+	}
+	if(point_name.indexOf("shuiyuan")>=0){
+		//document.getElementById("cr13").src="shuiyuan.jpg";
+		var image=document.getElementById("cr16");
+	  	return image; //必须返回页面中一个指定的DOM对
+	}
+	if(point_name.indexOf("xiaofangdui")>=0){
+		//document.getElementById("cr13").src="shuiyuan.jpg";
+		var image=document.getElementById("cr20");
+	  	return image; //必须返回页面中一个指定的DOM对
+	}
+//	var image=document.getElementById("cr13");
+//	  return image; //必须返回页面中一个指定的DOM对
+
+}, function (ctx, param) {
+	//绘制之后事件
+
+}
+);
+//添加图层
+
+	
+	map.addOverlay(xcanvas);
+}
+setTimeout("alert_2()",200);
+
+//function alert_1(){alert("oka");}
+function alert_1(){
+	//选中事件
+	xcanvas.clear();
+}
+var ftest=function(){
+	//document.getElementById("jingdu").value="11111111111111111111";
+	//window.alert("ssss");
+	//var c_canvas = document.getElementById("canvas");
+	//alert(c_canvas.width);
+	//ctx = c_canvas.getContext("2d");
+	//ctx.clearRect(0, 0, c_canvas.width, c_canvas.height);
+}
+function set_item_visiable1(item_name,item_visiable){
+	xcanvas.refresh(function(item){
+  		xcanvas.setVisiable(item,function(){
+        		if(item.name.indexOf("xiaofangshuanzhen110")>-1){
+
+				map.setCenter(new BMap.Point(item.lng,item.lat));
+            			return false;
+        		}
+        		else{
+           			return true;
+			}
+
+    		}());
+  	});
+}
+function set_item_visiable(){
+	//window.xcanvas.clearModules();
+	xcanvas.clearModules();
+}
+function hideAll(){
+
+ xcanvas.refresh(function(item){
+  		xcanvas.setVisiable(item,function(){
+        		if(item.name.indexOf("xiaofangshuanzhen110")>-1){
+
+				map.setCenter(new BMap.Point(item.lng,item.lat));
+            			return false;
+        		}
+        		else{
+           			return true;
+			}
+
+    		}());
+  	});
+}
+function hide_xinxidian(xinxidian_name,xinxidian_visiable){
+	xcanvas.refresh(function(item){
+  		xcanvas.setVisiable(item,function(){
+        		if(item.name.indexOf(xinxidian_name)>-1){
+
+				map.setCenter(new BMap.Point(item.lng,item.lat));
+				if(xinxidian_visiable="true"){
+					return true;
+				}
+				else{
+					return false;
+				}
+        		}
+        		else{
+           			return true;
+			}
+
+    		}());
+  	});
+
+}
+
+
+function show_leixing(){
+
+
+       xcanvas.refresh(function(item)
+  {
+    xcanvas.setVisiable(item,
+        function(){
+            if(arr_xinxidian.indexOf(item.name+":1")>-1){
+            
+            return true;
+	//	return item.visiable;
+           }
+           else{
+            return false;
+           }
+
+
+        }()
+
+        );
+  })
+}
+
+function get_value(){
+	return arr_xinxidian;
+}
+function set_value(arr_xinxidian_value){
+	arr_xinxidian=arr_xinxidian_value;
+}
+
+
+function cheliang_xinxi(var_chepaihao,var_jingdu,var_weidu,var_fangxiang){
+	var allOverlay = map.getOverlays();
+	
+	//ll_count++;
+//	alert(allOverlay.length);
+	var var_fangxiang_arg=var_fangxiang;
+	//alert(var_fangxiang_arg);
+	for (var i = 0; i < allOverlay.length; i++) {
+		if (allOverlay[i] instanceof BMap.Marker){
+			var str1=allOverlay[i].getLabel().content.toUpperCase();
+			//alert(str1);
+			//alert(str1);
+				
+			//str1=str1.toUpperCase();
+			//alert(var_chepaihao);
+			if(str1==null){
+				str1=allOverlay[i].getLabel().getTitle().toUpperCase();
+			}
+
+			if(str1 !=null) {
+
+				if(str1.indexOf(var_chepaihao)>=0){
+				//alert(str1);
+
+					if(allOverlay[i].isVisible()==false){
+						allOverlay[i].show();
+					}
+					var point=new  BMap.Point(var_jingdu,var_weidu);
+
+					allOverlay[i].setPosition(point);
+					if(Number(var_fangxiang_arg)<=360){
+						allOverlay[i].setRotation(var_fangxiang_arg);
+					}
+					//alert(str1);
+
+					//根据车辆牌照，指定车辆现在的具体位置，存入input
+					if(str1=="浙WJ6668X"){
+						document.getElementById("wj6668x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+					}
+					if(str1=="浙WJ6667X"){
+						document.getElementById("wj6667x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+					}
+					if(str1=="浙WJ6665X"){
+						document.getElementById("wj6665x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+					}
+					if(str1=="浙WJ6651X"){
+						document.getElementById("wj6651x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+					}
+					if(str1=="浙WJ7528X"){
+						document.getElementById("wj7528x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+					}
+					if(str1=="浙BS6L02"){
+						document.getElementById("bs6l02_now").value=var_jingdu.toString()+","+var_weidu.toString();
+					}
+
+					//设置7528x居中
+					if(str1=="浙WJ7528X"){
+						var point_center=new BMap.Point(var_jingdu,var_weidu);
+						map.setCenter(point_center);
+					}
+
+				}	
+			}
+			
+		}
+	}
+	//alert("ssss");
+
+
+};
+function my_test(){
+	alert("ssssss");
+
+}
+
+function add_car(var_jingdu,var_weidu,var_label,var_show,var_set_center){
+
+	
+	//Content_单独增加车辆
+	
+	var myIcon = new BMap.Icon("http://9191show.com/xiaofang/che.png", new BMap.Size(52, 52));
+	var point=new BMap.Point(var_jingdu,var_weidu);
+	var marker = new BMap.Marker(point, {icon: myIcon});
+	var label = new BMap.Label(var_label, {offset: new BMap.Size(20, -10)});
+	label.setTitle(var_label);
+	marker.setLabel(label);
+	map.addOverlay(marker);
+	//marker.disableMassClear();
+	marker.setRotation(0);
+
+	var is_show=var_show;
+
+	if(is_show=="no"){
+		marker.hide();
+	}
+	else{
+		marker.show()
+	}
+
+	var is_set_center=var_set_center;
+	if(is_set_center=="yes"){
+		var point=new BMap.Point(var_jingdu,var_weidu);
+		map.setCenter(point);
+	}
+	var che_label=var_label;
+	alert(var_label);
+	if(var_label=="浙WJ6668X"){
+		document.getElementById("wj6668x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+	}
+	if(str1=="浙WJ6667X"){
+		document.getElementById("wj6667x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+	}
+	if(str1=="浙WJ6665X"){
+		document.getElementById("wj6665x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+	}
+	if(str1=="浙WJ6651X"){
+		alert(var_jingdu);
+		document.getElementById("wj6651x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+		alert(var_weidu);
+		
+	}
+	if(str1=="浙WJ7528X"){
+		document.getElementById("wj7528x_now").value=var_jingdu.toString()+","+var_weidu.toString();
+	}
+	if(str1=="浙BS6L02"){
+		document.getElementById("bs6l02_now").value=var_jingdu.toString()+","+var_weidu.toString();
+	}
+	// if(che_label=="浙WJ6665X"){
+	// 	var polyline_wj6665x = new BMap.Polyline(point, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+	// 	polyline_wj6665x.disableMassClear();
+	// 	map.addOverlay(polyline_wj6665x);
+
+	// }
+
+	// if(che_label=="浙WJ6667X"){
+	// 	var polyline_wj6667x = new BMap.Polyline(point, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+	// 	polyline_wj6667x.disableMassClear();
+	// 	map.addOverlay(polyline_wj6667x);
+		
+	// }
+
+	// if(che_label=="浙WJ6668X"){
+	// 	var polyline_wj6668x = new BMap.Polyline(point, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+	// 	polyline_wj6668x.disableMassClear();
+	// 	map.addOverlay(polyline_wj6668x);
+
+	// }
+
+	// if(che_label=="浙WJ6651X"){
+	// 	var polyline_wj6651x = new BMap.Polyline(point, {strokeColor: "red",strokeWeight: 2,strokeOpacity: 0.5});
+	// 	polyline_wj6651x.disableMassClear();
+	// 	map.addOverlay(polyline_wj6651x);
+	// }
+		
+
+
+  
+}
+function hide_car(var_label){
+	var allOverlay=map.getOverlays();
+
+	for(var i=0;i<allOverlay.length; i++){
+		
+		if(allOverlay[i] instanceof BMap.Marker){
+			str1="";
+			//var str1=allOverlay[i].getLabel().content;
+			var str1=allOverlay[i].getLabel().content.toUpperCase();
+			if(str1==null){
+				str1=allOverlay[i].getLabel().getTitle().toUpperCase();
+			}
+			
+
+			if(str1.indexOf(var_label)>=0){
+				//alert(str1);
+				//allOverlay[i].hide();
+				map.removeOverlay(allOverlay[i]);
+			}
+		}
+	}
+
+
+}
+
+function path_car(polyline_name,var_point){
+	//var points=[new BMap.Point(120.279487, 30.866256),new BMap.Point(116.405, 39.920)];
+	var point_arr=new Array();
+
+	for(var i=0;i<var_point.length;i++){
+		point_arr.push(new BMap.Point(var_point[i][0],var_point[i][1]));
+	}
+	//point_arr.push(new BMap.Point(116.405, 39.920));
+	if(polyline_name==2){
+		polyline_wj6668x.setPath(point_arr);	
+	}
+	if(polyline_name==1){
+		polyline_wj6667x.setPath(point_arr);	
+	}
+	if(polyline_name==3){
+		polyline_wj6665x.setPath(point_arr);	
+	}
+	if(polyline_name==4){
+		polyline_wj6651x.setPath(point_arr);	
+	}
+	if(polyline_name==5){
+		polyline_wj7528x.setPath(point_arr);	
+	}
+	if(polyline_name==6){
+		polyline_bs6l02.setPath(point_arr);	
+	}
+
+}
+function path_clear(){
+	polyline_wj6668x.setPath();
+	polyline_wj6651x.setPath();
+	polyline_wj6667x.setPath();
+	polyline_wj6665x.setPath();
+	polyline_wj7528x.setPath();
+	polyline_bs6l02.setPath();
+}
+
+function circle_car(var_jingdu,var_weidu){
+	
+	var point=new BMap.Point(var_jingdu,var_weidu);
+	var chicun=map.getZoom();
+	var circle = new BMap.Circle(point,25*chicun,{strokeColor: "blue",strokeWeight: 0.1,strokeOpacity: 0.1,fillOpacity: 0.1,fillColor: "red"}); //创建圆}); //创建圆
+	map.addOverlay(circle);  
+}
+
+function circle_clear(){
+	//删除地图上所有的导航信息，重新建立
+	var allOverlay = map.getOverlays();
+	for(var i=1; i < allOverlay.length ; i++) {
+		if (allOverlay[i] instanceof BMap.Circle){
+			map.removeOverlay(allOverlay[i]);
+					//alert(allOverlay[i].getStrokeWeight());
+		}
+	}
+}
+function fileopen(){
+	var objDoc; 
+	objDoc = new ActiveXObject("Word.Application"); 
+	objDoc.Visible = true; 
+	objDoc.Documents.Open("c:\1.doc");
+}
+
+//add_car(var_jingdu,var_weidu,var_label,var_show,var_set_center)
+
+//map.addEventListener("tilesloaded",function(){document.getElementById("map_finish").value="yes";});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+body,
+html,
+canvas {
+  margin: 0;
+  padding: 0;
+  background-color: #111;
+  overflow: hidden;
+}
+
+canvas {
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.text {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 3.7vw;
+  color: #fff;
+  z-index: 1;
+  opacity: 0.2;
+}
